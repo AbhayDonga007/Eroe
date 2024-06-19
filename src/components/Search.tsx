@@ -115,7 +115,7 @@ const Search = (props: Props) => {
                 )} */}
                 {searchData.length > 1 && (
                   // flex flex-rows-3 gap-2 flex-rows-3 sm:flex-rows-3
-                  <div className="gap-2 grid grid-cols-3 sm:grid-cols-3">
+                  <div className="gap-2 grid grid-cols-2 sm:grid-cols-3">
                     {searchData.map((item: Product,index) => (
                       <Card key={index} isFooterBlurred className="w-full h-[300px]">
                         <Link

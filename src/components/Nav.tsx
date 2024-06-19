@@ -275,7 +275,7 @@ export function Nav() {
                   <>
                     <ModalHeader className="flex flex-col gap-1">Cart Items</ModalHeader>
                     <ModalBody>
-                    <div className="gap-2 grid grid-cols-3 sm:grid-cols-4">
+                    <div className="gap-2 grid grid-cols-2 sm:grid-cols-4">
                       {list?.products?.map((item, index) => (
                         <Card shadow="sm" key={index} isPressable onPress={() => console.log("item pressed")}>
                           <CardHeader >
