@@ -64,7 +64,7 @@ export function CardProduct() {
             View all
           </Button> */}
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {data.map((item: Product, index) => (
             
             <div key={index} className="grid gap-4 ">
