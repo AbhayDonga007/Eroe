@@ -23,6 +23,9 @@ export async function POST(req:NextRequest) {
             return NextResponse.json({ message: "Cart not found" }, { status: 400 });
         }
         cart.products[productIndex].productQnt -= 1;
+        if (cart.products[productIndex].productQnt <= 0) {
+            cart.products.splice(productIndex, 1);
+        }
         await cart.save();
         
         return NextResponse.json({ message: "Product Saved." }, { status: 201 });

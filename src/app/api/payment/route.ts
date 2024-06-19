@@ -37,8 +37,8 @@ export async function POST(req:NextRequest) {
             payment_method_types:["card"],
             line_items: lineItems,
             mode: "payment",
-            success_url: "http://localhost:3000/dashboard",
-            cancel_url: "http://localhost:3000/dashboard",
+            success_url: "aavkar-fashion.vercel.app/dashboard",
+            cancel_url: "aavkar-fashion.vercel.app/dashboard",
           });
         // const paymentIntent = await stripe.paymentIntents.create({
         //   description: 'Software development services',
