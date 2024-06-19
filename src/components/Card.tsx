@@ -67,7 +67,7 @@ export function CardProduct() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {data.map((item: Product, index) => (
             
-            <div className="grid gap-4 ">
+            <div key={index} className="grid gap-4 ">
               <div className="grid gap-2.5 relative group">
                 <Card
                   className="min-h-[450px] max-h-[5000px] bg-gray-200"

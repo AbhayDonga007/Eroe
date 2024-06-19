@@ -66,7 +66,7 @@ export function Product(props: Props) {
     };
 
     getData();
-  }, []);
+  }, [id]);
 
   const handleCart = async () => {
     const Cart = await fetch("/api/addToCart",{

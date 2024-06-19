@@ -45,14 +45,25 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { CardTitle } from "./ui/card";
 import Search from "./Search";
-interface Product {
+
+export interface Product {
+  _id:string;
   name: string;
   des: string;
-  type: Array<string>;
-  size: Array<string>;
+  type: string[];
   oriPrice: number;
   disPrice: number;
+  size: string[];
   images: string;
+}
+
+export interface CartProduct {
+  productId: Product;
+  productQnt: number;
+}
+export interface Cart  {
+  userId: string;
+  products: CartProduct[];
 }
 
 export function Nav() {
@@ -64,13 +75,13 @@ export function Nav() {
   const userId = session.session?.user.id;
   
   
-  const [list, setList] = useState([]);
+  const [list, setList] = useState<Cart>();
 
   useEffect(() => {
     // console.log(userId);
     const getCartData = async () => {
       const res = await axios.get(`/api/getCartData?userId=${userId}`);
-      // console.log(res.data);
+      console.log(res.data);
       
       setList(res.data)
     }
@@ -88,10 +99,10 @@ export function Nav() {
   },[userId]);
   const MakePayment = async () => {
     const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string)
-    console.log(list.products);
+    console.log(list?.products);
     
     const body = {
-      products : list.products
+      products : list?.products
     }
     const res = await fetch(`/api/payment`,{
       method:"POST",
@@ -253,7 +264,7 @@ export function Nav() {
             )}
             </div> */}
           <span className="cart-icon">
-            <Badge isInvisible={list.products?.length > 0 ? false : true} content={list.products?.length} shape="circle" color="danger">
+            <Badge isInvisible={list?.products?.length ? false : true} content={list?.products?.length}  shape="circle" color="danger">
               <Button onPress={onOpen} isIconOnly className="bg-transparent" radius="full" size="md">
                 <ShoppingBagIcon />
               </Button>

@@ -20,7 +20,7 @@ export async function POST(req:NextRequest) {
 
         
         // console.log(products);
-        const lineItems = cart.products.map((product) => ({
+        const lineItems = cart.products.map((product:any) => ({
               price_data: {
                 currency: "usd",
                 product_data: {

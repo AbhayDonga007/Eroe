@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import {Input, Select, SelectItem} from "@nextui-org/react";
 import {Button} from "@nextui-org/button";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { Checkbox } from "@nextui-org/react";
 interface Product{
@@ -18,7 +18,7 @@ interface Product{
   image: string
 }
 
-const page = () => {
+const Page = () => {
 
   
   
@@ -204,4 +204,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
