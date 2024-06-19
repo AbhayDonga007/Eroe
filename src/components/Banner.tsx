@@ -15,7 +15,7 @@ type Props = {}
 const Banner = (props: Props) => {
   return (
     <Swiper
-      className='w-full h-lvh'
+      className='w-full h-auto'
       modules={[Navigation, Pagination, Scrollbar, A11y]}
     //   spaceBetween={50}
       slidesPerView={1}
