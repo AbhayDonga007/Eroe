@@ -52,7 +52,7 @@ const Search = (props: Props) => {
     //   />
     // </div>
     <div className="relative ml-auto flex-1 sm:flex-initial">
-      <Button onPressStart={onOpen} className="p-0 m-0 bg-transparent" onPress={onOpen}>
+      <Button className="p-0 m-0 bg-transparent" onPressStart={onOpen}>
         <Input
           isClearable
           radius="lg"

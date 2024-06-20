@@ -265,7 +265,7 @@ export function Nav() {
             </div> */}
           <span className="cart-icon">
             <Badge isInvisible={list?.products?.length ? false : true} content={list?.products?.length}  shape="circle" color="danger">
-              <Button onPress={onOpen}  onPressStart={onOpen} isIconOnly className="bg-transparent" radius="full" size="md">
+              <Button onPressStart={onOpen}   isIconOnly className="bg-transparent" radius="full" size="md">
                 <ShoppingBagIcon />
               </Button>
             </Badge>
