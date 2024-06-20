@@ -269,7 +269,7 @@ export function Nav() {
                 <ShoppingBagIcon />
               </Button>
             </Badge>
-            <Modal placement="top-center" backdrop="blur" scrollBehavior="inside" className="min-h-[500px] max-w-[800px]" isOpen={isOpen} onOpenChange={onOpenChange}>
+            <Modal placement="top-center" backdrop="blur" scrollBehavior="inside" className="min-h-[550px] max-w-[800px]" isOpen={isOpen} onOpenChange={onOpenChange}>
               <ModalContent>
                 {(onClose) => (
                   <>
@@ -277,7 +277,7 @@ export function Nav() {
                     <ModalBody>
                     <div className="gap-2 grid grid-cols-2 sm:grid-cols-4">
                       {list?.products?.map((item, index) => (
-                        <Card shadow="sm" key={index} isPressable onPress={() => console.log("item pressed")}>
+                        <Card className="max-h-[400px]" shadow="sm" key={index} isPressable onPress={() => console.log("item pressed")}>
                           <CardHeader >
                             <CardTitle className="truncate text-nowrap text-sm capitalize">{item.productId.name}</CardTitle>
                           </CardHeader>
@@ -291,8 +291,8 @@ export function Nav() {
                               src={item.productId.images}
                             />
                           </CardBody>
-                          <div className="overflow-hidden text-small text-left text-balance mr-2 h-20 text-gray-500 ml-2 pt-1">{item.productId.des} $</div>
-                          <CardFooter className="text-small truncate justify-between">
+                          <div className="overflow-hidden text-small text-left text-balance mr-2 max-h-[40px] text-gray-500 ml-2 pt-1">{item.productId.des} $</div>
+                          <CardFooter className="flex text-small truncate justify-between">
                             <ButtonGroup className="" size="sm">
                               <Button onClick={() => handleInc(item.productId._id)} className="font-bold bg-red-200" size="sm" isIconOnly radius="full">+</Button>
                               <div className="w-7 font-bold">{item.productQnt}</div>
