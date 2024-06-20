@@ -34,10 +34,10 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  Image,
   CardFooter,
   CardHeader,
   Badge,
+  Image,
   ButtonGroup,
 } from "@nextui-org/react";
 import { LucideShoppingBag, ShoppingBagIcon } from "lucide-react";
@@ -45,6 +45,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { CardTitle } from "./ui/card";
 import Search from "./Search";
+import Logo from "./Logo";
 
 export interface Product {
   _id:string;
@@ -78,7 +79,8 @@ export function Nav() {
   const [list, setList] = useState<Cart>();
 
   useEffect(() => {
-    // console.log(userId);
+    console.log(screen.width);
+    
     const getCartData = async () => {
       const res = await axios.get(`/api/getCartData?userId=${userId}`);
       console.log(res.data);
@@ -120,13 +122,7 @@ export function Nav() {
  
   const handleInc = async (productId:string) => {
     try {
-      
-      console.log(productId);
-      
-      const response = await axios.post('/api/cartIncrement', {productId,userId});
-      // Update the state with the new quantity, assuming you have a state management in place
-      // For example:
-      // setCart(response.data.cart);
+      await axios.post('/api/cartIncrement', {productId,userId});
     } catch (error) {
       console.error("Error incrementing product quantity", error);
     }
@@ -150,10 +146,9 @@ export function Nav() {
         <NavbarContent justify="start">
           <Link
             className="flex items-center gap-2 text-lg font-semibold md:text-base"
-            href="#"
+            href="/dashboard"
           >
-            <Package2Icon className="h-6 w-6" />
-            {/* <span className="sr-only">Acme Inc</span>/ */}
+            <Logo />
           </Link>
         </NavbarContent>
         <NavbarContent className="hidden sm:flex gap-5">
@@ -165,14 +160,7 @@ export function Nav() {
               Dashboard
             </Link>
           </NavbarItem>
-          <NavbarItem>
-            <Link
-              className="text-gray-500 transition-colors hover:text-gray-950 dark:text-gray-400 dark:hover:text-gray-50"
-              href="#"
-            >
-              Orders
-            </Link>
-          </NavbarItem>
+          
           <NavbarItem>
             <Link
               className="text-gray-500 transition-colors hover:text-gray-950 dark:text-gray-400 dark:hover:text-gray-50"
@@ -186,9 +174,19 @@ export function Nav() {
               className="text-gray-500 transition-colors hover:text-gray-950 dark:text-gray-400 dark:hover:text-gray-50"
               href="#"
             >
-              Customers
+              Catagoroy
             </Link>
           </NavbarItem>
+          
+          <NavbarItem>
+            <Link
+              className="text-gray-500 transition-colors hover:text-gray-950 dark:text-gray-400 dark:hover:text-gray-50"
+              href="#"
+            >
+              Orders
+            </Link>
+          </NavbarItem>
+          
           <NavbarItem>
             <Link
               className="text-gray-950 transition-colors hover:text-gray-950 dark:text-gray-50 dark:hover:text-gray-50"
@@ -201,9 +199,8 @@ export function Nav() {
       </nav>
       <Sheet>
         <SheetTrigger asChild>
-          <Button className="shrink-0 md:hidden">
+          <Button isIconOnly className="shrink-0 md:hidden bg-transparent">
             <MenuIcon className="h-5 w-5" />
-            <span className="sr-only">Toggle navigation menu</span>
           </Button>
         </SheetTrigger>
         <SheetContent side="left">
@@ -212,9 +209,9 @@ export function Nav() {
               className="flex items-center gap-2 text-lg font-semibold"
               href="#"
             >
-              <Package2Icon className="h-6 w-6" />
-              <span className="sr-only">Acme Inc</span>
+              <Logo />
             </Link>
+            <Search />
             <Link
               className="text-gray-500 hover:text-gray-950 dark:text-gray-400 dark:hover:text-gray-50"
               href="/dashboard"
@@ -248,21 +245,10 @@ export function Nav() {
           </nav>
         </SheetContent>
       </Sheet>
-      <NavbarContent as="div" className="items-center" justify="end">
+      {screen.width < 786 ? <Logo /> : <Search />}
+      <div className="w-[60px] md:hidden"></div>
+      <NavbarContent  justify="end">
         <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
-          
-          <Search />
-            {/* <div className="">
-            {searchData.length > 1 && (
-              <Card className="">
-                {searchData.map((item: Product) => (
-                  <CardBody>
-                    <p>{item.name}</p>
-                  </CardBody>
-                ))}
-              </Card>
-            )}
-            </div> */}
           <span className="cart-icon">
             <Badge isInvisible={list?.products?.length ? false : true} content={list?.products?.length}  shape="circle" color="danger">
               <Button onPressStart={onOpen}   isIconOnly className="bg-transparent" radius="full" size="md">
