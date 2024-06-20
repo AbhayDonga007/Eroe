@@ -70,7 +70,7 @@ export function CardProduct() {
             <div key={index} className="grid gap-4 ">
               <div className="grid gap-2.5 relative group">
                 <Card
-                  className="min-h-[450px] max-h-[5000px] bg-gray-200"
+                  className="sm:min-h-[400px] max-h-[500px] bg-gray-200"
                   shadow="sm"
                   key={index}
                   isPressable

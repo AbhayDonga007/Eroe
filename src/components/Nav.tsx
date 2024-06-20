@@ -265,11 +265,11 @@ export function Nav() {
             </div> */}
           <span className="cart-icon">
             <Badge isInvisible={list?.products?.length ? false : true} content={list?.products?.length}  shape="circle" color="danger">
-              <Button onPress={onOpen} isIconOnly className="bg-transparent" radius="full" size="md">
+              <Button onPress={onOpen}  onPressStart={onOpen} isIconOnly className="bg-transparent" radius="full" size="md">
                 <ShoppingBagIcon />
               </Button>
             </Badge>
-            <Modal backdrop="blur" scrollBehavior="inside" className="max-h-[550px] max-w-[800px]" isOpen={isOpen} onOpenChange={onOpenChange}>
+            <Modal placement="top-center" backdrop="blur" scrollBehavior="inside" className="min-h-[500px] max-w-[800px]" isOpen={isOpen} onOpenChange={onOpenChange}>
               <ModalContent>
                 {(onClose) => (
                   <>

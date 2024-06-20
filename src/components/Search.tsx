@@ -38,10 +38,8 @@ const Search = (props: Props) => {
   const onSearch = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
 
-    if (search?.length > 2) {
-      const res = await axios.get(`/api/getDataByName?name=${search}`);
-      setSearchData(res.data);
-    }
+    const res = await axios.get(`/api/getDataByName?name=${search}`);
+    setSearchData(res.data);
   };
   return (
     // <div className="relative ml-auto flex-1 sm:flex-initial">
@@ -54,7 +52,7 @@ const Search = (props: Props) => {
     //   />
     // </div>
     <div className="relative ml-auto flex-1 sm:flex-initial">
-      <Button className="p-0 m-0 bg-transparent" onPress={onOpen}>
+      <Button onPressStart={onOpen} className="p-0 m-0 bg-transparent" onPress={onOpen}>
         <Input
           isClearable
           radius="lg"
@@ -77,6 +75,7 @@ const Search = (props: Props) => {
         backdrop="blur"
         scrollBehavior="inside"
         size="2xl"
+        placement="top-center"
         isOpen={isOpen}
         onOpenChange={onOpenChange}
       >
@@ -104,17 +103,7 @@ const Search = (props: Props) => {
                 />
               </ModalHeader>
               <ModalBody>
-                {/* {searchData.length > 1 && (
-                <Card className="">
-                    {searchData.map((item: Product) => (
-                    <CardBody>
-                        <p>{item.name}</p>
-                    </CardBody>
-                    ))}
-                </Card>
-                )} */}
                 {searchData.length > 1 && (
-                  // flex flex-rows-3 gap-2 flex-rows-3 sm:flex-rows-3
                   <div className="gap-2 grid grid-cols-2 sm:grid-cols-3">
                     {searchData.map((item: Product,index) => (
                       <Card key={index} isFooterBlurred className="w-full h-[300px]">
