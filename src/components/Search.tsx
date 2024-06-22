@@ -16,7 +16,10 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import axios from "axios";
+import { ShoppingCart } from "lucide-react";
 import React, { useEffect, useState } from "react";
+import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 type Props = {};
 interface Product {
@@ -25,9 +28,12 @@ interface Product {
   des: string;
   type: Array<string>;
   size: Array<string>;
-  oriPrice: number;
-  disPrice: number;
-  images: string;
+  customerPrize: number;
+  productPrize: number;
+  retailPrize: number;
+  artical_no: string;
+  color: Array<string>;
+  images: Array<string>;
 }
 
 const Search = (props: Props) => {
@@ -79,7 +85,7 @@ const Search = (props: Props) => {
         isOpen={isOpen}
         onOpenChange={onOpenChange}
       >
-        <ModalContent>  
+        <ModalContent>
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1 w-[97%]">
@@ -104,87 +110,113 @@ const Search = (props: Props) => {
               </ModalHeader>
               <ModalBody>
                 {searchData.length > 1 && (
-                  <div className="gap-2 grid grid-cols-2 sm:grid-cols-3">
-                    {searchData.map((item: Product,index) => (
-                      <Card key={index} isFooterBlurred className="w-full h-[300px]">
-                        <Link
-                          className="absolute inset-0 z-10"
-                          href={`/product/${item._id}`}
-                        ></Link>
-                        <CardHeader className="absolute z-10 truncate flex-col items-start">
-                          <p className="text-tiny text-red-500/60  uppercase font-bold">
-                            New
-                          </p>
-                          {/* <h4 className="text-black font-medium">{item.name}</h4> */}
-                        </CardHeader>
-                        <Image
-                          removeWrapper
-                          alt="Card example background"
-                          className="z-0 w-full h-full object-cover"
-                          src={item.images}
-                        />
-                        <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
-                          <div>
-                            <p className="text-black text-tiny">{item.name}</p>
-                            {/* <p className="text-black text-tiny">Get notified.</p> */}
+                  <div className="grid grid-cols-2 md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
+                    {searchData.map((item: Product, index) => {
+                      const productPrize = item.productPrize ?? 0;
+                      const customerPrize = item.customerPrize ?? 0;
+
+                      const discount =
+                        productPrize !== 0
+                          ? ((productPrize - customerPrize) / productPrize) *
+                            100
+                          : 0;
+                      return (
+                        <div key={index} className="grid gap-4 ">
+                          <div className="grid gap-2.5 relative group">
+                            <Card
+                              isFooterBlurred
+                              className="sm:min-h-[300px] rounded-[22px] max-h-[500px] bg-gray-200"
+                              shadow="sm"
+                              key={index}
+                              isPressable
+                              onPress={() => console.log("item pressed")}
+                            >
+                              <CardHeader className="p-2 absolute z-10 flex-col items-start">
+                                <Button
+                                  isIconOnly
+                                  className="bg-red-600 text-white font-bold px-2 py-1 rounded-full text-sm"
+                                >
+                                  <Link
+                                    className="absolute inset-0 z-10"
+                                    href={`/product/${item._id}`}
+                                  ></Link>
+                                  -{Math.round(discount)}%
+                                </Button>
+                              </CardHeader>
+                              <CardHeader className="p-2 absolute z-10 flex-col items-end">
+                                <Button
+                                  isIconOnly
+                                  className="rounded-full bg-zinc-300 "
+                                >
+                                  <Link
+                                    className="absolute inset-0 z-10"
+                                    href={`/product/${item._id}`}
+                                  ></Link>
+                                  <ShoppingCart />
+                                </Button>
+                              </CardHeader>
+                              <CardBody className="p-0">
+                                <Swiper
+                                  className="w-full bg-transparent bg-blur"
+                                  modules={[
+                                    Navigation,
+                                    Pagination,
+                                    Scrollbar,
+                                    A11y,
+                                  ]}
+                                  // spaceBetween={50}
+                                  slidesPerView={1}
+                                  // navigation
+                                  pagination={{
+                                    clickable: true,
+                                    dynamicBullets: true,
+                                  }}
+                                  // scrollbar={{ draggable: true }}
+                                  // onSwiper={(swiper) => console.log(swiper)}
+                                  // onSlideChange={() => console.log('slide change')}
+                                >
+                                  {item.images.map((image, index) => (
+                                    <SwiperSlide key={index}>
+                                      <Image
+                                        alt="Leather Jacket"
+                                        className="object-cover w-full aspect-[3/4] group-hover:opacity-80 transition-opacity gap-y-3"
+                                        height={350}
+                                        src={image}
+                                        width={400}
+                                      />
+                                      <Link
+                                        className="absolute inset-0 z-10"
+                                        href={`/product/${item._id}`}
+                                      ></Link>
+                                    </SwiperSlide>
+                                  ))}
+                                </Swiper>
+                              </CardBody>
+                              <CardFooter className="flex flex-col items-center max-h-[80px] absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10">
+                                <div>
+                                  <p className="text-black w-[200px] text-[14px] line-clamp-1 text-center font-semibold">
+                                    {item.name}
+                                  </p>
+                                </div>
+                                <div>
+                                  <p className="w-[200px] text-[12px] text-gray-500 text-center font-semibold">
+                                    {item.type}
+                                  </p>
+                                </div>
+                                <div className="flex flex-row gap-2">
+                                  <p className="text-red-700 w-auto text-[14px] truncate text-start max-h-[22px] font-semibold">
+                                    ₹ {item.customerPrize}
+                                  </p>
+                                  <p className="text-red-700 w-auto text-[14px] truncate text-start max-h-[22px] font-semibold line-through">
+                                    ₹ {item.productPrize}
+                                  </p>
+                                </div>
+                              </CardFooter>
+                            </Card>
                           </div>
-                          <Button
-                            className="text-tiny"
-                            color="primary"
-                            radius="full"
-                            size="sm"
-                          >
-                            <Link
-                              className="absolute inset-0 z-10"
-                              href={`/product/${item._id}`}
-                            ></Link>
-                            {item.disPrice} $
-                          </Button>
-                        </CardFooter>
-                      </Card>
-                    ))}
-                    {/* <Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-5">
-                        <CardHeader className="absolute z-10 top-1 flex-col items-start">
-                            <p className="text-tiny text-white/60 uppercase font-bold">New</p>
-                            <h4 className="text-black font-medium text-2xl">Acme camera</h4>
-                        </CardHeader>
-                        <Image
-                            removeWrapper
-                            alt="Card example background"
-                            className="z-0 w-full h-full scale-125 -translate-y-6 object-cover"
-                            src="https://nextui.org/images/card-example-6.jpeg"
-                        />
-                        <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
-                            <div>
-                            <p className="text-black text-tiny">Available soon.</p>
-                            <p className="text-black text-tiny">Get notified.</p>
-                            </div>
-                            <Button className="text-tiny" color="primary" radius="full" size="sm">
-                            Notify Me
-                            </Button>
-                        </CardFooter>
-                    </Card>
-                    <Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-5">
-                        <CardHeader className="absolute z-10 top-1 flex-col items-start">
-                            <p className="text-tiny text-white/60 uppercase font-bold">New</p>
-                            <h4 className="text-black font-medium text-2xl">Acme camera</h4>
-                        </CardHeader>
-                        <Image
-                            removeWrapper
-                            alt="Card example background"
-                            className="z-0 w-full h-full scale-125 -translate-y-6 object-cover"
-                            src="https://nextui.org/images/card-example-6.jpeg"
-                        />
-                        <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
-                            <div>
-                            <p className="text-black text-tiny">Available soon.</p>
-                            <p className="text-black text-tiny">Get notified.</p>
-                            </div>
-                            <Button className="text-tiny" color="primary" radius="full" size="sm">
-                            Notify Me
-                            </Button>
-                        </CardFooter>
-                    </Card> */}
+                        </div>
+                      );
+                    })}
                   </div>
                 )}
               </ModalBody>

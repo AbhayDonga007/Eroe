@@ -6,6 +6,8 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(req:NextRequest) {
     try {
         const data = await req.json(); 
+        console.log(data);
+        
         await connectMongoDB();
 
         const product = await Product.findById(data.id);
@@ -20,7 +22,7 @@ export async function POST(req:NextRequest) {
             // If cart does not exist, create a new cart
             cart = new Cart({
                 userId: data.userId,
-                products: [{ productId: product._id, productQnt: data.count }]
+                products: [{ productId: product._id, productQnt: data.count, productSize:data.productSize, productColor: data.productColor}]
             });
         } else {
             // If cart exists, check if the product already exists in the cart
@@ -30,7 +32,7 @@ export async function POST(req:NextRequest) {
                 existingProduct.productQnt += data.count;
             } else {
                 // If product does not exist, add it to the products array
-                cart.products.push({ productId: product._id, productQnt: data.count });
+                cart.products.push({ productId: product._id, productQnt: data.count, productSize:data.productSize, productColor: data.productColor });
             }
         }
 

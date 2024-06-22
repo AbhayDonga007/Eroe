@@ -1,63 +1,78 @@
 "use client";
 import { Label } from "@/components/ui/label";
-// import { Input } from "@/components/ui/input";
-// import { Button } from "@/components/ui/button";
-import {Input, Select, SelectItem} from "@nextui-org/react";
-import {Button} from "@nextui-org/button";
-import axios from "axios";
+import { Input, Select, SelectItem } from "@nextui-org/react";
+import { Button } from "@nextui-org/button";
 import { useState } from "react";
 import Image from "next/image";
-import { Checkbox } from "@nextui-org/react";
-interface Product{
-  name: string,
-  des: string,
-  type: Array<string>,
-  size: Array<string>,
-  oriPrice: number,
-  disPrice: number,
-  image: string
+import Logo from "@/components/Logo";
+import toast from "react-hot-toast";
+interface Product {
+  name: string;
+  des: string;
+  type: Array<string>;
+  size: Array<string>;
+  customerPrize: number;
+  productPrize: number;
+  retailPrize: number;
+  artical_no: string;
+  color: Array<string>;
+  images: Array<string>;
 }
 
 const Page = () => {
-
-  
-  
-  const [product,setProduct] = useState<Product>({
-    name:"",
-    des:'',
-    type:[],
-    size:[],
-    oriPrice:0,
-    disPrice:0,
-    image:'',
-  })
+  const [product, setProduct] = useState<Product>({
+    name: "",
+    des: "",
+    type: [],
+    size: [],
+    customerPrize: 0,
+    productPrize: 0,
+    retailPrize: 0,
+    artical_no: "",
+    color: [],
+    images: [],
+  });
   const types = [
-    {key: "type1", label: "Type 1"},
-    {key: "type2", label: "Type 2"},
-    {key: "type3", label: "Type 3"},
-    {key: "type4", label: "Type 4"},
-    {key: "type5", label: "Type 5"},
-  ]
+    { key: "Kurti", label: "Kurti" },
+    { key: "Pant Pair", label: "Pant Pair" },
+    { key: "Gown", label: "Gown" },
+    { key: "Plaza Pair", label: "Plaza Pair" },
+    { key: "Nayra Pair", label: "Nayra Pair" },
+  ];
   const sizes = [
-    {key: "size1", label: "Size 1"},
-    {key: "size2", label: "Size 2"},
-    {key: "size3", label: "Size 3"},
-    {key: "size4", label: "Size 4"},
-    {key: "size5", label: "Size 5"},
-  ]
+    { key: "L", label: "L" },
+    { key: "M", label: "M" },
+    { key: "S", label: "S" },
+    { key: "XL", label: "XL" },
+    { key: "XXL", label: "XXL " },
+  ];
+
+  const colors = [
+    { key: "Red", label: "Red" },
+    { key: "Green", label: "Green" },
+    { key: "Blue", label: "Blue" },
+    { key: "Pink", label: "Pink" },
+    { key: "Yellow", label: "Yellow" },
+  ];
   const handleSubmit = async () => {
-    // console.log(product);
-    const Product = await fetch("/api/product",{
-      method:'POST',
+
+    const res = await fetch("/api/product", {
+      method: "POST",
       // crossDomain: true,
-      headers:{
-        "Content-Type":"application/json",
+      headers: {
+        "Content-Type": "application/json",
         // Accept : "application/json",
         // "Access-Control-Allow-Origin":"*",
       },
-      body:JSON.stringify(product),
+      body: JSON.stringify(product),
     });
-  }
+
+    if (res.status === 201) {
+      toast.success("Product Added Successfully");
+    } else {
+      toast.error("Something is wrong");
+    }
+  };
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(e);
@@ -71,23 +86,44 @@ const Page = () => {
     //   console.log("Error");
     // }
 
-
     let files = e.target.files;
-    // console.log(files);
+    console.log(files);
     let reader = new FileReader();
-    if(files![0]){
+    if (files![0]) {
       reader.readAsDataURL(files![0]);
     }
 
-    reader.onload = e => {
-        // console.log(reader.result);
-        setProduct({...product,image: reader.result as string});
+    reader.onload = (e) => {
+      // console.log(reader.result);
+      setProduct({
+        ...product,
+        images: [...product.images, reader.result as string],
+      });
     };
     reader.onerror = () => {
       console.log("Error");
-    }
-  };
+    };
 
+    // const selectedFiles = Array.from(e.target.files);
+    // console.log(selectedFiles);
+
+    // selectedFiles.forEach((image) => {
+    //   let reader = new FileReader();
+
+    //   if (image) {
+    //     reader.readAsDataURL(image);
+    //   }
+
+    //   reader.onload = (e) => {
+    //     console.log(image,reader.result);
+    //     setProduct({...product , images:[...product.images,reader.result as string]})
+    //   }
+    //   reader.onerror = () => {
+    //     console.log("Error");
+
+    //   }
+    // });
+  };
 
   return (
     <div
@@ -95,67 +131,74 @@ const Page = () => {
       className="flex flex-col items-center justify-center min-h-screen py-12 sm:px-6 lg:px-8 bg-gray-300"
     >
       <div className="w-full max-w-[900px] space-y-6 bg-white dark:bg-gray-900 shadow-lg rounded-lg p-6">
-        <div className="space-y-2 text-center">
+        <div className="space-y-2 justify-center flex items-center text-center">
           <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-50">
-            Welcome Back
+            <Logo />
           </h1>
-          <p className="text-gray-500 dark:text-gray-400">
-            Enter your email below to login to your account
-          </p>
         </div>
 
         <div className="space-y-4">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <div className="w-full flex flex-col gap-4">
-                    <div key="md" className="flex w-full flex-wrap flex-nowrap mb-6 mb-0 gap-4">
-                      <Input onChange={(e) => setProduct({...product,name:e.target.value})} size="md" type="text" label="Product Name" />
+                    <div
+                      key="md"
+                      className="flex w-full flex-wrap flex-nowrap mb-6 mb-0 gap-4"
+                    >
+                      <Input
+                        onChange={(e) =>
+                          setProduct({ ...product, name: e.target.value })
+                        }
+                        size="md"
+                        type="text"
+                        label="Product Name"
+                      />
                     </div>
                   </div>
                 </div>
                 <div className="space-y-2">
                   <div className="w-full flex flex-col gap-4">
-                    <div key="md" className="flex w-full flex-wrap flex-nowrap mb-6 mb-0 gap-4">
-                      <Input onChange={(e) => setProduct({...product,des:e.target.value})} size="md" type="text" label="Product Description" />
+                    <div
+                      key="md"
+                      className="flex w-full flex-wrap flex-nowrap mb-6 mb-0 gap-4"
+                    >
+                      <Input
+                        onChange={(e) =>
+                          setProduct({ ...product, des: e.target.value })
+                        }
+                        size="md"
+                        type="text"
+                        label="Product Description"
+                      />
                     </div>
                   </div>
                 </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <div className="w-full flex flex-col gap-4">
-                    <div key="md" className="flex w-full flex-wrap flex-nowrap mb-6 mb-0 gap-4">
+                    <div
+                      key="md"
+                      className="flex w-full flex-wrap flex-nowrap mb-6 mb-0 gap-4"
+                    >
                       <Select
                         label="Product Type"
                         // selectionMode="multiple"
                         className="max-w-xs"
-                        onChange={(e) => setProduct({...product,type:[e.target.value]})}
+                        onChange={(e) =>
+                          setProduct({ ...product, type: [e.target.value] })
+                        }
                       >
                         {types.map((type) => (
-                          <SelectItem key={type.key}>
-                            {type.label}
-                          </SelectItem>
+                          <SelectItem key={type.key}>{type.label}</SelectItem>
                         ))}
                       </Select>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="grid grid-cols-3 gap-4">
-                <div className="space-y-2">
-                  <div className="w-full flex flex-col gap-4">
-                    <div key="md" className="flex w-full flex-wrap flex-nowrap mb-6 mb-0 gap-4">
-                      <Input onChange={(e) => setProduct({...product,oriPrice:Number(e.target.value)})} size="md" type="number" label="Original Prize" />
-                    </div>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="w-full flex flex-col gap-4">
-                    <div key="md" className="flex w-full flex-wrap flex-nowrap mb-6 mb-0 gap-4">
-                      <Input onChange={(e) => setProduct({...product,disPrice:Number(e.target.value)})} size="md" type="number" label="Product Prize" />
-                    </div>
-                  </div>
-                </div>
+
                 <div className="space-y-2">
                   {/* <Label htmlFor="last-name">Size</Label>
                   <Input id="last-name" placeholder="Size" /> */}
@@ -163,40 +206,155 @@ const Page = () => {
                     label="Product Size"
                     selectionMode="multiple"
                     className="max-w-xs"
-                    onChange={(e) => setProduct({...product,size:[e.target.value]})}
+                    onChange={(e) =>
+                      setProduct({ ...product, size: [e.target.value] })
+                    }
                   >
                     {sizes.map((size) => (
-                      <SelectItem  key={size.key}>
-                        {size.label}
-                      </SelectItem>
+                      <SelectItem key={size.key}>{size.label}</SelectItem>
                     ))}
                   </Select>
                 </div>
               </div>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="first-name">Upload Images</Label>
-                  {/* <Input type="file" accept="image/*" placeholder="Image" onChange={handleImageUpload}/> */}
                   <div className="w-full flex flex-col gap-4">
-                    <div key="md" className="flex w-full flex-wrap flex-nowrap mb-6 mb-0 gap-4">
-                      <Input type="file" accept="image/*" placeholder="Image" onChange={handleImageUpload} />
+                    <div
+                      key="md"
+                      className="flex w-full flex-wrap flex-nowrap mb-6 mb-0 gap-4"
+                    >
+                      <Input
+                        onChange={(e) =>
+                          setProduct({
+                            ...product,
+                            customerPrize: Number(e.target.value),
+                          })
+                        }
+                        size="md"
+                        type="number"
+                        label="Customer Prize"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <div className="w-full flex flex-col gap-4">
+                    <div
+                      key="md"
+                      className="flex w-full flex-wrap flex-nowrap mb-6 mb-0 gap-4"
+                    >
+                      <Input
+                        onChange={(e) =>
+                          setProduct({
+                            ...product,
+                            productPrize: Number(e.target.value),
+                          })
+                        }
+                        size="md"
+                        type="number"
+                        label="Product Prize"
+                      />
                     </div>
                   </div>
                 </div>
                 {/* {image=="" || image == null ? "" : <Image alt='Image' width={100} height={100} src={image} />} */}
-                
-                
-                {/* <div className="space-y-2">
-                  <Label htmlFor="last-name">Product Prize</Label>
-                  <Input id="last-name" placeholder="Description" />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <div className="w-full flex flex-col gap-4">
+                    <div
+                      key="md"
+                      className="flex w-full flex-wrap flex-nowrap mb-6 mb-0 gap-4"
+                    >
+                      <Input
+                        onChange={(e) =>
+                          setProduct({
+                            ...product,
+                            retailPrize: Number(e.target.value),
+                          })
+                        }
+                        size="md"
+                        type="number"
+                        label="Retail Prize"
+                      />
+                    </div>
+                  </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="last-name">Size</Label>
-                  <Input id="last-name" placeholder="Type" />
-                </div> */}
+                  {/* <Label htmlFor="last-name">Size</Label>
+                  <Input id="last-name" placeholder="Size" /> */}
+                  <Select
+                    label="Product Colors"
+                    selectionMode="multiple"
+                    className="max-w-xs"
+                    onChange={(e) =>
+                      setProduct({ ...product, color: [e.target.value] })
+                    }
+                  >
+                    {colors.map((color) => (
+                      <SelectItem key={color.key}>{color.label}</SelectItem>
+                    ))}
+                  </Select>
+                </div>
+                {/* {image=="" || image == null ? "" : <Image alt='Image' width={100} height={100} src={image} />} */}
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <div className="w-full flex flex-col gap-4">
+                    <div
+                      key="md"
+                      className="flex w-full flex-wrap flex-nowrap mb-6 mb-0 gap-4"
+                    >
+                      <Input
+                        onChange={(e) =>
+                          setProduct({ ...product, artical_no: e.target.value })
+                        }
+                        size="md"
+                        type="text"
+                        label="Artical No"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="first-name">Upload Images</Label>
+                  {/* <Input type="file" accept="image/*" placeholder="Image" onChange={handleImageUpload}/> */}
+                  <div className="w-full flex flex-col gap-4">
+                    <div
+                      key="md"
+                      className="flex w-full flex-wrap flex-nowrap mb-6 mb-0 gap-4"
+                    >
+                      <input
+                        type="file"
+                        accept="image/*"
+                        id="product-images"
+                        placeholder="Upload Image"
+                        onChange={handleImageUpload}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <Button
+                onClick={handleSubmit}
+                className="w-full bg-black text-white"
+              >
+                Save
+              </Button>
+              <div className="grid grid-cols-5 gap-4">
+                {product.images.map((image) => (
+                  <Image
+                    alt="Leather Jacket"
+                    className="rounded-lg object-cover w-full aspect-[3/4] group-hover:opacity-50 transition-opacity gap-y-3"
+                    height={300}
+                    src={image}
+                    width={300}
+                  />
+                ))}
               </div>
             </div>
-            <Button onClick={handleSubmit} className="w-full bg-black text-white">Save</Button>
           </form>
         </div>
       </div>

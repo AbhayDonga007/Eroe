@@ -63,13 +63,13 @@ const Banner = (props: Props) => {
             alt="Picture of the author"
         />
       </SwiperSlide>
-      <SwiperSlide>
+      {/* <SwiperSlide>
         <Image
             className="w-full sm:h-[500px] object-contain"
             src={b5}
             alt="Picture of the author"
         />
-      </SwiperSlide>
+      </SwiperSlide> */}
       <SwiperSlide>
         <Image
             className="w-full sm:h-[500px] object-contain"
@@ -77,13 +77,13 @@ const Banner = (props: Props) => {
             alt="Picture of the author"
         />
       </SwiperSlide>
-      <SwiperSlide>
+      {/* <SwiperSlide>
         <Image
             className="w-full sm:h-[500px] object-contain"
             src={b7}
             alt="Picture of the author"
         />
-      </SwiperSlide>
+      </SwiperSlide> */}
       <SwiperSlide>
         <Image
             className="w-full sm:h-[500px] object-contain"
@@ -105,13 +105,13 @@ const Banner = (props: Props) => {
             alt="Picture of the author"
         />
       </SwiperSlide>
-      <SwiperSlide>
+      {/* <SwiperSlide>
         <Image
             className="w-full sm:h-[500px] object-contain"
             src={b11}
             alt="Picture of the author"
         />
-      </SwiperSlide>
+      </SwiperSlide> */}
     </Swiper>
   )
 }

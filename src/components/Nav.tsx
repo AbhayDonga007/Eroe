@@ -40,7 +40,7 @@ import {
   Image,
   ButtonGroup,
 } from "@nextui-org/react";
-import { LucideShoppingBag, ShoppingBagIcon } from "lucide-react";
+import { LucideShoppingBag, ShoppingBagIcon, ShoppingCart } from "lucide-react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { CardTitle } from "./ui/card";
@@ -48,19 +48,24 @@ import Search from "./Search";
 import Logo from "./Logo";
 
 export interface Product {
-  _id:string;
+  _id: string;
   name: string;
   des: string;
-  type: string[];
-  oriPrice: number;
-  disPrice: number;
-  size: string[];
-  images: string;
+  type: Array<string>;
+  size: Array<string>;
+  customerPrize: number;
+  productPrize: number;
+  retailPrize: number;
+  artical_no: string;
+  color: Array<string>;
+  images: Array<string>;
 }
 
 export interface CartProduct {
   productId: Product;
   productQnt: number;
+  productSize: string;
+  productColor: string;
 }
 export interface Cart  {
   userId: string;
@@ -245,14 +250,20 @@ export function Nav() {
           </nav>
         </SheetContent>
       </Sheet>
-      {screen.width < 786 ? <Logo /> : <Search />}
+      {/* {screen.width < 786 ? <Logo /> : <Search />} */}
+      <div className="xl:hidden lg:hidden md:hidden">
+        <Logo />
+      </div>
+      <div className="hidden xl:inline lg:inline md:inline">
+        <Search />
+      </div>
       <div className="w-[60px] md:hidden"></div>
       <NavbarContent  justify="end">
         <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
           <span className="cart-icon">
             <Badge isInvisible={list?.products?.length ? false : true} content={list?.products?.length}  shape="circle" color="danger">
               <Button onPressStart={onOpen}   isIconOnly className="bg-transparent" radius="full" size="md">
-                <ShoppingBagIcon />
+                <ShoppingCart />
               </Button>
             </Badge>
             <Modal placement="top-center" backdrop="blur" scrollBehavior="inside" className="min-h-[550px] max-w-[800px]" isOpen={isOpen} onOpenChange={onOpenChange}>
@@ -274,17 +285,17 @@ export function Nav() {
                               width="100%"
                               alt={item.productId.name}
                               className="w-full max-h-[250px] object-cover"
-                              src={item.productId.images}
+                              src={item.productId.images[0]}
                             />
                           </CardBody>
-                          <div className="overflow-hidden text-small text-left text-balance mr-2 max-h-[40px] text-gray-500 ml-2 pt-1">{item.productId.des} $</div>
+                          <div className="overflow-hidden text-small text-left text-balance mr-2 max-h-[40px] text-gray-500 ml-2 pt-1">{item.productId.des} ₹</div>
                           <CardFooter className="flex text-small truncate justify-between">
                             <ButtonGroup className="" size="sm">
                               <Button onClick={() => handleInc(item.productId._id)} className="font-bold bg-red-200" size="sm" isIconOnly radius="full">+</Button>
                               <div className="w-7 font-bold">{item.productQnt}</div>
                               <Button onClick={() => handleDec(item.productId._id)} className="font-bold bg-red-200" size="sm" isIconOnly radius="full">-</Button>
                             </ButtonGroup>
-                            <div className="text-default-700 font-bold">{item.productQnt * item.productId.disPrice} $</div>
+                            <div className="text-default-700 font-bold">{item.productQnt * item.productId.customerPrize} $</div>
                           </CardFooter>
                         </Card>
                       ))}

@@ -15,6 +15,14 @@ const userSchema = new Schema(
       productQnt:{
         type: Number,
         required: true,
+      },
+      productSize:{
+        type: String,
+        required: true,
+      },
+      productColor:{
+        type: String,
+        required: true,
       }
     }],
   },
