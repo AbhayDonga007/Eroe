@@ -17,36 +17,122 @@ To read more about using these font, please visit the Next.js documentation:
 - App Directory: https://nextjs.org/docs/app/building-your-application/optimizing/fonts
 - Pages Directory: https://nextjs.org/docs/pages/building-your-application/optimizing/fonts
 **/
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
+import { Button, Input, Select, SelectItem, Textarea } from "@nextui-org/react"
+import Logo from "./Logo"
 
 export function Newsletter() {
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-200">
-      <div className="container mx-auto max-w-md space-y-6 px-4 md:px-6">
-        <div className="space-y-2 text-center">
-          <h2 className="text-3xl font-bold">Subscribe to our newsletter</h2>
-          <p className="text-gray-500 dark:text-gray-400">
-            Get the latest updates and exclusive content straight to your inbox.
-          </p>
+    // <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-200">
+    //   <div className="container mx-auto max-w-md space-y-6 px-4 md:px-6">
+    //     <div className="space-y-2 text-center">
+    //       <h2 className="text-3xl font-bold">Subscribe to our newsletter</h2>
+    //       <p className="text-gray-500 dark:text-gray-400">
+    //         Get the latest updates and exclusive content straight to your inbox.
+    //       </p>
+    //     </div>
+    //     <form className="space-y-4">
+    //       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    //         <div className="space-y-2">
+    //           <Label htmlFor="name">Name</Label>
+    //           <Input id="name" placeholder="Your name" />
+    //         </div>
+    //         <div className="space-y-2">
+    //           <Label htmlFor="email">Email</Label>
+    //           <Input id="email" placeholder="you@example.com" type="email" />
+    //         </div>
+    //       </div>
+    //       <Button className="w-full" type="submit">
+    //         Subscribe
+    //       </Button>
+    //     </form>
+    //   </div>
+    // </section>
+
+    <div
+      key="1"
+      className="flex flex-col items-center justify-center xl:min-h-screen p-3 sm:px-6 lg:px-8 bg-gray-200"
+    >
+      <div className="w-full max-w-[900px] space-y-6 bg-white dark:bg-gray-900 shadow-lg rounded-lg p-6">
+        <div className="space-y-2 justify-center flex items-center text-center">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-50">
+            Subscribe to our Newsletter
+          </h1>
         </div>
-        <form className="space-y-4">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+
+        <div className="space-y-4">
+          <form onSubmit={() => {}} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" placeholder="Your name" />
+              <div className="grid grid-cols-1 xl:pl-[30%] xl:pr-[30%]">
+                <div className="space-y-2">
+                  <div className="w-full flex flex-col gap-4">
+                    <div
+                      key="md"
+                      className="flex w-full flex-wrap flex-nowrap mb-6 mb-0 gap-4"
+                    >
+                      <Input
+                        onChange={(e) => {}}
+                        size="md"
+                        type="text"
+                        label="Name"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <div className="w-full flex flex-col gap-4">
+                    <div
+                      key="md"
+                      className="flex w-full flex-wrap flex-nowrap mb-6 mb-0 gap-4"
+                    >
+                      <Input
+                        onChange={(e) =>{}}
+                        size="md"
+                        type="text"
+                        label="Email Id"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <div className="w-full flex flex-col gap-4">
+                    <div
+                      key="md"
+                      className="flex w-full flex-wrap flex-nowrap mb-6 mb-0 gap-4"
+                    >
+                      <Input
+                        onChange={(e) =>{}}
+                        size="md"
+                        type="number"
+                        label="Mobile No"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <div className="w-full flex flex-col gap-4">
+                    <div
+                      key="md"
+                      className="flex w-full flex-wrap flex-nowrap mb-6 mb-0 gap-4"
+                    >
+                      <Textarea
+                        label="Message"
+                        placeholder="Enter your description"
+                      />
+                    </div>
+                  </div>
+                </div>
+              <Button
+                // onClick={handleSubmit}
+
+                className="w-full bg-black text-white"
+              >
+                Save
+              </Button>
+              </div>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" placeholder="you@example.com" type="email" />
-            </div>
-          </div>
-          <Button className="w-full" type="submit">
-            Subscribe
-          </Button>
-        </form>
+          </form>
+        </div>
       </div>
-    </section>
+    </div>
   )
 }

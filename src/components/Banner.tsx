@@ -37,7 +37,7 @@ const Banner = (props: Props) => {
     >
       <SwiperSlide>
         <Image
-            className="w-full sm:h-[500px] object-contain"
+            className="w-full max-h-[580px] object-contain"
             src={b1}
             alt="Picture of the author"
         />
