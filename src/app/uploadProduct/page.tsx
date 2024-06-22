@@ -346,6 +346,7 @@ const Page = () => {
               <div className="grid grid-cols-5 gap-4">
                 {product.images.map((image) => (
                   <Image
+                    key={image}
                     alt="Leather Jacket"
                     className="rounded-lg object-cover w-full aspect-[3/4] group-hover:opacity-50 transition-opacity gap-y-3"
                     height={300}

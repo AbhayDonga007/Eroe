@@ -37,7 +37,7 @@ interface Product {
   images: Array<string>;
 }
 
-const page = ({ params }: Props) => {
+const Page = ({ params }: Props) => {
   const name = params.categoryName;
 
   const [data, setData] = useState([]);
@@ -49,7 +49,7 @@ const page = ({ params }: Props) => {
     };
 
     getData();
-  }, []);
+  }, [name]);
   return (
     <>
     <Nav />
@@ -79,7 +79,7 @@ const page = ({ params }: Props) => {
                 ? ((productPrize - customerPrize) / productPrize) * 100
                 : 0;
             return (
-              <BackgroundGradient className="rounded-[22px] max-w-sm bg-white dark:bg-zinc-900">
+              <BackgroundGradient key={index} className="rounded-[22px] max-w-sm bg-white dark:bg-zinc-900">
                 <div key={index} className="grid gap-4 ">
                   <div className="grid gap-2.5 relative group">
                     <Card
@@ -176,4 +176,4 @@ const page = ({ params }: Props) => {
   );
 };
 
-export default page;
+export default Page;

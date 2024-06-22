@@ -112,7 +112,7 @@ export function Product(props: Props) {
           onSlideChange={() => console.log("slide change")}
         >
           {product?.images.map((image) => (
-            <SwiperSlide>
+            <SwiperSlide key={image}>
               <Image
                 className="w-full max-h-[550px] object-contain"
                 src={image}
