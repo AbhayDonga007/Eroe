@@ -53,76 +53,43 @@ export function Footer() {
             >
               Shop
             </Link>
-            <Link
-              className="text-gray-500 hover:text-gray-900"
-              href="#"
-            >
+            <Link className="text-gray-500 hover:text-gray-900" href="#">
               About Us
             </Link>
-            <Link
-              className="text-gray-500 hover:text-gray-900"
-              href="#"
-            >
+            <Link className="text-gray-500 hover:text-gray-900" href="#">
               Contact Us
             </Link>
           </div>
           <div className="grid gap-2">
             <h3 className="font-semibold">Our Categories</h3>
-            <Link
-              className="text-gray-500 hover:text-gray-900"
-              href="#"
-            >
+            <Link className="text-gray-500 hover:text-gray-900" href="#">
               Kurti
             </Link>
-            <Link
-              className="text-gray-500 hover:text-gray-900"
-              href="#"
-            >
+            <Link className="text-gray-500 hover:text-gray-900" href="#">
               Pair Pant
             </Link>
-            <Link
-              className="text-gray-500 hover:text-gray-900 "
-              href="#"
-            >
+            <Link className="text-gray-500 hover:text-gray-900 " href="#">
               Gown
             </Link>
-            <Link
-              className="text-gray-500 hover:text-gray-900 "
-              href="#"
-            >
+            <Link className="text-gray-500 hover:text-gray-900 " href="#">
               Plaza Pair
             </Link>
-            <Link
-              className="text-gray-500 hover:text-gray-900"
-              href="#"
-            >
+            <Link className="text-gray-500 hover:text-gray-900" href="#">
               Nayra Pair
             </Link>
           </div>
           <div className="grid gap-2">
             <h3 className="font-semibold">Our Policies</h3>
-            <Link
-              className="text-gray-500 hover:text-gray-900"
-              href="#"
-            >
+            <Link className="text-gray-500 hover:text-gray-900" href="#">
               Terms of Service
             </Link>
-            <Link
-              className="text-gray-500 hover:text-gray-900"
-              href="#"
-            >
+            <Link className="text-gray-500 hover:text-gray-900" href="#">
               Privacy Policy
             </Link>
-            <Link
-              className="text-gray-500 hover:text-gray-900"
-              href="#"
-            >
+            <Link className="text-gray-500 hover:text-gray-900" href="#">
               Return Policy
             </Link>
-            <Link
-              className="text-gray-500 hover:text-gray-900"
-              href="#"
-            >
+            <Link className="text-gray-500 hover:text-gray-900" href="#">
               Shipping Policy
             </Link>
           </div>
@@ -130,10 +97,7 @@ export function Footer() {
         <div className="flex flex-col items-start gap-4">
           <h3 className="font-semibold">Contact Us</h3>
           <div className="flex flex-col gap-4">
-            <Link
-              className="text-gray-500  hover:text-gray-900"
-              href="#"
-            >
+            <Link className="text-gray-500  hover:text-gray-900" href="#">
               <Label className="capitalize">
                 SHOP-31 GROUND FLOOR, SHRI VINAYAK ARCADE, Krishna Park Twp,
                 Mota Varachha, Surat, Shiv Nagar, Gujarat 394101
@@ -141,73 +105,40 @@ export function Footer() {
             </Link>
             <div className="flex items-center gap-2">
               <MailIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
-              <a
-                className="text-gray-500 hover:text-gray-900"
-                href="#"
-              >
+              <a className="text-gray-500 hover:text-gray-900" href="#">
                 aavkarfashion71@gmail.com
               </a>
             </div>
             <div className="flex items-center gap-2">
               <PhoneIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
-              <a
-                className="text-gray-500 hover:text-gray-900"
-                href="#"
-              >
+              <a className="text-gray-500 hover:text-gray-900" href="#">
                 +91 9998264004
               </a>
             </div>
             <div className="flex flex-row gap-3">
-              <Link
-                className="text-gray-500 hover:text-gray-900"
-                href="#"
-              >
+              <Link className="text-gray-500 hover:text-gray-900" href="#">
                 <InstagramIcon className="h-6 w-6" />
               </Link>
-              <Link
-                className="text-gray-500 hover:text-gray-900"
-                href="#"
-              >
+              <Link className="text-gray-500 hover:text-gray-900" href="#">
                 <LinkedinIcon className="h-6 w-6" />
               </Link>
-              <Link
-                className="text-gray-500 hover:text-gray-900"
-                href="#"
-              >
+              <Link className="text-gray-500 hover:text-gray-900" href="#">
                 <TwitterIcon className="h-6 w-6" />
               </Link>
-              <Link
-                className="text-gray-500 hover:text-gray-900"
-                href="#"
-              >
+              <Link className="text-gray-500 hover:text-gray-900" href="#">
                 <MailIcon className="h-6 w-6" />
               </Link>
             </div>
           </div>
         </div>
       </div>
-      <div className="container mx-auto px-4 md:px-6 mt-8 border-t pt-4 flex items-center justify-between">
+      <div className="container mx-auto px-4 md:px-6 mt-8 mb-0 pb-0 border-t pt-4 flex items-center justify-between">
         <p className="text-sm text-gray-500">
-          © 2024 Abhay Donga All rights reserved.
+          © 2024 Eroe Designer All rights reserved.
         </p>
         <nav className="flex items-center gap-4">
-          <Link
-            className="text-sm text-gray-500 hover:text-gray-900"
-            href="#"
-          >
-            Privacy Policy
-          </Link>
-          <Link
-            className="text-sm text-gray-500 hover:text-gray-900"
-            href="#"
-          >
-            Terms of Service
-          </Link>
-          <Link
-            className="text-sm text-gray-500 hover:text-gray-900"
-            href="#"
-          >
-            Cookie Policy
+          <Link target="_" className="text-sm text-gray-500 hover:text-gray-900" href="https://api.whatsapp.com/send/?phone=917818070999&text&type=phone_number&app_absent=0">
+            Developed By Abhay Donga
           </Link>
         </nav>
       </div>

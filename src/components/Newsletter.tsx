@@ -52,9 +52,9 @@ export function Newsletter() {
       key="1"
       className="flex flex-col items-center justify-center xl:min-h-screen p-3 sm:px-6 lg:px-8 bg-gray-200"
     >
-      <div className="w-full max-w-[900px] space-y-6 bg-white dark:bg-gray-900 shadow-lg rounded-lg p-6">
+      <div className="w-full max-w-[900px] space-y-6 bg-white shadow-lg rounded-lg p-6">
         <div className="space-y-2 justify-center flex items-center text-center">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-50">
+          <h1 className="text-3xl font-bold text-gray-900">
             Subscribe to our Newsletter
           </h1>
         </div>

@@ -42,7 +42,7 @@ const CategoryProducts = (props: Props) => {
   return (
     <section className="w-full py-6">
       <div className="container grid gap-8 md:gap-12 px-4 md:px-6">
-        <div className="flex pl-16 flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+        <div className="flex xl:pl-16 flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
           <div className="grid gap-1">
             <h1 className="text-2xl font-bold tracking-tight">
               Fall Fashion Collection
@@ -56,7 +56,7 @@ const CategoryProducts = (props: Props) => {
           </Button> */}
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 sm:grid-cols-2 xl:pl-20 xl:pr-20 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 sm:grid-cols-2 xl:pl-20 xl:pr-20 lg:grid-cols-3 xl:grid-cols-4 gap-2 xl:gap-4">
           {data.map((item: Product, index) => {
             const productPrize = item.productPrize ?? 0;
             const customerPrize = item.customerPrize ?? 0;
@@ -67,11 +67,12 @@ const CategoryProducts = (props: Props) => {
                 : 0;
             return (
               <BackgroundGradient key={index} className="rounded-[22px] max-w-sm bg-white dark:bg-zinc-900">
-                <div key={index} className="grid gap-4 ">
-                  <div className="grid gap-2.5 relative group">
+                <div key={index} className="grid">
+                  <div className="grid relative group">
                     <Card
                       isFooterBlurred
-                      className="xl:min-h-[390px] min-h-[285px] rounded-[22px] max-h-[500px] bg-gray-200"
+                      // xl:min-h-[390px] min-h-[270px] max-h-[500px]
+                      className="rounded-[22px]  bg-gray-200"
                       shadow="sm"
                       key={index}
                       isPressable
@@ -108,7 +109,10 @@ const CategoryProducts = (props: Props) => {
                           // spaceBetween={50}
                           slidesPerView={1}
                           // navigation
-                          pagination={{ clickable: true, dynamicBullets: true }}
+                          pagination={{
+                            clickable: true,
+                            dynamicBullets: true,
+                          }}
                           // scrollbar={{ draggable: true }}
                           // onSwiper={(swiper) => console.log(swiper)}
                           // onSlideChange={() => console.log('slide change')}
@@ -130,14 +134,14 @@ const CategoryProducts = (props: Props) => {
                           ))}
                         </Swiper>
                       </CardBody>
-                      <CardFooter className="flex flex-col items-center max-h-[80px] absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10">
+                      <CardFooter className="flex flex-col relative bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10">
                         <div>
-                          <p className="text-black w-[200px] text-[14px] line-clamp-1 text-center font-semibold">
+                          <p className="text-black w-auto text-[14px] line-clamp-1 text-start xl:text-center font-semibold">
                             {item.name}
                           </p>
                         </div>
                         <div>
-                          <p className="w-[200px] text-[12px] text-gray-500 text-center font-semibold">
+                          <p className="w-auto text-[12px] text-gray-500 text-center font-semibold">
                             {item.type}
                           </p>
                         </div>

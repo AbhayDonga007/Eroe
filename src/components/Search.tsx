@@ -110,7 +110,7 @@ const Search = (props: Props) => {
               </ModalHeader>
               <ModalBody>
                 {searchData.length > 1 && (
-                  <div className="grid grid-cols-2 md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
+                  <div className="grid grid-cols-2 md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-2 xl:gap-4">
                     {searchData.map((item: Product, index) => {
                       const productPrize = item.productPrize ?? 0;
                       const customerPrize = item.customerPrize ?? 0;
@@ -121,11 +121,12 @@ const Search = (props: Props) => {
                             100
                           : 0;
                       return (
-                        <div key={index} className="grid gap-4 ">
-                          <div className="grid gap-2.5 relative group">
+                        <div key={index} className="grid">
+                          <div className="grid relative group">
                             <Card
                               isFooterBlurred
-                              className="sm:min-h-[300px] rounded-[22px] max-h-[500px] bg-gray-200"
+                              // xl:min-h-[390px] min-h-[270px] max-h-[500px]
+                              className="rounded-lg bg-gray-200"
                               shadow="sm"
                               key={index}
                               isPressable
@@ -148,16 +149,16 @@ const Search = (props: Props) => {
                                   isIconOnly
                                   className="rounded-full bg-zinc-300 "
                                 >
+                                  <ShoppingCart />
                                   <Link
                                     className="absolute inset-0 z-10"
                                     href={`/product/${item._id}`}
                                   ></Link>
-                                  <ShoppingCart />
                                 </Button>
                               </CardHeader>
-                              <CardBody className="p-0">
+                              <CardBody className="p-0 bg-transparent">
                                 <Swiper
-                                  className="w-full bg-transparent bg-blur"
+                                  className="w-full"
                                   modules={[
                                     Navigation,
                                     Pagination,
@@ -192,14 +193,14 @@ const Search = (props: Props) => {
                                   ))}
                                 </Swiper>
                               </CardBody>
-                              <CardFooter className="flex flex-col items-center max-h-[80px] absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10">
+                              <CardFooter className="flex flex-col relative bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10">
                                 <div>
-                                  <p className="text-black w-[200px] text-[14px] line-clamp-1 text-center font-semibold">
+                                  <p className="text-black w-auto text-[14px] line-clamp-1 text-start xl:text-center font-semibold">
                                     {item.name}
                                   </p>
                                 </div>
                                 <div>
-                                  <p className="w-[200px] text-[12px] text-gray-500 text-center font-semibold">
+                                  <p className="w-auto text-[12px] text-gray-500 text-center font-semibold">
                                     {item.type}
                                   </p>
                                 </div>

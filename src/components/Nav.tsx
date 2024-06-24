@@ -218,31 +218,31 @@ export function Nav() {
             </Link>
             <Search />
             <Link
-              className="text-gray-500 hover:text-gray-950 dark:text-gray-400 dark:hover:text-gray-50"
+              className="text-gray-500 hover:text-gray-950"
               href="/dashboard"
             >
               Dashboard
             </Link>
             <Link
-              className="text-gray-500 hover:text-gray-950 dark:text-gray-400 dark:hover:text-gray-50"
+              className="text-gray-500 hover:text-gray-950"
               href="#"
             >
               Orders
             </Link>
             <Link
-              className="text-gray-500 hover:text-gray-950 dark:text-gray-400 dark:hover:text-gray-50"
+              className="text-gray-500 hover:text-gray-950"
               href="/products"
             >
               Products
             </Link>
             <Link
-              className="text-gray-500 hover:text-gray-950 dark:text-gray-400 dark:hover:text-gray-50"
+              className="text-gray-500 hover:text-gray-950"
               href="#"
             >
               Customers
             </Link>
             <Link
-              className="hover:text-gray-950 dark:hover:text-gray-50"
+              className="hover:text-gray-950"
               href="#"
             >
               Settings

@@ -18,6 +18,8 @@ import { Button } from "@nextui-org/button";
 import Link from "next/link";
 
 import 'primeicons/primeicons.css';
+import CustomerExp from "@/components/CustomerExp";
+import QualityProduct from "@/components/QualityProduct";
         
 
 type Props = {};
@@ -153,6 +155,8 @@ const DashBoard = (props: Props) => {
       </Swiper>
 
       <CategoryProducts type="Nayra Pair" />
+      <CustomerExp />
+      <QualityProduct />  
       <Newsletter />
       <Footer />
     </>
