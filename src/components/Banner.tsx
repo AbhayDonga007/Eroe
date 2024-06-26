@@ -37,28 +37,28 @@ const Banner = (props: Props) => {
     >
       <SwiperSlide>
         <Image
-            className="w-full max-h-[580px] object-contain"
+            className="w-full object-contain"
             src={b1}
             alt="Picture of the author"
         />
       </SwiperSlide>
       <SwiperSlide>
         <Image
-            className="w-full sm:h-[500px] object-contain"
+            className="w-full object-contain"
             src={b2}
             alt="Picture of the author"
         />
       </SwiperSlide>
       <SwiperSlide>
         <Image
-            className="w-full sm:h-[500px] object-contain"
+            className="w-full object-contain"
             src={b3}
             alt="Picture of the author"
         />
       </SwiperSlide>
       <SwiperSlide>
         <Image
-            className="w-full sm:h-[500px] object-contain"
+            className="w-full object-contain"
             src={b4}
             alt="Picture of the author"
         />
@@ -72,7 +72,7 @@ const Banner = (props: Props) => {
       </SwiperSlide> */}
       <SwiperSlide>
         <Image
-            className="w-full sm:h-[500px] object-contain"
+            className="w-full object-contain"
             src={b6}
             alt="Picture of the author"
         />
@@ -86,21 +86,21 @@ const Banner = (props: Props) => {
       </SwiperSlide> */}
       <SwiperSlide>
         <Image
-            className="w-full sm:h-[500px] object-contain"
+            className="w-full object-contain"
             src={b8}
             alt="Picture of the author"
         />
       </SwiperSlide>
       <SwiperSlide>
         <Image
-            className="w-full sm:h-[500px] object-contain"
+            className="w-full object-contain"
             src={b9}
             alt="Picture of the author"
         />
       </SwiperSlide>
       <SwiperSlide>
         <Image
-            className="w-full sm:h-[500px] object-contain"
+            className="w-full object-contain"
             src={b10}
             alt="Picture of the author"
         />

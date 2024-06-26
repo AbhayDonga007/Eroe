@@ -38,6 +38,7 @@ import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import Image from "next/image";
 import { Chip, Select, SelectItem } from "@nextui-org/react";
 import { MinusIcon, PlusIcon } from "lucide-react";
+import toast from "react-hot-toast";
 
 type Props = {
   id: string;
@@ -93,6 +94,13 @@ export function Product(props: Props) {
       },
       body: JSON.stringify({ userId, id, count, productSize, productColor}),
     });
+    if(Cart.status == 201){
+      toast.success("Item Added to your cart")
+      window.location.reload()
+    }
+    else{
+      toast.error("Something went wrong")
+    }
     console.log(Cart.json());
   };
 

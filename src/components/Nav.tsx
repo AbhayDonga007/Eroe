@@ -52,6 +52,9 @@ import axios from "axios";
 import { CardTitle } from "./ui/card";
 import Search from "./Search";
 import Logo from "./Logo";
+import { pusherClient } from "@/lib/pusher";
+import { toPusherKey } from "@/lib/utils";
+import { useCounter } from "@mantine/hooks";
 
 export interface Product {
   _id: string;
@@ -78,6 +81,7 @@ export interface Cart {
   products: CartProduct[];
 }
 
+
 export function Nav() {
   const [search, setSearch] = useState("");
   const [searchData, setSearchData] = useState([]);
@@ -89,7 +93,9 @@ export function Nav() {
   const [list, setList] = useState<Cart>();
 
   useEffect(() => {
-    console.log(screen.width);
+    // pusherClient.subscribe(
+    //   toPusherKey(`/api/getCartData?userId=${userId}`)
+    // )
 
     const getCartData = async () => {
       const res = await axios.get(`/api/getCartData?userId=${userId}`);
@@ -100,16 +106,25 @@ export function Nav() {
 
     getCartData();
 
-    const query = new URLSearchParams(window.location.search);
-    if (query.get("success")) {
-      console.log("Order placed! You will receive an email confirmation.");
-    }
+    // pusherClient.bind('updateCart', getCartData)
 
-    if (query.get("canceled")) {
-      console.log(
-        "Order canceled -- continue to shop around and checkout when you’re ready."
-      );
-    }
+    // return () => {
+    //   pusherClient.unsubscribe(
+    //     toPusherKey(`/api/getCartData?userId=${userId}`)
+    //   )
+    //   pusherClient.unbind('updateCart', getCartData)
+    // }
+
+    // const query = new URLSearchParams(window.location.search);
+    // if (query.get("success")) {
+    //   console.log("Order placed! You will receive an email confirmation.");
+    // }
+
+    // if (query.get("canceled")) {
+    //   console.log(
+    //     "Order canceled -- continue to shop around and checkout when you’re ready."
+    //   );
+    // }
 
   }, [userId]);
   const MakePayment = async () => {
@@ -137,6 +152,7 @@ export function Nav() {
   const handleInc = async (productId: string) => {
     try {
       await axios.post("/api/cartIncrement", { productId, userId });
+      window.location.reload()
     } catch (error) {
       console.error("Error incrementing product quantity", error);
     }
@@ -146,6 +162,7 @@ export function Nav() {
       productId,
       userId,
     });
+    window.location.reload()
   };
 
   const onSearch = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -296,7 +313,8 @@ export function Nav() {
                     </ModalHeader>
                     <ModalBody>
                       <div className="gap-2 grid grid-cols-2 sm:grid-cols-4">
-                        {list?.products?.map((item, index) => (
+                        {list?.products?.map((item, index) => {
+                          return (
                           <Card
                             className="max-h-[400px]"
                             shadow="sm"
@@ -352,7 +370,7 @@ export function Nav() {
                               </div>
                             </CardFooter>
                           </Card>
-                        ))}
+                        )})}
                       </div>
                     </ModalBody>
                     <ModalFooter>
