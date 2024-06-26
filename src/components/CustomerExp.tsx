@@ -58,7 +58,7 @@ const cards = [
     designation: "",
     content: (
       <p>
-        Wore it on my brother's wedding! <Highlight>Loved the color! Got plenty of compliments.</Highlight> Thanks, Kurti Plaza Gown!
+        Wore it on my brother&apos;s wedding! <Highlight>Loved the color! Got plenty of compliments.</Highlight> Thanks, Kurti Plaza Gown!
       </p>
     ),
   },
