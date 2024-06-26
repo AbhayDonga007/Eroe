@@ -27,6 +27,9 @@ export async function POST(req:NextRequest) {
             cart.products.splice(productIndex, 1);
         }
         await cart.save();
+
+        // const io = getIO();
+        // io.emit('cartUpdated', { userId, productId, productQnt: cart.products[productIndex]?.productQnt || 0 });
         
         return NextResponse.json({ message: "Product Saved." }, { status: 201 });
     } catch (error) {

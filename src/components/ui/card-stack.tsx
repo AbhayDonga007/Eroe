@@ -59,12 +59,12 @@ export const CardStack = ({
               {card.content}
             </div>
             <div>
-              <p className="text-neutral-500 font-medium">
+              <p className="text-neutral-500 font-bold">
                 {card.name}
               </p>
-              <p className="text-neutral-400 font-normal">
+              {/* <p className="text-neutral-400 font-normal">
                 {card.designation}
-              </p>
+              </p> */}
             </div>
           </motion.div>
         );

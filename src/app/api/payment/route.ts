@@ -22,15 +22,13 @@ export async function POST(req:NextRequest) {
         // console.log(products);
         const lineItems = cart.products.map((product:any) => ({
               price_data: {
-                currency: "usd",
+                currency: "inr",
                 product_data: {
                   name: product.productId.name,
-                  images: [],
                 },
-                unit_amount: Math.round(product.productId.disPrice * 100),
+                unit_amount: Math.round(product.productId.customerPrize * 100),
               },
               quantity: product.productQnt,
-            
           }));
 
         const session = await stripe.checkout.sessions.create({

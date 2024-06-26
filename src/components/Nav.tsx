@@ -4,14 +4,20 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 
-"use client"
+"use client";
 import Link from "next/link";
 import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
-import { SignedIn, SignedOut, SignInButton, UserButton, useSession } from "@clerk/nextjs";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+  useSession,
+} from "@clerk/nextjs";
 import { ListboxWrapper } from "./ListboxWrapper";
-import { loadStripe } from '@stripe/stripe-js';
+import { loadStripe } from "@stripe/stripe-js";
 
 import {
   Dropdown,
@@ -67,7 +73,7 @@ export interface CartProduct {
   productSize: string;
   productColor: string;
 }
-export interface Cart  {
+export interface Cart {
   userId: string;
   products: CartProduct[];
 }
@@ -75,66 +81,72 @@ export interface Cart  {
 export function Nav() {
   const [search, setSearch] = useState("");
   const [searchData, setSearchData] = useState([]);
-  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const session = useSession();
   const userId = session.session?.user.id;
-  
-  
+
   const [list, setList] = useState<Cart>();
 
   useEffect(() => {
     console.log(screen.width);
-    
+
     const getCartData = async () => {
       const res = await axios.get(`/api/getCartData?userId=${userId}`);
       console.log(res.data);
-      
-      setList(res.data)
-    }
+
+      setList(res.data);
+    };
+
     getCartData();
 
     const query = new URLSearchParams(window.location.search);
-      if (query.get('success')) {
-        console.log('Order placed! You will receive an email confirmation.');
-      }
-  
-      if (query.get('canceled')) {
-        console.log('Order canceled -- continue to shop around and checkout when you’re ready.');
-      }
-  
-  },[userId]);
-  const MakePayment = async () => {
-    const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string)
-    console.log(list?.products);
-    
-    const body = {
-      products : list?.products
+    if (query.get("success")) {
+      console.log("Order placed! You will receive an email confirmation.");
     }
-    const res = await fetch(`/api/payment`,{
-      method:"POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    })
-    const session = await res.json()
-    console.log(session);
-    
 
-    const result = stripe?.redirectToCheckout({sessionId:session.id})
-  }
- 
-  const handleInc = async (productId:string) => {
+    if (query.get("canceled")) {
+      console.log(
+        "Order canceled -- continue to shop around and checkout when you’re ready."
+      );
+    }
+
+  }, [userId]);
+  const MakePayment = async () => {
+    const stripe = await loadStripe(
+      process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
+    );
+    console.log(list?.products);
+
+    const body = {
+      products: list?.products,
+    };
+    const res = await fetch(`/api/payment`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+    const session = await res.json();
+    console.log(session);
+
+    const result = stripe?.redirectToCheckout({ sessionId: session.id });
+  };
+
+  const handleInc = async (productId: string) => {
     try {
-      await axios.post('/api/cartIncrement', {productId,userId});
+      await axios.post("/api/cartIncrement", { productId, userId });
     } catch (error) {
       console.error("Error incrementing product quantity", error);
     }
-  }
-  const handleDec =async (productId:string) => {
-      const response = await axios.post('/api/cartDecrement', {productId,userId});
-  }
+  };
+  const handleDec = async (productId: string) => {
+    const response = await axios.post("/api/cartDecrement", {
+      productId,
+      userId,
+    });
+  };
 
   const onSearch = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -165,7 +177,7 @@ export function Nav() {
               Dashboard
             </Link>
           </NavbarItem>
-          
+
           <NavbarItem>
             <Link
               className="text-gray-500 transition-colors hover:text-gray-950 dark:text-gray-400 dark:hover:text-gray-50"
@@ -182,7 +194,7 @@ export function Nav() {
               Catagoroy
             </Link>
           </NavbarItem>
-          
+
           <NavbarItem>
             <Link
               className="text-gray-500 transition-colors hover:text-gray-950 dark:text-gray-400 dark:hover:text-gray-50"
@@ -191,7 +203,7 @@ export function Nav() {
               Orders
             </Link>
           </NavbarItem>
-          
+
           <NavbarItem>
             <Link
               className="text-gray-950 transition-colors hover:text-gray-950 dark:text-gray-50 dark:hover:text-gray-50"
@@ -223,10 +235,7 @@ export function Nav() {
             >
               Dashboard
             </Link>
-            <Link
-              className="text-gray-500 hover:text-gray-950"
-              href="#"
-            >
+            <Link className="text-gray-500 hover:text-gray-950" href="#">
               Orders
             </Link>
             <Link
@@ -235,16 +244,10 @@ export function Nav() {
             >
               Products
             </Link>
-            <Link
-              className="text-gray-500 hover:text-gray-950"
-              href="#"
-            >
+            <Link className="text-gray-500 hover:text-gray-950" href="#">
               Customers
             </Link>
-            <Link
-              className="hover:text-gray-950"
-              href="#"
-            >
+            <Link className="hover:text-gray-950" href="#">
               Settings
             </Link>
           </nav>
@@ -258,51 +261,108 @@ export function Nav() {
         <Search />
       </div>
       <div className="w-[60px] md:hidden"></div>
-      <NavbarContent  justify="end">
+      <NavbarContent justify="end">
         <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
           <span className="cart-icon">
-            <Badge isInvisible={list?.products?.length ? false : true} content={list?.products?.length}  shape="circle" color="danger">
-              <Button onPressStart={onOpen}   isIconOnly className="bg-transparent" radius="full" size="md">
+            <Badge
+              isInvisible={list?.products?.length ? false : true}
+              content={list?.products?.length}
+              shape="circle"
+              color="danger"
+            >
+              <Button
+                onPressStart={onOpen}
+                isIconOnly
+                className="bg-transparent"
+                radius="full"
+                size="md"
+              >
                 <ShoppingCart />
               </Button>
             </Badge>
-            <Modal placement="top-center" backdrop="blur" scrollBehavior="inside" className="min-h-[550px] max-w-[800px]" isOpen={isOpen} onOpenChange={onOpenChange}>
+            <Modal
+              placement="top-center"
+              backdrop="blur"
+              scrollBehavior="inside"
+              className="min-h-[550px] max-w-[800px]"
+              isOpen={isOpen}
+              onOpenChange={onOpenChange}
+            >
               <ModalContent>
                 {(onClose) => (
                   <>
-                    <ModalHeader className="flex flex-col gap-1">Cart Items</ModalHeader>
+                    <ModalHeader className="flex flex-col gap-1">
+                      Cart Items
+                    </ModalHeader>
                     <ModalBody>
-                    <div className="gap-2 grid grid-cols-2 sm:grid-cols-4">
-                      {list?.products?.map((item, index) => (
-                        <Card className="max-h-[400px]" shadow="sm" key={index} isPressable onPress={() => console.log("item pressed")}>
-                          <CardHeader >
-                            <CardTitle className="truncate text-nowrap text-sm capitalize">{item.productId.name}</CardTitle>
-                          </CardHeader>
-                          <CardBody className="overflow-visible p-0 m-0">
-                            <Image
-                              shadow="sm"
-                              radius="lg"
-                              width="100%"
-                              alt={item.productId.name}
-                              className="w-full max-h-[250px] object-cover"
-                              src={item.productId.images[0]}
-                            />
-                          </CardBody>
-                          <div className="overflow-hidden text-small text-left text-balance mr-2 max-h-[40px] text-gray-500 ml-2 pt-1">{item.productId.des} ₹</div>
-                          <CardFooter className="flex text-small truncate justify-between">
-                            <ButtonGroup className="" size="sm">
-                              <Button onClick={() => handleInc(item.productId._id)} className="font-bold bg-red-200" size="sm" isIconOnly radius="full">+</Button>
-                              <div className="w-7 font-bold">{item.productQnt}</div>
-                              <Button onClick={() => handleDec(item.productId._id)} className="font-bold bg-red-200" size="sm" isIconOnly radius="full">-</Button>
-                            </ButtonGroup>
-                            <div className="text-default-700 font-bold">{item.productQnt * item.productId.customerPrize} $</div>
-                          </CardFooter>
-                        </Card>
-                      ))}
-                    </div>
+                      <div className="gap-2 grid grid-cols-2 sm:grid-cols-4">
+                        {list?.products?.map((item, index) => (
+                          <Card
+                            className="max-h-[400px]"
+                            shadow="sm"
+                            key={index}
+                            isPressable
+                            onPress={() => console.log("item pressed")}
+                          >
+                            <CardHeader>
+                              <CardTitle className="truncate text-nowrap text-sm capitalize">
+                                {item.productId.name}
+                              </CardTitle>
+                            </CardHeader>
+                            <CardBody className="overflow-visible p-0 m-0">
+                              <Image
+                                shadow="sm"
+                                radius="lg"
+                                width="100%"
+                                alt={item.productId.name}
+                                className="w-full max-h-[250px] object-cover"
+                                src={item.productId.images[0]}
+                              />
+                            </CardBody>
+                            <div className="overflow-hidden text-small text-left text-balance mr-2 max-h-[40px] text-gray-500 ml-2 pt-1">
+                              {item.productId.des} ₹
+                            </div>
+                            <CardFooter className="flex text-small truncate justify-between">
+                              <ButtonGroup className="" size="sm">
+                                <Button
+                                  onClick={() => handleInc(item.productId._id)}
+                                  className="font-bold bg-red-200"
+                                  size="sm"
+                                  isIconOnly
+                                  radius="full"
+                                >
+                                  +
+                                </Button>
+                                <div className="w-7 font-bold">
+                                  {item.productQnt}
+                                </div>
+                                <Button
+                                  onClick={() => handleDec(item.productId._id)}
+                                  className="font-bold bg-red-200"
+                                  size="sm"
+                                  isIconOnly
+                                  radius="full"
+                                >
+                                  -
+                                </Button>
+                              </ButtonGroup>
+                              <div className="text-default-700 font-bold">
+                                {item.productQnt * item.productId.customerPrize}{" "}
+                                $
+                              </div>
+                            </CardFooter>
+                          </Card>
+                        ))}
+                      </div>
                     </ModalBody>
                     <ModalFooter>
-                      <Button onClick={MakePayment} className="" color="danger" variant="solid" onPress={onClose}>
+                      <Button
+                        onClick={MakePayment}
+                        className=""
+                        color="danger"
+                        variant="solid"
+                        onPress={onClose}
+                      >
                         Make Payment
                       </Button>
                     </ModalFooter>
@@ -310,7 +370,7 @@ export function Nav() {
                 )}
               </ModalContent>
             </Modal>
-            
+
             {/* {Boolean(5) && <span>{5}</span>} */}
           </span>
           <div className="w-auto h-auto">
@@ -389,4 +449,3 @@ function Package2Icon({ ...props }) {
     </svg>
   );
 }
-

@@ -156,8 +156,8 @@ const DashBoard = (props: Props) => {
 
       <CategoryProducts type="Nayra Pair" />
       <CustomerExp />
-      <QualityProduct />  
       <Newsletter />
+      <QualityProduct />  
       <Footer />
     </>
   );

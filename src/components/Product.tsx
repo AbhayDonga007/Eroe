@@ -101,7 +101,7 @@ export function Product(props: Props) {
       <Nav />
       <div className="grid md:grid-cols-2 p-2 gap-6 lg:gap-12 items-start max-w-6xl mx-auto">
         <Swiper
-          className="w-[376px] max-w-[450px] rounded-lg bg-black/10 bg-blur"
+          className="w-[376px] sm:max-w-screen rounded-lg bg-black/10 bg-blur"
           modules={[Navigation, Pagination, Scrollbar, A11y]}
           // spaceBetween={50}
           slidesPerView={1}
