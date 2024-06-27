@@ -363,7 +363,7 @@ export function Nav() {
                           variant="solid"
                           onPress={onClose}
                         >
-                          Place order
+                          Place Order
                         </Button>
                       </Link>
                     </ModalFooter>
