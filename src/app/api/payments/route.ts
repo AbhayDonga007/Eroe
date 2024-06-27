@@ -21,9 +21,6 @@ export async function POST(req:NextRequest) {
         const order = await instance.orders.create(options)
 
         console.log(order);
-        
-        
-        
         return NextResponse.json({order});
     } catch (error) {
         console.error(error);  
