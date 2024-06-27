@@ -4,6 +4,8 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Eroe Designer",
@@ -18,10 +20,12 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>
-          {children}
-          <Toaster />
-        </body>
+          <body className={inter.className}>
+            {children}
+            <SpeedInsights/>
+            <Toaster />
+            <Script src="https://checkout.razorpay.com/v1/checkout.js" />
+          </body>
       </html>
     </ClerkProvider>
   );

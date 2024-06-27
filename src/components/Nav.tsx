@@ -81,7 +81,6 @@ export interface Cart {
   products: CartProduct[];
 }
 
-
 export function Nav() {
   const [search, setSearch] = useState("");
   const [searchData, setSearchData] = useState([]);
@@ -99,7 +98,7 @@ export function Nav() {
 
     const getCartData = async () => {
       const res = await axios.get(`/api/getCartData?userId=${userId}`);
-      console.log(res.data);
+      // console.log(res.data);
 
       setList(res.data);
     };
@@ -125,34 +124,12 @@ export function Nav() {
     //     "Order canceled -- continue to shop around and checkout when you’re ready."
     //   );
     // }
-
   }, [userId]);
-  const MakePayment = async () => {
-    const stripe = await loadStripe(
-      process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
-    );
-    console.log(list?.products);
-
-    const body = {
-      products: list?.products,
-    };
-    const res = await fetch(`/api/payment`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
-    const session = await res.json();
-    console.log(session);
-
-    const result = stripe?.redirectToCheckout({ sessionId: session.id });
-  };
 
   const handleInc = async (productId: string) => {
     try {
       await axios.post("/api/cartIncrement", { productId, userId });
-      window.location.reload()
+      window.location.reload();
     } catch (error) {
       console.error("Error incrementing product quantity", error);
     }
@@ -162,7 +139,7 @@ export function Nav() {
       productId,
       userId,
     });
-    window.location.reload()
+    window.location.reload();
   };
 
   const onSearch = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -270,7 +247,6 @@ export function Nav() {
           </nav>
         </SheetContent>
       </Sheet>
-      {/* {screen.width < 786 ? <Logo /> : <Search />} */}
       <div className="xl:hidden lg:hidden md:hidden">
         <Logo />
       </div>
@@ -315,74 +291,81 @@ export function Nav() {
                       <div className="gap-2 grid grid-cols-2 sm:grid-cols-4">
                         {list?.products?.map((item, index) => {
                           return (
-                          <Card
-                            className="max-h-[400px]"
-                            shadow="sm"
-                            key={index}
-                            isPressable
-                            onPress={() => console.log("item pressed")}
-                          >
-                            <CardHeader>
-                              <CardTitle className="truncate text-nowrap text-sm capitalize">
-                                {item.productId.name}
-                              </CardTitle>
-                            </CardHeader>
-                            <CardBody className="overflow-visible p-0 m-0">
-                              <Image
-                                shadow="sm"
-                                radius="lg"
-                                width="100%"
-                                alt={item.productId.name}
-                                className="w-full max-h-[250px] object-cover"
-                                src={item.productId.images[0]}
-                              />
-                            </CardBody>
-                            <div className="overflow-hidden text-small text-left text-balance mr-2 max-h-[40px] text-gray-500 ml-2 pt-1">
-                              {item.productId.des} ₹
-                            </div>
-                            <CardFooter className="flex text-small truncate justify-between">
-                              <ButtonGroup className="" size="sm">
-                                <Button
-                                  onClick={() => handleInc(item.productId._id)}
-                                  className="font-bold bg-red-200"
-                                  size="sm"
-                                  isIconOnly
-                                  radius="full"
-                                >
-                                  +
-                                </Button>
-                                <div className="w-7 font-bold">
-                                  {item.productQnt}
-                                </div>
-                                <Button
-                                  onClick={() => handleDec(item.productId._id)}
-                                  className="font-bold bg-red-200"
-                                  size="sm"
-                                  isIconOnly
-                                  radius="full"
-                                >
-                                  -
-                                </Button>
-                              </ButtonGroup>
-                              <div className="text-default-700 font-bold">
-                                {item.productQnt * item.productId.customerPrize}{" "}
-                                $
+                            <Card
+                              className="max-h-[400px]"
+                              shadow="sm"
+                              key={index}
+                              isPressable
+                              onPress={() => console.log("item pressed")}
+                            >
+                              <CardHeader>
+                                <CardTitle className="truncate text-nowrap text-sm capitalize">
+                                  {item.productId.name}
+                                </CardTitle>
+                              </CardHeader>
+                              <CardBody className="overflow-visible p-0 m-0">
+                                <Image
+                                  shadow="sm"
+                                  radius="lg"
+                                  width="100%"
+                                  alt={item.productId.name}
+                                  className="w-full max-h-[250px] object-cover"
+                                  src={item.productId.images[0]}
+                                />
+                              </CardBody>
+                              <div className="overflow-hidden text-small text-left text-balance mr-2 max-h-[40px] text-gray-500 ml-2 pt-1">
+                                {item.productId.des} ₹
                               </div>
-                            </CardFooter>
-                          </Card>
-                        )})}
+                              <CardFooter className="flex text-small truncate justify-between">
+                                <ButtonGroup className="" size="sm">
+                                  <Button
+                                    onClick={() =>
+                                      handleInc(item.productId._id)
+                                    }
+                                    className="font-bold bg-red-200"
+                                    size="sm"
+                                    isIconOnly
+                                    radius="full"
+                                  >
+                                    +
+                                  </Button>
+                                  <div className="w-7 font-bold">
+                                    {item.productQnt}
+                                  </div>
+                                  <Button
+                                    onClick={() =>
+                                      handleDec(item.productId._id)
+                                    }
+                                    className="font-bold bg-red-200"
+                                    size="sm"
+                                    isIconOnly
+                                    radius="full"
+                                  >
+                                    -
+                                  </Button>
+                                </ButtonGroup>
+                                <div className="text-default-700 font-bold">
+                                  {item.productQnt *
+                                    item.productId.customerPrize}{" "}
+                                   ₹
+                                </div>
+                              </CardFooter>
+                            </Card>
+                          );
+                        })}
                       </div>
                     </ModalBody>
                     <ModalFooter>
-                      <Button
-                        onClick={MakePayment}
-                        className=""
-                        color="danger"
-                        variant="solid"
-                        onPress={onClose}
-                      >
-                        Make Payment
-                      </Button>
+                      <Link href="/payment">
+                        <Button
+                          className=""
+                          color="danger"
+                          variant="solid"
+                          onPress={onClose}
+                        >
+                          Place order
+                        </Button>
+                      </Link>
                     </ModalFooter>
                   </>
                 )}
