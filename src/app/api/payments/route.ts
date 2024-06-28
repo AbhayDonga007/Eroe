@@ -1,5 +1,10 @@
-import { instance } from "@/lib/server";
+import Razorpay from 'razorpay'
 import { NextRequest, NextResponse } from "next/server";
+
+export const instance = new Razorpay({
+    key_id: process.env.ROZORPAY_API_KEY || '',
+    key_secret: process.env.ROZORPAY_SECRET_KEY,
+})
 
 export async function POST(req:NextRequest) {
     try {
