@@ -9,7 +9,9 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import Image from 'next/image';
 import b1 from "@/images/Piyush Donga-images-0.jpg"
+import b12 from "@/images/banner5.png"
 import b2 from "@/images/Piyush Donga-images-1.jpg"
+import b13 from "@/images/banner1.png"
 import b3 from "@/images/Piyush Donga-images-2.jpg"
 import b4 from "@/images/Piyush Donga-images-3.jpg"
 import b5 from "@/images/Piyush Donga-images-4.jpg"
@@ -38,7 +40,21 @@ const Banner = (props: Props) => {
       <SwiperSlide>
         <Image
             className="w-full object-contain"
+            src={b12}
+            alt="Picture of the author"
+        />
+      </SwiperSlide>
+      <SwiperSlide>
+        <Image
+            className="w-full object-contain"
             src={b1}
+            alt="Picture of the author"
+        />
+      </SwiperSlide>
+      <SwiperSlide>
+        <Image
+            className="w-full object-contain"
+            src={b13}
             alt="Picture of the author"
         />
       </SwiperSlide>

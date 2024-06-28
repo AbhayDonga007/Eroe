@@ -12,15 +12,18 @@ import CategoryProducts from "@/components/CategoryProducts";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import Image from "next/image";
-import img from "@/images/plaza1.jpeg";
 import { ShoppingCart } from "lucide-react";
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
-
 import 'primeicons/primeicons.css';
 import CustomerExp from "@/components/CustomerExp";
 import QualityProduct from "@/components/QualityProduct";
-        
+
+import img1 from "@/images/banner1.png";
+import img2 from "@/images/banner2.png";
+import img3 from "@/images/banner3.png";
+import img4 from "@/images/banner4.png";
+import img5 from "@/images/banner5.png";
 
 type Props = {};
 
@@ -61,7 +64,7 @@ const DashBoard = (props: Props) => {
         <SwiperSlide>
           <Image
             className="w-full inset-0 object-cover"
-            src={img}
+            src={img1}
             alt="Picture of the author"
           />
         </SwiperSlide>
@@ -82,7 +85,7 @@ const DashBoard = (props: Props) => {
         <SwiperSlide>
           <Image
             className="w-full object-cover item-center"
-            src={img}
+            src={img2}
             alt="Picture of the author"
           />
         </SwiperSlide>
@@ -104,7 +107,7 @@ const DashBoard = (props: Props) => {
         <SwiperSlide>
           <Image
             className="w-full object-cover item-center"
-            src={img}
+            src={img3}
             alt="Picture of the author"
           />
         </SwiperSlide>
@@ -126,7 +129,7 @@ const DashBoard = (props: Props) => {
         <SwiperSlide>
           <Image
             className="w-full object-cover item-center"
-            src={img}
+            src={img4}
             alt="Picture of the author"
           />
         </SwiperSlide>
@@ -148,7 +151,7 @@ const DashBoard = (props: Props) => {
         <SwiperSlide>
           <Image
             className="w-full object-cover item-center"
-            src={img}
+            src={img5}
             alt="Picture of the author"
           />
         </SwiperSlide>

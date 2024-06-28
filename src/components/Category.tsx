@@ -20,6 +20,11 @@ To read more about using these font, please visit the Next.js documentation:
 "use client";
 import Link from "next/link";
 import img from "../images/z2.jpg";
+import img1 from "../images/catagory-1.jpg";
+import img2 from "../images/catagory-2.jpg";
+import img3 from "../images/catagory-3.jpg";
+import img4 from "../images/catagory-4.jpg";
+import img5 from "../images/catagory-5.jpg";
 import Image from "next/image";
 import { Button, Card, CardBody, CardHeader } from "@nextui-org/react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -30,12 +35,12 @@ export function Category() {
   return (
     <section className="w-full py-6">
       <div className="container grid gap-8 md:gap-12 px-4 md:px-6">
-        <div className="flex xl:pl-16 flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+        <div className="text-center md:items-center gap-4 md:gap-8">
           <div className="grid gap-1">
             <h1 className="text-2xl font-bold tracking-tight">
               Shop By Collection
             </h1>
-            <p className="text-gray-500 dark:text-gray-400">
+            <p className="text-gray-500">
               Filfil the Fashion Forver
             </p>
           </div>
@@ -47,12 +52,12 @@ export function Category() {
               <div className="grid gap-2.5  relative group">
                 <Card
                   isFooterBlurred
-                  className="rounded-[22px] object-fit bg-gray-200"
+                  className="rounded-[22px] bg-gray-200"
                   shadow="sm"
                   isPressable
                   onPress={() => console.log("item pressed")}
                 >
-                  <CardHeader className="top-[40%] absolute z-10 flex-col  place-items-center">
+                  <CardHeader className="top-[35%] absolute z-10 flex-col  place-items-center">
                     <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm">
                       <Link
                         className="absolute inset-0 z-10"
@@ -76,9 +81,9 @@ export function Category() {
                       <SwiperSlide className="">
                         <Image
                           alt="Leather Jacket"
-                          className="object-cover w-full aspect-[3/4] opacity-90 transition-opacity gap-y-3"
+                          className="object-cover w-full aspect-[1/1] opacity-90 transition-opacity gap-y-3"
                           height={350}
-                          src={img}
+                          src={img1}
                           width={350}
                         />
                         <Link className="absolute inset-0 z-10" href={`/category/Kurti`} />
@@ -100,7 +105,7 @@ export function Category() {
                   isPressable
                   onPress={() => console.log("item pressed")}
                 >
-                  <CardHeader className="top-[40%] absolute z-10 flex-col  place-items-center">
+                  <CardHeader className="top-[35%] absolute z-10 flex-col  place-items-center">
                     <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm">
                       <Link
                             className="absolute inset-0 z-10"
@@ -125,9 +130,9 @@ export function Category() {
                       <SwiperSlide className="">
                         <Image
                           alt="Leather Jacket"
-                          className="object-cover w-full aspect-[3/4] opacity-90 transition-opacity gap-y-3"
+                          className="object-cover w-full aspect-[1/1] opacity-90 transition-opacity gap-y-3"
                           height={350}
-                          src={img}
+                          src={img2}
                           width={350}
                         />
                         <Link className="absolute inset-0 z-10" href={`/category/Pant Pair`} />
@@ -149,7 +154,7 @@ export function Category() {
                   isPressable
                   onPress={() => console.log("item pressed")}
                 >
-                  <CardHeader className="top-[40%] absolute z-10 flex-col  place-items-center">
+                  <CardHeader className="top-[35%] absolute z-10 flex-col  place-items-center">
                     <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm">
                       {/* <Link
                             className="absolute inset-0 z-10"
@@ -175,9 +180,9 @@ export function Category() {
                       <SwiperSlide className="">
                         <Image
                           alt="Leather Jacket"
-                          className="object-cover w-full aspect-[3/4] opacity-90 transition-opacity gap-y-3"
+                          className="object-cover w-full aspect-[1/1] opacity-90 transition-opacity gap-y-3"
                           height={350}
-                          src={img}
+                          src={img3}
                           width={350}
                         />
                         <Link className="absolute inset-0 z-10" href={`/category/Gown`} />
@@ -199,7 +204,7 @@ export function Category() {
                   isPressable
                   onPress={() => console.log("item pressed")}
                 >
-                  <CardHeader className="top-[40%] absolute z-10 flex-col  place-items-center">
+                  <CardHeader className="top-[35%] absolute z-10 flex-col  place-items-center">
                     <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm">
                       {/* <Link
                             className="absolute inset-0 z-10"
@@ -225,9 +230,9 @@ export function Category() {
                       <SwiperSlide className="">
                         <Image
                           alt="Leather Jacket"
-                          className="object-cover w-full aspect-[3/4] opacity-90 transition-opacity gap-y-3"
+                          className="object-cover w-full aspect-[1/1] opacity-90 transition-opacity gap-y-3"
                           height={350}
-                          src={img}
+                          src={img4}
                           width={350}
                         />
                         <Link className="absolute inset-0 z-10" href={`/category/Plaza Pair`} />
@@ -249,7 +254,7 @@ export function Category() {
                   isPressable
                   onPress={() => console.log("item pressed")}
                 >
-                  <CardHeader className="top-[40%] absolute z-10 flex-col  place-items-center">
+                  <CardHeader className="top-[35%] absolute z-10 flex-col  place-items-center">
                     <Button className="bg-white text-black font-bold uppercase px-3 py-3 rounded-lg text-sm">
                       {/* <Link
                             className="absolute inset-0 z-10"
@@ -275,9 +280,9 @@ export function Category() {
                       <SwiperSlide className="">
                         <Image
                           alt="Leather Jacket"
-                          className="object-cover w-full aspect-[3/4] opacity-90 transition-opacity gap-y-3"
+                          className="object-cover w-full aspect-[1/1] opacity-90 transition-opacity gap-y-3"
                           height={350}
-                          src={img}
+                          src={img5}
                           width={350}
                         />
                         <Link className="absolute inset-0 z-10" href={`/category/Nayra Pair`} />

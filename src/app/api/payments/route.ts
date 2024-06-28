@@ -25,6 +25,6 @@ export async function POST(req:NextRequest) {
         return NextResponse.json({order});
     } catch (error) {
         console.error(error);  
-        return NextResponse.json({ message: "Method Not Allowed" }, { status: 500 });
+        return NextResponse.json({ message: "Payment Failed" }, { status: 500 });
     }
 }

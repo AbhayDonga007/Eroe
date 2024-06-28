@@ -8,7 +8,7 @@ const CustomerExp = (props: Props) => {
   return (
     <section className="w-full py-6">
       <div className="container grid gap-8 md:gap-12 px-4 md:px-6">
-        <div className="flex xl:pl-16 flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+        <div className="text-center items-start md:items-center gap-4 md:gap-8">
           <div className="grid gap-1">
             <h1 className="text-2xl font-bold tracking-tight">
               Customer Experiences
