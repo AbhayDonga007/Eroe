@@ -38,22 +38,20 @@ interface Product {
   images: Array<string>;
 }
 
-const Page = ({ params }: Props) => {
+const Page =async ({ params }: Props) => {
   const name = params.categoryName;
-
-  const [data, setData] = useState([]);
+  // await new Promise((resolve) => setTimeout(resolve,3000));
 
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.get(`/api/getDataByType?type=${name}`);
-      console.log(setData(res.data));
+      await axios.get(`/api/getDataByType?type=${name}`);
     };
 
     getData();
   }, [name]);
   return (
     <>
-    <Nav />
+      <Nav />
       <CategoryProducts type={name}/>
     </>
   );

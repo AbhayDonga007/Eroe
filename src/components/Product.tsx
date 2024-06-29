@@ -107,7 +107,7 @@ export function Product(props: Props) {
   return (
     <div className="bg-gray-100">
       <Nav />
-      <div className="grid md:grid-cols-2 p-2 gap-6 lg:gap-12 items-start max-w-6xl mx-auto">
+      <div className="grid md:grid-cols-2 items-start p-2 max-w-6xl mx-auto">
         <Swiper
           className="w-[376px] sm:max-w-screen rounded-lg bg-black/10 bg-blur"
           modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -122,7 +122,7 @@ export function Product(props: Props) {
           {product?.images.map((image) => (
             <SwiperSlide key={image}>
               <Image
-                className="w-full max-h-[550px] object-contain"
+                className="w-full h-auto object-contain"
                 src={image}
                 width={300}
                 height={400}

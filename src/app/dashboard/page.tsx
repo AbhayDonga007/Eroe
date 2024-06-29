@@ -15,7 +15,7 @@ import Image from "next/image";
 import { ShoppingCart } from "lucide-react";
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
-import 'primeicons/primeicons.css';
+import "primeicons/primeicons.css";
 import CustomerExp from "@/components/CustomerExp";
 import QualityProduct from "@/components/QualityProduct";
 
@@ -27,7 +27,8 @@ import img5 from "@/images/banner5.png";
 
 type Props = {};
 
-const DashBoard = (props: Props) => {
+const DashBoard = async (props: Props) => {
+  // await new Promise((resolve) => setTimeout(resolve,3000));
   return (
     <>
       {/* <div>DashBoard</div>
@@ -37,12 +38,19 @@ const DashBoard = (props: Props) => {
           toast.success("Logout Successful")
           signOut()
         }}>Logout</Button> */}
-      <Button isIconOnly onClick={()=>console.log("Cliked")} className="fixed w-[50px] h-[50px] bottom-[30px] left-[30px] bg-[#00e676] rounded-full z-30">
+      <Button
+        isIconOnly
+        onClick={() => console.log("Cliked")}
+        className="fixed w-[50px] h-[50px] bottom-[30px] left-[30px] bg-[#00e676] rounded-full z-30"
+      >
         <Link
           href="https://chat.whatsapp.com/JcalaznsoG2KvWcPJXdRmE"
           target="_"
         >
-          <i className="pi pi-whatsapp text-white" style={{ fontSize: '1.8rem' }}></i>
+          <i
+            className="pi pi-whatsapp text-white"
+            style={{ fontSize: "1.8rem" }}
+          ></i>
         </Link>
       </Button>
       <Nav />
@@ -160,7 +168,7 @@ const DashBoard = (props: Props) => {
       <CategoryProducts type="Nayra Pair" />
       <CustomerExp />
       <Newsletter />
-      <QualityProduct />  
+      <QualityProduct />
       <Footer />
     </>
   );

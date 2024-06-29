@@ -8,12 +8,12 @@ import React from "react";
 
 type Props = {};
 
-const page = (props: Props) => {
+const page =async (props: Props) => {
+  // await new Promise((resolve) => setTimeout(resolve,3000));
   return (
     <div>
       <Nav />
       <CardProduct />
-      <Newsletter />
       <QualityProduct />
       <Footer />
     </div>
