@@ -37,6 +37,18 @@ import { ShoppingCart } from "lucide-react";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
 import { AuroraBackground } from "./ui/aurora-background";
 import { motion } from "framer-motion";
+import { Pacifico } from "next/font/google";
+import { Libre_Baskerville } from "next/font/google";
+const pacifico = Pacifico({
+  subsets: ["latin"],
+  weight: "400",
+  style: "normal",
+})
+const libre = Libre_Baskerville({
+  subsets: ["latin"],
+  weight: "700",
+  style: "normal",
+})
 // import { IconAppWindow } from "@tabler/icons-react";
 
 interface Product {
@@ -67,18 +79,19 @@ export function CardProduct() {
   return (
     <section className="w-full py-6">
       <div className="container grid gap-8 md:gap-12 px-4 md:px-6">
-        <div className="text-center items-start md:items-center gap-4 md:gap-8">
-          <div className="grid gap-1">
-            <h1 className="text-2xl font-bold tracking-tight">
-              Fall Fashion Collection
+      <div className="text-center md:items-center gap-4 md:gap-8">
+          <div className="grid gap-3">
+            <div className={pacifico.className}>
+            <h1 className="text-4xl font-bold">
+              Shop By Collection
             </h1>
-            <p className="text-gray-500 dark:text-gray-400">
-              Discover the latest trends and styles for the season.
+            </div>
+            <div className={libre.className}>
+            <p className="text-gray-500">
+              Filfil the Fashion Forver
             </p>
+            </div>
           </div>
-          {/* <Button className="md:ml-auto shrink-0" size="lg" variant="outline">
-            View all
-          </Button> */}
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 sm:grid-cols-2 xl:pl-20 xl:pr-20 lg:grid-cols-3 xl:grid-cols-4 gap-2 xl:gap-6">

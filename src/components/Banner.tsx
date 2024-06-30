@@ -27,7 +27,7 @@ type Props = {}
 const Banner = (props: Props) => {
   return (
     <Swiper
-      className='w-full bg-black/30 bg-blur'
+      className='w-auto bg-black/30 bg-blur'
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       // spaceBetween={50}
       slidesPerView={1}
@@ -39,42 +39,42 @@ const Banner = (props: Props) => {
     >
       <SwiperSlide>
         <Image
-            className="w-full object-contain"
-            src={b12}
-            alt="Picture of the author"
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Image
-            className="w-full object-contain"
+            className="object-cover"
             src={b1}
             alt="Picture of the author"
         />
       </SwiperSlide>
       <SwiperSlide>
         <Image
-            className="w-full object-contain"
+            className="object-cover"
+            src={b12}
+            alt="Picture of the author"
+        />
+      </SwiperSlide>
+      <SwiperSlide>
+        <Image
+            className="object-cover"
             src={b13}
             alt="Picture of the author"
         />
       </SwiperSlide>
       <SwiperSlide>
         <Image
-            className="w-full object-contain"
+            className="object-cover"
             src={b2}
             alt="Picture of the author"
         />
       </SwiperSlide>
       <SwiperSlide>
         <Image
-            className="w-full object-contain"
+            className="object-cover"
             src={b3}
             alt="Picture of the author"
         />
       </SwiperSlide>
       <SwiperSlide>
         <Image
-            className="w-full object-contain"
+            className="object-cover"
             src={b4}
             alt="Picture of the author"
         />
@@ -88,7 +88,7 @@ const Banner = (props: Props) => {
       </SwiperSlide> */}
       <SwiperSlide>
         <Image
-            className="w-full object-contain"
+            className="object-cover"
             src={b6}
             alt="Picture of the author"
         />
@@ -102,21 +102,21 @@ const Banner = (props: Props) => {
       </SwiperSlide> */}
       <SwiperSlide>
         <Image
-            className="w-full object-contain"
+            className="object-cover"
             src={b8}
             alt="Picture of the author"
         />
       </SwiperSlide>
       <SwiperSlide>
         <Image
-            className="w-full object-contain"
+            className="object-cover"
             src={b9}
             alt="Picture of the author"
         />
       </SwiperSlide>
       <SwiperSlide>
         <Image
-            className="w-full object-contain"
+            className="object-cover"
             src={b10}
             alt="Picture of the author"
         />

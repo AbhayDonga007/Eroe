@@ -30,19 +30,35 @@ import { Button, Card, CardBody, CardHeader } from "@nextui-org/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
+import { Pacifico } from "next/font/google";
+import { Libre_Baskerville } from "next/font/google";
+const pacifico = Pacifico({
+  subsets: ["latin"],
+  weight: "400",
+  style: "normal",
+})
+const libre = Libre_Baskerville({
+  subsets: ["latin"],
+  weight: "700",
+  style: "normal",
+})
 
 export function Category() {
   return (
     <section className="w-full py-6">
       <div className="container grid gap-8 md:gap-12 px-4 md:px-6">
         <div className="text-center md:items-center gap-4 md:gap-8">
-          <div className="grid gap-1">
-            <h1 className="text-2xl font-bold tracking-tight">
+          <div className="grid gap-3">
+            <div className={pacifico.className}>
+            <h1 className="text-4xl font-bold">
               Shop By Collection
             </h1>
+            </div>
+            <div className={libre.className}>
             <p className="text-gray-500">
               Filfil the Fashion Forver
             </p>
+            </div>
           </div>
         </div>
 

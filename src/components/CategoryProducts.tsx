@@ -1,33 +1,51 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { BackgroundGradient } from './ui/background-gradient';
-import { Button, Card, CardBody, CardFooter, CardHeader } from '@nextui-org/react';
-import Link from 'next/link';
-import { ShoppingCart } from 'lucide-react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { A11y, Navigation, Pagination, Scrollbar } from 'swiper/modules';
-import Image from 'next/image';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { BackgroundGradient } from "./ui/background-gradient";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+} from "@nextui-org/react";
+import Link from "next/link";
+import { ShoppingCart } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
+import Image from "next/image";
+import { Pacifico } from "next/font/google";
+import { Libre_Baskerville } from "next/font/google";
+const pacifico = Pacifico({
+  subsets: ["latin"],
+  weight: "400",
+  style: "normal",
+});
+const libre = Libre_Baskerville({
+  subsets: ["latin"],
+  weight: "700",
+  style: "normal",
+});
 
 type Props = {
-    type: string
-}
+  type: string;
+};
 
 interface Product {
-    _id: string;
-    name: string;
-    des: string;
-    type: Array<string>;
-    size: Array<string>;
-    customerPrize: number;
-    productPrize: number;
-    retailPrize: number;
-    artical_no: string;
-    color: Array<string>;
-    images: Array<string>;
-  }
+  _id: string;
+  name: string;
+  des: string;
+  type: Array<string>;
+  size: Array<string>;
+  customerPrize: number;
+  productPrize: number;
+  retailPrize: number;
+  artical_no: string;
+  color: Array<string>;
+  images: Array<string>;
+}
 
 const CategoryProducts = (props: Props) => {
-    const name = props.type;
+  const name = props.type;
 
   const [data, setData] = useState([]);
 
@@ -42,18 +60,15 @@ const CategoryProducts = (props: Props) => {
   return (
     <section className="w-full py-6">
       <div className="container grid gap-8 md:gap-12 px-4 md:px-6">
-        <div className="text-center items-start md:items-center gap-4 md:gap-8">
-          <div className="grid gap-1">
-            <h1 className="text-2xl font-bold tracking-tight">
-              Fall Fashion Collection
-            </h1>
-            <p className="text-gray-500 dark:text-gray-400">
-              Discover the latest trends and styles for the season.
-            </p>
+        <div className="text-center md:items-center gap-4 md:gap-8">
+          <div className="grid gap-3">
+            <div className={pacifico.className}>
+              <h1 className="text-4xl font-bold">Shop By Collection</h1>
+            </div>
+            <div className={libre.className}>
+              <p className="text-gray-500">Filfil the Fashion Forver</p>
+            </div>
           </div>
-          {/* <Button className="md:ml-auto shrink-0" size="lg" variant="outline">
-            View all
-          </Button> */}
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 sm:grid-cols-2 xl:pl-20 xl:pr-20 lg:grid-cols-3 xl:grid-cols-4 gap-2 xl:gap-4">
@@ -66,7 +81,10 @@ const CategoryProducts = (props: Props) => {
                 ? ((productPrize - customerPrize) / productPrize) * 100
                 : 0;
             return (
-              <BackgroundGradient key={index} className="rounded-[22px] max-w-sm bg-white dark:bg-zinc-900">
+              <BackgroundGradient
+                key={index}
+                className="rounded-[22px] max-w-sm bg-white dark:bg-zinc-900"
+              >
                 <div key={index} className="grid">
                   <div className="grid relative group">
                     <Card
@@ -163,7 +181,7 @@ const CategoryProducts = (props: Props) => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default CategoryProducts
+export default CategoryProducts;
