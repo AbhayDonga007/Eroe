@@ -8,19 +8,13 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import Image from 'next/image';
-import b1 from "@/images/Piyush Donga-images-0.jpg"
-import b12 from "@/images/banner5.png"
+
+import b1 from "@/images/banner5.png"
 import b2 from "@/images/Piyush Donga-images-1.jpg"
-import b13 from "@/images/banner1.png"
-import b3 from "@/images/Piyush Donga-images-2.jpg"
-import b4 from "@/images/Piyush Donga-images-3.jpg"
-import b5 from "@/images/Piyush Donga-images-4.jpg"
-import b6 from "@/images/Piyush Donga-images-5.jpg"
-import b7 from "@/images/Piyush Donga-images-6.jpg"
-import b8 from "@/images/Piyush Donga-images-7.jpg"
-import b9 from "@/images/Piyush Donga-images-8.jpg"
-import b10 from "@/images/Piyush Donga-images-9.jpg"
-import b11 from "@/images/Piyush Donga-images-10.jpg"
+import b3 from "@/images/banner1.png"
+import b4 from "@/images/banner2.png"
+import b5 from "@/images/banner3.png"
+import b6 from "@/images/banner4.png"
 
 type Props = {}
 
@@ -37,31 +31,17 @@ const Banner = (props: Props) => {
       // onSwiper={(swiper) => console.log(swiper)}
       // onSlideChange={() => console.log('slide change')}
     >
-      <SwiperSlide>
+      {/* <SwiperSlide>
         <Image
             className="object-cover"
             src={b1}
             alt="Picture of the author"
         />
-      </SwiperSlide>
+      </SwiperSlide> */}
       <SwiperSlide>
         <Image
             className="object-cover"
-            src={b12}
-            alt="Picture of the author"
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Image
-            className="object-cover"
-            src={b13}
-            alt="Picture of the author"
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Image
-            className="object-cover"
-            src={b2}
+            src={b1}
             alt="Picture of the author"
         />
       </SwiperSlide>
@@ -75,17 +55,24 @@ const Banner = (props: Props) => {
       <SwiperSlide>
         <Image
             className="object-cover"
+            src={b2}
+            alt="Picture of the author"
+        />
+      </SwiperSlide>
+      <SwiperSlide>
+        <Image
+            className="object-cover"
             src={b4}
             alt="Picture of the author"
         />
       </SwiperSlide>
-      {/* <SwiperSlide>
+      <SwiperSlide>
         <Image
-            className="w-full sm:h-[500px] object-contain"
+            className="object-cover"
             src={b5}
             alt="Picture of the author"
         />
-      </SwiperSlide> */}
+      </SwiperSlide>
       <SwiperSlide>
         <Image
             className="object-cover"
@@ -93,41 +80,6 @@ const Banner = (props: Props) => {
             alt="Picture of the author"
         />
       </SwiperSlide>
-      {/* <SwiperSlide>
-        <Image
-            className="w-full sm:h-[500px] object-contain"
-            src={b7}
-            alt="Picture of the author"
-        />
-      </SwiperSlide> */}
-      <SwiperSlide>
-        <Image
-            className="object-cover"
-            src={b8}
-            alt="Picture of the author"
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Image
-            className="object-cover"
-            src={b9}
-            alt="Picture of the author"
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Image
-            className="object-cover"
-            src={b10}
-            alt="Picture of the author"
-        />
-      </SwiperSlide>
-      {/* <SwiperSlide>
-        <Image
-            className="w-full sm:h-[500px] object-contain"
-            src={b11}
-            alt="Picture of the author"
-        />
-      </SwiperSlide> */}
     </Swiper>
   )
 }

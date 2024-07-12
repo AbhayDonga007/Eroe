@@ -116,11 +116,11 @@ export function Footer() {
               </a>
             </div>
             <div className="flex flex-row gap-3">
-              <Link className="text-gray-500 hover:text-gray-900" href="#">
+              <Link className="text-gray-500 hover:text-gray-900" href="https://www.instagram.com/eroe_designer?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">
                 <InstagramIcon className="h-6 w-6" />
               </Link>
-              <Link className="text-gray-500 hover:text-gray-900" href="#">
-                <LinkedinIcon className="h-6 w-6" />
+              <Link className="text-gray-500 hover:text-gray-900" href="https://www.facebook.com/piyush.donga.908">
+                <FacebookIcon className="h-6 w-6"/>
               </Link>
               <Link className="text-gray-500 hover:text-gray-900" href="#">
                 <TwitterIcon className="h-6 w-6" />

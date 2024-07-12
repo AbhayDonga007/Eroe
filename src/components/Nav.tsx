@@ -85,6 +85,28 @@ export function Nav() {
   const [search, setSearch] = useState("");
   const [searchData, setSearchData] = useState([]);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const items = [
+    {
+      key: "Kurti",
+      label: "Kurti",
+    },
+    {
+      key: "Pant Pair",
+      label: "Pant Pair",
+    },
+    {
+      key: "Gown",
+      label: "Gown",
+    },
+    {
+      key: "Plaza Pair",
+      label: "Plaza Pair",
+    },
+    {
+      key: "Nayra Pair",
+      label: "Nayra Pair",
+    },
+  ];
 
   const session = useSession();
   const userId = session.session?.user.id;
@@ -181,12 +203,24 @@ export function Nav() {
             </Link>
           </NavbarItem>
           <NavbarItem>
-            <Link
-              className="text-gray-500 transition-colors hover:text-gray-950 dark:text-gray-400 dark:hover:text-gray-50"
-              href="#"
-            >
-              Catagoroy
-            </Link>
+            <Dropdown>
+              <DropdownTrigger>
+                <div className="text-gray-500 transition-colors hover:text-gray-950 dark:text-gray-400 dark:hover:text-gray-50">
+                  Categories
+                </div>
+              </DropdownTrigger>
+              <DropdownMenu aria-label="Dynamic Actions" items={items}>
+                {(item) => (
+                  <DropdownItem
+                    key={item.key}
+                    href={`/category/${item.label}`}
+                    variant="faded"
+                  >
+                    {item.label}
+                  </DropdownItem>
+                )}
+              </DropdownMenu>
+            </Dropdown>
           </NavbarItem>
 
           <NavbarItem>
@@ -203,7 +237,7 @@ export function Nav() {
               className="text-gray-950 transition-colors hover:text-gray-950 dark:text-gray-50 dark:hover:text-gray-50"
               href="#"
             >
-              Settings
+              About us
             </Link>
           </NavbarItem>
         </NavbarContent>
@@ -238,11 +272,26 @@ export function Nav() {
             >
               Products
             </Link>
-            <Link className="text-gray-500 hover:text-gray-950" href="#">
-              Customers
-            </Link>
+            <Dropdown>
+              <DropdownTrigger>
+                <div className="text-gray-500 transition-colors hover:text-gray-950 dark:text-gray-400 dark:hover:text-gray-50">
+                  Categories
+                </div>
+              </DropdownTrigger>
+              <DropdownMenu aria-label="Dynamic Actions" items={items}>
+                {(item) => (
+                  <DropdownItem
+                    key={item.key}
+                    href={`/category/${item.label}`}
+                    variant="faded"
+                  >
+                    {item.label}
+                  </DropdownItem>
+                )}
+              </DropdownMenu>
+            </Dropdown>
             <Link className="hover:text-gray-950" href="#">
-              Settings
+              About us
             </Link>
           </nav>
         </SheetContent>
@@ -347,7 +396,7 @@ export function Nav() {
                                 <div className="text-default-700 font-bold">
                                   {item.productQnt *
                                     item.productId.customerPrize}{" "}
-                                   ₹
+                                  ₹
                                 </div>
                               </CardFooter>
                             </Card>

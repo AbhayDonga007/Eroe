@@ -53,6 +53,13 @@ const Page = () => {
     { key: "Blue", label: "Blue" },
     { key: "Pink", label: "Pink" },
     { key: "Yellow", label: "Yellow" },
+    { key: "White", label: "White" },
+    { key: "Black", label: "Black" },
+    { key: "Mint Green", label: "Mint Green" },
+    { key: "Orange", label: "Orange" },
+    { key: "Purple", label: "Purple" },
+    { key: "Olive", label: "Olive" },
+    { key: "Magenta", label: "Magenta" },
   ];
   const handleSubmit = async () => {
 

@@ -63,10 +63,10 @@ const CategoryProducts = (props: Props) => {
         <div className="text-center md:items-center gap-4 md:gap-8">
           <div className="grid gap-3">
             <div className={pacifico.className}>
-              <h1 className="text-4xl font-bold">Shop By Collection</h1>
+              <h1 className="text-4xl font-bold">Best Collection of {name}</h1>
             </div>
             <div className={libre.className}>
-              <p className="text-gray-500">Filfil the Fashion Forver</p>
+              <p className="text-gray-500">Timeless Elegance, Everyday Style</p>
             </div>
           </div>
         </div>
