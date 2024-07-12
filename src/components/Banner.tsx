@@ -10,7 +10,6 @@ import 'swiper/css/scrollbar';
 import Image from 'next/image';
 
 import b1 from "@/images/banner5.png"
-import b2 from "@/images/Piyush Donga-images-1.jpg"
 import b3 from "@/images/banner1.png"
 import b4 from "@/images/banner2.png"
 import b5 from "@/images/banner3.png"
@@ -49,13 +48,6 @@ const Banner = (props: Props) => {
         <Image
             className="object-cover"
             src={b3}
-            alt="Picture of the author"
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Image
-            className="object-cover"
-            src={b2}
             alt="Picture of the author"
         />
       </SwiperSlide>
