@@ -96,7 +96,6 @@ export function Product(props: Props) {
     });
     if(Cart.status == 201){
       toast.success("Item Added to your cart")
-      window.location.reload()
     }
     else{
       toast.error("Something went wrong")
