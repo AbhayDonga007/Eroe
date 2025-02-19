@@ -77,7 +77,7 @@ export function CardProduct() {
     getData();
   }, []);
   return (
-    <section className="w-full py-6">
+    <section className="w-full flex justify-center py-6">
       <div className="container grid gap-8 md:gap-12 px-4 md:px-6">
       <div className="text-center md:items-center gap-4 md:gap-8">
           <div className="grid gap-3">
