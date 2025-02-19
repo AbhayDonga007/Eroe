@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react"
 
 export const metadata: Metadata = {
   title: "Eroe Designer",
@@ -22,6 +23,7 @@ export default function RootLayout({
       <html lang="en">
           <body className={inter.className}>
             {children}
+            <Analytics/>
             <SpeedInsights/>
             <Toaster />
             <Script src="https://checkout.razorpay.com/v1/checkout.js" />
