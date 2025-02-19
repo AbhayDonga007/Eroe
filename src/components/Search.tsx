@@ -61,19 +61,19 @@ const Search = (props: Props) => {
       <Button className="p-0 m-0 bg-transparent" onPressStart={onOpen}>
         <Input
           isClearable
-          radius="lg"
+          radius="md"
           classNames={{
-            label: "text-black/50 dark:text-white/90",
+            label: "text-black/50",
             input: [
               "bg-transparent",
-              "text-black/90 dark:text-white/90",
-              "placeholder:text-black-400/50 dark:placeholder:text-white",
+              "text-black/90",
+              "placeholder:text-black-400/50",
             ],
             innerWrapper: "bg-transparent",
           }}
-          placeholder="Type to search..."
+          placeholder=" Search"
           startContent={
-            <SearchIcon className="text-black/50 mb-0.5 dark:text-white/90 text-black pointer-events-none flex-shrink-0" />
+            <SearchIcon className="text-black/50 mb-0.5 pointer-events-none flex-shrink-0" />
           }
         />
       </Button>
@@ -94,17 +94,17 @@ const Search = (props: Props) => {
                   isClearable
                   radius="lg"
                   classNames={{
-                    label: "text-black/50 dark:text-white/90",
+                    label: "text-black/50",
                     input: [
                       "bg-transparent",
                       "text-black/90 dark:text-white/90",
-                      "placeholder:text-black-400/50 dark:placeholder:text-white/60",
+                      "placeholder:text-black-400/50",
                     ],
                     innerWrapper: "bg-transparent",
                   }}
                   placeholder="Type to search..."
                   startContent={
-                    <SearchIcon className="text-black/50 mb-0.5 dark:text-white/90 text-black pointer-events-none flex-shrink-0" />
+                    <SearchIcon className="text-black/50 mb-0.5 text-black pointer-events-none flex-shrink-0" />
                   }
                 />
               </ModalHeader>

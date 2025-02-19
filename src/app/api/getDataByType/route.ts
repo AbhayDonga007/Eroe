@@ -5,7 +5,11 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function GET(req:NextRequest) {
     try {
         const { searchParams } = new URL(req.url);
+        console.log("searchParams",searchParams);
+        
         const type = searchParams.get('type');
+        console.log(type);
+        
         await connectMongoDB()
 
         const data = await Product.find({ type: type }).sort('name');

@@ -1,6 +1,6 @@
 "use client"
 import CategoryProducts from "@/components/CategoryProducts";
-import { Nav } from "@/components/Nav";
+import Nav from "@/components/Nav";
 import { Product } from "@/components/Product";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
 import {
@@ -12,6 +12,7 @@ import {
 } from "@nextui-org/react";
 import axios from "axios";
 import { ShoppingCart } from "lucide-react";
+import Error from "next/error";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -46,7 +47,8 @@ const Page =async ({ params }: Props) => {
     const getData = async () => {
       await axios.get(`/api/getDataByType?type=${name}`);
     };
-
+    // console.log(name);
+    
     getData();
   }, [name]);
   return (

@@ -26,7 +26,6 @@ To read more about using these font, please visit the Next.js documentation:
 "use client";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Nav } from "./Nav";
 import img from "@/images/z2.jpg";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -37,8 +36,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import Image from "next/image";
 import { Chip, Select, SelectItem } from "@nextui-org/react";
-import { MinusIcon, PlusIcon } from "lucide-react";
+import { ChevronLeft, ChevronRight, MinusIcon, PlusIcon } from "lucide-react";
 import toast from "react-hot-toast";
+import Nav from "./Nav";
+import { useRouter } from "next/navigation";
 
 type Props = {
   id: string;
@@ -61,10 +62,11 @@ interface Product {
 export function Product(props: Props) {
   const { id } = props;
   const [count, handlers] = useCounter(1, { min: 1, max: 30 });
-  const [productSize,setSize] = useState("");
-  const [productColor,setColor] = useState("")
+  const [productSize, setSize] = useState("");
+  const [productColor, setColor] = useState("");
   const session = useSession();
   const userId = session.session?.user.id;
+  const router = useRouter();
 
   const [product, setProduct] = useState<Product>();
   useEffect(() => {
@@ -85,28 +87,72 @@ export function Product(props: Props) {
       : 0;
 
   const handleCart = async () => {
-    console.log(count,productSize,productColor);
-    
-    const Cart = await fetch("/api/addToCart", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ userId, id, count, productSize, productColor}),
-    });
-    if(Cart.status == 201){
-      toast.success("Item Added to your cart")
+    console.log("userID", userId);
+
+    const cartItem = {
+      productId: id,
+      productQnt: count,
+      productSize,
+      productColor,
+    };
+
+    if (!userId) {
+      // If user is not logged in, store data in localStorage
+      const localCart = JSON.parse(
+        localStorage.getItem("guestCart") || "[]"
+      ) as Array<any>;
+      localCart.push(cartItem);
+      localStorage.setItem("guestCart", JSON.stringify(localCart));
+      toast.success("Item added to cart (Guest Mode)");
+      return;
     }
-    else{
-      toast.error("Something went wrong")
+
+    // If user is logged in, proceed with API call
+    try {
+      const response = await fetch("/api/addToCart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId, ...cartItem }),
+      });
+
+      if (response.status === 201) {
+        toast.success("Item Added to your cart");
+      } else {
+        toast.error("Something went wrong");
+      }
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      toast.error("Something went wrong");
     }
-    console.log(Cart.json());
   };
+
+  const [quantity, setQuantity] = useState(1)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+  // Sample product images array
+  // const productImages = [
+  //   "/placeholder.svg?height=600&width=450",
+  //   "/placeholder.svg?height=600&width=450",
+  //   "/placeholder.svg?height=600&width=450",
+  //   "/placeholder.svg?height=600&width=450",
+  // ]
+
+  // const productImages = product?.images ?? []
+
+  // const nextImage = () => {
+  //   setCurrentImageIndex((prev) => (prev + 1) % productImages.length)
+  // }
+
+  // const previousImage = () => {
+  //   setCurrentImageIndex((prev) => (prev - 1 + productImages.length) % productImages.length)
+  // }
 
   return (
     <div className="bg-gray-100">
       <Nav />
-      <div className="grid md:grid-cols-2 items-start p-2 max-w-6xl mx-auto">
+      <div className="grid md:grid-cols-2 pl-[8%] items-start max-w-6xl mx-auto">
         <Swiper
           className="w-[376px] sm:max-w-screen rounded-lg bg-black/10 bg-blur"
           modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -130,6 +176,44 @@ export function Product(props: Props) {
             </SwiperSlide>
           ))}
         </Swiper>
+        {/* <div className="relative w-[376px] sm:max-w-screen bg-black/10 aspect-[3/4] bg-muted rounded-lg overflow-cover">
+            <Button
+              variant="flat"
+              isIconOnly
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10"
+              onClick={previousImage}
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </Button>
+            <Image
+              src={productImages[currentImageIndex] || "/placeholder.svg"}
+              alt="Product image"
+              fill
+              className="w-full h-auto object-contain"
+              priority
+            />
+            <Button
+              // variant="outline"
+              // size="icon"
+              variant="flat"
+              isIconOnly
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10"
+              onClick={nextImage}
+            >
+              <ChevronRight className="h-4 w-4" />
+            </Button>
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+              {productImages.map((_, index) => (
+                <button
+                  key={index}
+                  className={`w-2 h-2 rounded-full ${
+                    index === currentImageIndex ? "bg-primary" : "bg-muted-foreground/30"
+                  }`}
+                  onClick={() => setCurrentImageIndex(index)}
+                />
+              ))}
+            </div>
+          </div> */}
         <div className="grid gap-2 m-3">
           <div>
             <h1 className="text-2xl font-bold pb-3">{product?.name}</h1>
@@ -138,22 +222,23 @@ export function Product(props: Props) {
             </p>
           </div>
           <div className="grid gap-2 pb-3">
-              <p className="text-black font-bold text-md">
-                Marketed By Aavkar Fashion and Retail
-              </p>
-              <p className="text-gray-500 font-medium text-sm">
-                G 31,32 Vinayak Aracad Opp Shrinidhi Res. Sudama Chowk Surat 394101
-              </p>
-              <p className="text-black font-bold text-md">
-                Manufacturing By Eroe Designer
-              </p>
-              <p className="text-gray-500 font-medium text-sm">
-                Contact us: +91 99982 64004
-              </p>
-              <p className="text-gray-500 font-medium text-sm">
-                Email: aavkarfashion71@gmail.com
-              </p>
-            </div>
+            <p className="text-black font-bold text-md">
+              Marketed By Aavkar Fashion and Retail
+            </p>
+            <p className="text-gray-500 font-medium text-sm">
+              G 31,32 Vinayak Aracad Opp Shrinidhi Res. Sudama Chowk Surat
+              394101
+            </p>
+            <p className="text-black font-bold text-md">
+              Manufacturing By Eroe Designer
+            </p>
+            <p className="text-gray-500 font-medium text-sm">
+              Contact us: +91 99982 64004
+            </p>
+            <p className="text-gray-500 font-medium text-sm">
+              Email: aavkarfashion71@gmail.com
+            </p>
+          </div>
           <div className="grid">
             <div className="flex items-center gap-2 pb-3">
               <div className="text-4xl font-bold">
@@ -212,20 +297,40 @@ export function Product(props: Props) {
               </div>
             </div>
             <div className="grid gap-2 pb-3">
-              <p className="text-gray-500 font-medium text-sm">
-                Quantity
-              </p>
+              <p className="text-gray-500 font-medium text-sm">Quantity</p>
               <div className="flex items-center gap-2">
-              <ButtonGroup className="" size="lg">
-                <Button onClick={handlers.increment} className="font-bold bg-amber-300" size="lg" isIconOnly radius="full"><PlusIcon/></Button>
-                <div className="w-10 text-[32px] text-black text-center font-semibold bg-amber-300"> {Number(count)}</div>
-                <Button onClick={handlers.decrement} className="font-bold bg-amber-300" size="lg" isIconOnly radius="full"><MinusIcon/></Button>
-              </ButtonGroup>
+                <ButtonGroup className="" size="lg">
+                  <Button
+                    onClick={handlers.increment}
+                    className="font-bold bg-amber-300"
+                    size="lg"
+                    isIconOnly
+                    radius="full"
+                  >
+                    <PlusIcon />
+                  </Button>
+                  <div className="w-10 text-[32px] text-black text-center font-semibold bg-amber-300">
+                    {" "}
+                    {Number(count)}
+                  </div>
+                  <Button
+                    onClick={handlers.decrement}
+                    className="font-bold bg-amber-300"
+                    size="lg"
+                    isIconOnly
+                    radius="full"
+                  >
+                    <MinusIcon />
+                  </Button>
+                </ButtonGroup>
               </div>
             </div>
-            
 
-            <Button onClick={handleCart} className="w-auto rounded-full font-bold bg-amber-400" size="lg">
+            <Button
+              onClick={handleCart}
+              className="w-auto rounded-full font-bold bg-amber-400"
+              size="lg"
+            >
               Add to Cart
             </Button>
           </div>

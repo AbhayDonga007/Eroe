@@ -81,10 +81,10 @@ const CategoryProducts = (props: Props) => {
                 ? ((productPrize - customerPrize) / productPrize) * 100
                 : 0;
             return (
-              <BackgroundGradient
-                key={index}
-                className="rounded-[22px] max-w-sm bg-white dark:bg-zinc-900"
-              >
+              // <BackgroundGradient
+              //   key={index}
+              //   className="rounded-[22px] max-w-sm bg-white"
+              // >
                 <div key={index} className="grid">
                   <div className="grid relative group">
                     <Card
@@ -175,7 +175,7 @@ const CategoryProducts = (props: Props) => {
                     </Card>
                   </div>
                 </div>
-              </BackgroundGradient>
+              // </BackgroundGradient>
             );
           })}
         </div>

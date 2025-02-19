@@ -63,15 +63,14 @@ export function Category() {
         </div>
 
         <div className="grid grid-cols-2 xl:pl-[150px] xl:pr-[150px] md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900">
+          {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
             <div className="grid gap-4">
-              <div className="grid gap-2.5  relative group">
+              <div className="grid gap-2.5 relative group">
                 <Card
                   isFooterBlurred
-                  className="rounded-[22px] bg-gray-200"
-                  shadow="sm"
+                  className="rounded-full"
+                  shadow="lg"
                   isPressable
-                  onPress={() => console.log("item pressed")}
                 >
                   <CardHeader className="top-[35%] absolute z-10 flex-col  place-items-center">
                     <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm">
@@ -96,7 +95,7 @@ export function Category() {
                     >
                       <SwiperSlide className="">
                         <Image
-                          alt="Leather Jacket"
+                          alt="Kurti"
                           className="object-cover w-full aspect-[1/1] opacity-90 transition-opacity gap-y-3"
                           height={350}
                           src={img1}
@@ -109,15 +108,15 @@ export function Category() {
                 </Card>
               </div>
             </div>
-          </BackgroundGradient>
+          {/* </BackgroundGradient> */}
 
-          <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900">
+          {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
             <div className="grid gap-4">
               <div className="grid gap-2.5  relative group">
                 <Card
                   isFooterBlurred
-                  className="rounded-[22px] object-fit bg-gray-200"
-                  shadow="sm"
+                  className="rounded-full"
+                  shadow="lg"
                   isPressable
                   onPress={() => console.log("item pressed")}
                 >
@@ -158,15 +157,15 @@ export function Category() {
                 </Card>
               </div>
             </div>
-          </BackgroundGradient>
+          {/* </BackgroundGradient> */}
 
-          <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900">
+          {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
             <div className="grid gap-4">
               <div className="grid gap-2.5  relative group">
                 <Card
                   isFooterBlurred
-                  className="rounded-[22px] object-fit bg-gray-200"
-                  shadow="sm"
+                  className="rounded-full"
+                  shadow="lg"
                   isPressable
                   onPress={() => console.log("item pressed")}
                 >
@@ -208,15 +207,15 @@ export function Category() {
                 </Card>
               </div>
             </div>
-          </BackgroundGradient>
+          {/* </BackgroundGradient> */}
 
-          <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900">
+          {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
             <div className="grid gap-4">
               <div className="grid gap-2.5  relative group">
                 <Card
                   isFooterBlurred
-                  className="rounded-[22px] object-fit bg-gray-200"
-                  shadow="sm"
+                  className="rounded-full"
+                  shadow="lg"
                   isPressable
                   onPress={() => console.log("item pressed")}
                 >
@@ -258,15 +257,15 @@ export function Category() {
                 </Card>
               </div>
             </div>
-          </BackgroundGradient>
+          {/* </BackgroundGradient> */}
 
-          <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900">
+          {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
             <div className="grid gap-4">
               <div className="grid gap-2.5  relative group">
                 <Card
                   isFooterBlurred
-                  className="rounded-[22px] object-fit bg-gray-200"
-                  shadow="sm"
+                  className="rounded-full"
+                  shadow="lg"
                   isPressable
                   onPress={() => console.log("item pressed")}
                 >
@@ -308,7 +307,7 @@ export function Category() {
                 </Card>
               </div>
             </div>
-          </BackgroundGradient>
+          {/* </BackgroundGradient> */}
         </div>
       </div>
     </section>

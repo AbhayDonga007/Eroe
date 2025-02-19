@@ -1,5 +1,5 @@
 "use client";
-import { Nav } from "@/components/Nav";
+import Nav from "@/components/Nav";
 import { useSession } from "@clerk/nextjs";
 import { Button, Input, Textarea } from "@nextui-org/react";
 import axios from "axios";
@@ -26,6 +26,7 @@ export interface CartProduct {
   productSize: string;
   productColor: string;
 }
+
 export interface Cart {
   userId: string;
   products: CartProduct[];
@@ -46,12 +47,61 @@ const Page = (props: Props) => {
   const userId = session.session?.user.id;
 
   useEffect(() => {
-    const getCartData = async () => {
-      const res = await axios.get(`/api/getCartData?userId=${userId}`);
-      console.log(res.data);
+    // const getCartData = async () => {
+    //   const res = await axios.get(`/api/getCartData?userId=${userId}`);
+    //   console.log(res.data);
 
-      setList(res.data);
+    //   setList(res.data);
+    // };
+    const getCartData = async () => {
+      if (!userId) {
+        // Get guest cart from local storage
+        const localCart = JSON.parse(localStorage.getItem("guestCart") || "[]");
+        console.log(localCart);
+
+        if (localCart.length === 0) {
+          setList({ userId: "guest", products: [] }); // Set empty cart
+          return;
+        }
+
+        // Fetch full product details for guest cart items
+        const productIds = localCart.map((item: CartProduct) => item.productId);
+        console.log(productIds);
+
+        try {
+          const res = await axios.post("/api/getProductsByIds", { productIds });
+          const fullProducts: Product[] = res.data;
+          console.log(fullProducts);
+
+          // Map local storage cart to include full product details
+          const formattedCart: Cart = {
+            userId: "guest",
+            products: localCart.map((item: CartProduct) => ({
+              ...item,
+              productId:
+                fullProducts.find(
+                  (p) => String(p._id) === String(item.productId)
+                ) || ({} as Product),
+            })),
+          };
+          console.log(formattedCart);
+
+          setList(formattedCart);
+        } catch (error) {
+          console.error("Error fetching guest cart product details:", error);
+        }
+        return;
+      }
+
+      try {
+        const res = await axios.get(`/api/getCartData?userId=${userId}`);
+        console.log(res);
+        setList(res.data);
+      } catch (error) {
+        console.error("Error fetching cart data:", error);
+      }
     };
+
 
     getCartData();
   }, [userId]);

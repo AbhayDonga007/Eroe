@@ -104,7 +104,7 @@ export function CardProduct() {
                 ? ((productPrize - customerPrize) / productPrize) * 100
                 : 0;
             return (
-              <BackgroundGradient key={index} className="rounded-[22px] max-w-sm bg-white dark:bg-zinc-900">
+              // <BackgroundGradient key={index} className="rounded-[22px] max-w-sm bg-white dark:bg-zinc-900">
                 <div key={index} className="grid">
                   <div className="grid relative group">
                     <Card
@@ -195,7 +195,7 @@ export function CardProduct() {
                     </Card>
                   </div>
                 </div>
-              </BackgroundGradient>
+              // </BackgroundGradient>
             );
           })}
         </div>

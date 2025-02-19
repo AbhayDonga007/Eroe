@@ -8,8 +8,7 @@ type Props = {
 };
 
 const page =async ({ params }: Props) => {
-    // const id = params.productId
-    // await new Promise((resolve) => setTimeout(resolve,1000));
+  
   return(
     <div>
         <Product id={params.productId}/>

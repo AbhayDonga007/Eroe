@@ -4,7 +4,7 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 
-"use client";
+/* "use client";
 import Link from "next/link";
 import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
@@ -187,7 +187,7 @@ export function Nav() {
         <NavbarContent className="hidden sm:flex gap-5">
           <NavbarItem>
             <Link
-              className="text-gray-500 transition-colors hover:text-gray-950 dark:text-gray-400 dark:hover:text-gray-50"
+              className="text-gray-500 transition-colors hover:text-black"
               href="/dashboard"
             >
               Dashboard
@@ -196,7 +196,7 @@ export function Nav() {
 
           <NavbarItem>
             <Link
-              className="text-gray-500 transition-colors hover:text-gray-950 dark:text-gray-400 dark:hover:text-gray-50"
+              className="text-gray-500 transition-colors hover:text-black"
               href="/products"
             >
               Products
@@ -205,7 +205,7 @@ export function Nav() {
           <NavbarItem>
             <Dropdown>
               <DropdownTrigger>
-                <div className="text-gray-500 transition-colors hover:text-gray-950 dark:text-gray-400 dark:hover:text-gray-50">
+                <div className="text-gray-500 transition-colors hover:text-black">
                   Categories
                 </div>
               </DropdownTrigger>
@@ -225,7 +225,7 @@ export function Nav() {
 
           <NavbarItem>
             <Link
-              className="text-gray-500 transition-colors hover:text-gray-950 dark:text-gray-400 dark:hover:text-gray-50"
+              className="text-gray-500 transition-colors hover:text-black"
               href="#"
             >
               Orders
@@ -234,8 +234,8 @@ export function Nav() {
 
           <NavbarItem>
             <Link
-              className="text-gray-950 transition-colors hover:text-gray-950 dark:text-gray-50 dark:hover:text-gray-50"
-              href="#"
+              className="text-gray-950 transition-colors hover:text-black"
+              href="/aboutus"
             >
               About us
             </Link>
@@ -252,29 +252,29 @@ export function Nav() {
           <nav className="grid gap-6 text-lg font-medium">
             <Link
               className="flex items-center gap-2 text-lg font-semibold"
-              href="#"
+              href="/dashboard"
             >
               <Logo />
             </Link>
             <Search />
             <Link
-              className="text-gray-500 hover:text-gray-950"
+              className="text-gray-500 hover:textblack"
               href="/dashboard"
             >
               Dashboard
             </Link>
-            <Link className="text-gray-500 hover:text-gray-950" href="#">
+            <Link className="text-gray-500 hover:text-black" href="#">
               Orders
             </Link>
             <Link
-              className="text-gray-500 hover:text-gray-950"
+              className="text-gray-500 hover:text-black"
               href="/products"
             >
               Products
             </Link>
             <Dropdown>
               <DropdownTrigger>
-                <div className="text-gray-500 transition-colors hover:text-gray-950 dark:text-gray-400 dark:hover:text-gray-50">
+                <div className="text-gray-500 transition-colors hover:text-black">
                   Categories
                 </div>
               </DropdownTrigger>
@@ -290,7 +290,7 @@ export function Nav() {
                 )}
               </DropdownMenu>
             </Dropdown>
-            <Link className="hover:text-gray-950" href="#">
+            <Link className="text-gray-500 hover:text-black" href="/aboutus">
               About us
             </Link>
           </nav>
@@ -421,7 +421,7 @@ export function Nav() {
               </ModalContent>
             </Modal>
 
-            {/* {Boolean(5) && <span>{5}</span>} */}
+            //{ {Boolean(5) && <span>{5}</span>} 
           </span>
           <div className="w-auto h-auto">
             <SignedOut>
@@ -497,5 +497,417 @@ function Package2Icon({ ...props }) {
       <path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9" />
       <path d="M12 3v6" />
     </svg>
+  );
+}
+  */
+"use client";
+import Link from "next/link";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+  useSession,
+} from "@clerk/nextjs";
+import Logo from "./Logo";
+import {
+  Badge,
+  Button,
+  ButtonGroup,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+  Image,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  useDisclosure,
+} from "@nextui-org/react";
+import { MenuIcon, ShoppingCart } from "lucide-react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { CardTitle } from "./ui/card";
+import Search from "./Search";
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+
+const items = [
+  {
+    key: "Kurti",
+    label: "Kurti",
+  },
+  {
+    key: "Pant Pair",
+    label: "Pant Pair",
+  },
+  {
+    key: "Gown",
+    label: "Gown",
+  },
+  {
+    key: "Plaza Pair",
+    label: "Plaza Pair",
+  },
+  {
+    key: "Nayra Pair",
+    label: "Nayra Pair",
+  },
+];
+
+export interface Product {
+  _id: string;
+  name: string;
+  des: string;
+  type: Array<string>;
+  size: Array<string>;
+  customerPrize: number;
+  productPrize: number;
+  retailPrize: number;
+  artical_no: string;
+  color: Array<string>;
+  images: Array<string>;
+}
+
+export interface CartProduct {
+  productId: Product;
+  productQnt: number;
+  productSize: string;
+  productColor: string;
+}
+export interface Cart {
+  userId: string;
+  products: CartProduct[];
+}
+
+export default function Nav() {
+  const [search, setSearch] = useState("");
+  const [searchData, setSearchData] = useState([]);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  const session = useSession();
+  const userId = session.session?.user.id;
+
+  const [list, setList] = useState<Cart>();
+
+  useEffect(() => {
+    const getCartData = async () => {
+      if (!userId) {
+        // Get guest cart from local storage
+        const localCart = JSON.parse(localStorage.getItem("guestCart") || "[]");
+        console.log(localCart);
+
+        if (localCart.length === 0) {
+          setList({ userId: "guest", products: [] }); // Set empty cart
+          return;
+        }
+
+        // Fetch full product details for guest cart items
+        const productIds = localCart.map((item: CartProduct) => item.productId);
+        console.log(productIds);
+
+        try {
+          const res = await axios.post("/api/getProductsByIds", { productIds });
+          const fullProducts: Product[] = res.data;
+          console.log(fullProducts);
+
+          // Map local storage cart to include full product details
+          const formattedCart: Cart = {
+            userId: "guest",
+            products: localCart.map((item: CartProduct) => ({
+              ...item,
+              productId:
+                fullProducts.find(
+                  (p) => String(p._id) === String(item.productId)
+                ) || ({} as Product),
+            })),
+          };
+          console.log(formattedCart);
+
+          setList(formattedCart);
+        } catch (error) {
+          console.error("Error fetching guest cart product details:", error);
+        }
+        return;
+      }
+
+      try {
+        const res = await axios.get(`/api/getCartData?userId=${userId}`);
+        console.log(res);
+        setList(res.data);
+      } catch (error) {
+        console.error("Error fetching cart data:", error);
+      }
+    };
+
+    getCartData();
+  }, [userId]);
+
+  const handleInc = async (productId: string) => {
+    try {
+      await axios.post("/api/cartIncrement", { productId, userId });
+      window.location.reload();
+    } catch (error) {
+      console.error("Error incrementing product quantity", error);
+    }
+  };
+  const handleDec = async (productId: string) => {
+    const response = await axios.post("/api/cartDecrement", {
+      productId,
+      userId,
+    });
+    window.location.reload();
+  };
+
+  const onSearch = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+
+    if (search?.length > 2) {
+      const res = await axios.get(`/api/getDataByName?name=${search}`);
+      setSearchData(res.data);
+    }
+  };
+
+  return (
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container pl-[4%] pr-[4%] flex h-14 max-w-screen-2xl items-center">
+        <nav className="hidden flex flex-1 items-center space-x-6 text-lg font-medium md:flex md:flex-row md:items-center md:text-sm">
+          <Link href="/" className="mr-6 flex items-center space-x-2">
+            <Logo />
+          </Link>
+          <Link
+            className="text-gray-500 font-semibold text-base transition-colors hover:text-black"
+            href="/products"
+          >
+            Products
+          </Link>
+          <Dropdown>
+            <DropdownTrigger>
+              <div className="text-gray-500 font-semibold text-base transition-colors hover:text-black">
+                Categories
+              </div>
+            </DropdownTrigger>
+            <DropdownMenu aria-label="Dynamic Actions" items={items}>
+              {(item) => (
+                <DropdownItem
+                  key={item.key}
+                  href={`/category/${item.label}`}
+                  variant="faded"
+                >
+                  {item.label}
+                </DropdownItem>
+              )}
+            </DropdownMenu>
+          </Dropdown>
+          <Link
+            className="text-gray-500 font-semibold text-base transition-colors hover:text-black"
+            href="/orders"
+          >
+            Orders
+          </Link>
+          <Link
+            className="text-gray-500 font-semibold text-base transition-colors hover:text-black"
+            href="/aboutus"
+          >
+            About us
+          </Link>
+        </nav>
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button isIconOnly className="shrink-0 md:hidden bg-transparent">
+              <MenuIcon className="h-5 w-5" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left">
+            <nav className="grid gap-6 text-lg font-medium">
+              <Link
+                className="flex items-center gap-2 text-lg font-semibold"
+                href="/dashboard"
+              >
+                <Logo />
+              </Link>
+              <Search />
+              <Link className="text-gray-500 hover:textblack" href="/dashboard">
+                Dashboard
+              </Link>
+              <Link className="text-gray-500 hover:text-black" href="#">
+                Orders
+              </Link>
+              <Link className="text-gray-500 hover:text-black" href="/products">
+                Products
+              </Link>
+              <Dropdown>
+                <DropdownTrigger>
+                  <div className="text-gray-500 transition-colors hover:text-black">
+                    Categories
+                  </div>
+                </DropdownTrigger>
+                <DropdownMenu aria-label="Dynamic Actions" items={items}>
+                  {(item) => (
+                    <DropdownItem
+                      key={item.key}
+                      href={`/category/${item.label}`}
+                      variant="faded"
+                    >
+                      {item.label}
+                    </DropdownItem>
+                  )}
+                </DropdownMenu>
+              </Dropdown>
+              <Link className="text-gray-500 hover:text-black" href="/aboutus">
+                About us
+              </Link>
+            </nav>
+          </SheetContent>
+        </Sheet>
+        <div className="xl:hidden lg:hidden md:hidden">
+          <Logo />
+        </div>
+          <div className="w-[60px] md:hidden"></div>
+        <div className="flex items-center space-x-4">
+          <div className="hidden xl:inline lg:inline md:inline">
+            <Search />
+          </div>
+          <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
+            <div className="cart-icon">
+              <Badge
+                isInvisible={list?.products?.length ? false : true}
+                content={list?.products?.length}
+                shape="circle"
+                className="bg-red-500 text-white border-none"
+              >
+                <Button
+                  onPressStart={onOpen}
+                  isIconOnly
+                  className="bg-transparent"
+                  radius="full"
+                  size="md"
+                >
+                  <ShoppingCart />
+                </Button>
+              </Badge>
+              <Modal
+                placement="top-center"
+                backdrop="blur"
+                scrollBehavior="inside"
+                className="min-h-[550px] max-w-[800px]"
+                isOpen={isOpen}
+                onOpenChange={onOpenChange}
+              >
+                <ModalContent>
+                  {(onClose) => (
+                    <>
+                      <ModalHeader className="flex flex-col gap-1">
+                        Cart Items
+                      </ModalHeader>
+                      <ModalBody>
+                        <div className="gap-2 grid grid-cols-2 sm:grid-cols-4">
+                          {list?.products?.map((item, index) => {
+                            return (
+                              <Card
+                                className="max-h-[400px]"
+                                shadow="sm"
+                                key={index}
+                                isPressable
+                                onPress={() => console.log("item pressed")}
+                              >
+                                <CardHeader>
+                                  <CardTitle className="truncate text-nowrap text-sm capitalize">
+                                    {item.productId.name}
+                                  </CardTitle>
+                                </CardHeader>
+                                <CardBody className="overflow-visible p-0 m-0">
+                                  <Image
+                                    shadow="sm"
+                                    radius="lg"
+                                    width="100%"
+                                    alt={item.productId.name}
+                                    className="w-full max-h-[250px] object-cover"
+                                    src={item.productId.images[0]}
+                                  />
+                                </CardBody>
+                                <div className="overflow-hidden text-small text-left text-balance mr-2 max-h-[40px] text-gray-500 ml-2 pt-1">
+                                  {item.productId.des} ₹
+                                </div>
+                                <CardFooter className="flex text-small truncate justify-between">
+                                  <ButtonGroup className="" size="sm">
+                                    <Button
+                                      onClick={() =>
+                                        handleInc(item.productId._id)
+                                      }
+                                      className="font-bold bg-red-200"
+                                      size="sm"
+                                      isIconOnly
+                                      radius="full"
+                                    >
+                                      +
+                                    </Button>
+                                    <div className="w-7 font-bold">
+                                      {item.productQnt}
+                                    </div>
+                                    <Button
+                                      onClick={() =>
+                                        handleDec(item.productId._id)
+                                      }
+                                      className="font-bold bg-red-200"
+                                      size="sm"
+                                      isIconOnly
+                                      radius="full"
+                                    >
+                                      -
+                                    </Button>
+                                  </ButtonGroup>
+                                  <div className="text-default-700 font-bold">
+                                    {item.productQnt *
+                                      item.productId.customerPrize}{" "}
+                                    ₹
+                                  </div>
+                                </CardFooter>
+                              </Card>
+                            );
+                          })}
+                        </div>
+                      </ModalBody>
+                      <ModalFooter>
+                        <Link href="/payment">
+                          <Button
+                            className=""
+                            color="danger"
+                            variant="solid"
+                            onPress={onClose}
+                          >
+                            Place Order
+                          </Button>
+                        </Link>
+                      </ModalFooter>
+                    </>
+                  )}
+                </ModalContent>
+              </Modal>
+
+              {/* {Boolean(5) && <span>{5}</span>}  */}
+            </div>
+            <div className="w-auto h-auto">
+              <SignedOut>
+                <Button
+                  className="text-gray-500 transition-colors text-base border-0 font-semibold hover:text-black"
+                  variant="ghost"
+                >
+                  <SignInButton />
+                </Button>
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
   );
 }

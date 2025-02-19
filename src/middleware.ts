@@ -1,26 +1,50 @@
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { clerkClient, clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-const isProtectedRoute = createRouteMatcher([
-  '/dashboard(.*)','/product(.*)'
+const isPublicRoute = createRouteMatcher([
+  "/sign-in(.*)",
+  "/sign-up(.*)",
+  "/(.*)",
+  "/dashboard(.*)",
+  "/products(.*)",
+  "/category(.*)",
 ]);
+const isAdminRoute = createRouteMatcher(["/admin(.*)"]);
 
-const isPublicRoute = createRouteMatcher(['/','/sign-in(.*)', '/sign-up(.*)','/product(.*)']);
-
-export default clerkMiddleware((auth, req) => {
+export default clerkMiddleware(async (auth, req) => {
   const pathname = req.nextUrl.pathname;
 
-    if(!isPublicRoute(req)) {
-      auth().protect();
-    }
+  if (!isPublicRoute(req)) {
+    await auth.protect();
+  }
 
-    if (isProtectedRoute(req)) auth().protect();
+  // const session = useSession();
+  // const user = session.session?.user.publicMetadata;
 
-    if (pathname === "/") {
-      return NextResponse.redirect(new URL("/dashboard", req.url));
-    }
+  // console.log(user);
+
+  // if(isAdminRoute(req)){
+  //   const user = await clerkClient.users.getUser(auth.userId);
+  //   const role = user.publicMetadata.role as string | undefined
+
+  //   if(role === "admin"){
+  //     return NextResponse.redirect(new URL("/admin", req.url));
+  //   }
+  // }
+  
+  
+  
+
+  if (pathname === "/") {
+    return NextResponse.redirect(new URL("/dashboard", req.url));
+  }
 });
 
 export const config = {
-  matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: [
+    // Skip Next.js internals and all static files, unless found in search params
+    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+    // Always run for API routes
+    "/(api|trpc)(.*)",
+  ],
 };

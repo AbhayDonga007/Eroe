@@ -3,7 +3,6 @@ import Banner from "@/components/Banner";
 import { CardProduct } from "@/components/Card";
 import { Category } from "@/components/Category";
 import { Footer } from "@/components/Footer";
-import { Nav } from "@/components/Nav";
 import { Newsletter } from "@/components/Newsletter";
 import React from "react";
 import toast from "react-hot-toast";
@@ -24,6 +23,7 @@ import img2 from "@/images/banner2.png";
 import img3 from "@/images/banner3.png";
 import img4 from "@/images/banner4.png";
 import img5 from "@/images/banner5.png";
+import Nav from "@/components/Nav";
 
 type Props = {};
 
@@ -31,14 +31,7 @@ const DashBoard = async (props: Props) => {
   // await new Promise((resolve) => setTimeout(resolve,3000));
   return (
     <>
-      {/* <div>DashBoard</div>
-        <div>Name : {session?.user?.name}</div>
-        <div>Email : {session?.user?.email}</div>
-        <Button onClick={() => {
-          toast.success("Logout Successful")
-          signOut()
-        }}>Logout</Button> */}
-      <Button
+      {/* <Button
         isIconOnly
         onClick={() => console.log("Cliked")}
         className="fixed w-[50px] h-[50px] bottom-[30px] left-[30px] bg-[#00e676] rounded-full z-30"
@@ -52,7 +45,7 @@ const DashBoard = async (props: Props) => {
             style={{ fontSize: "1.8rem" }}
           ></i>
         </Link>
-      </Button>
+      </Button> */}
       <Nav />
       <Banner />
       <Category />

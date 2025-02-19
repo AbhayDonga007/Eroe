@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
         const expectedSignature = crypto.createHmac('sha256',process.env.ROZORPAY_SECRET_KEY!).update(temp.toString()).digest('hex');
 
         if (expectedSignature === razorpay_signature) {
-            return NextResponse.redirect("http://localhost:3000/")
+            return NextResponse.redirect("https://eroe-designer.vercel.app/")
         } else {
             return NextResponse.json({ message: "Invalid Signature", signatureIsValid: false }, { status: 400 });
         }

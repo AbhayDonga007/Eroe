@@ -135,11 +135,11 @@ const Page = () => {
   return (
     <div
       key="1"
-      className="flex flex-col items-center justify-center min-h-screen py-12 sm:px-6 lg:px-8 bg-gray-300"
+      className="flex flex-col items-center justify-center min-h-screen py-4 sm:px-6 lg:px-8 bg-gray-300"
     >
-      <div className="w-full max-w-[900px] space-y-6 bg-white dark:bg-gray-900 shadow-lg rounded-lg p-6">
+      <div className="w-full max-w-[900px] space-y-6 bg-white shadow-lg rounded-lg p-6">
         <div className="space-y-2 justify-center flex items-center text-center">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-50">
+          <h1 className="text-3xl font-bold text-gray-900">
             <Logo />
           </h1>
         </div>
@@ -147,7 +147,7 @@ const Page = () => {
         <div className="space-y-4">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4">
                 <div className="space-y-2">
                   <div className="w-full flex flex-col gap-4">
                     <div

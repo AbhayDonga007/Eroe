@@ -1,7 +1,7 @@
 "use client"
 import { CardProduct } from "@/components/Card";
 import { Footer } from "@/components/Footer";
-import { Nav } from "@/components/Nav";
+import Nav from "@/components/Nav";
 import { Newsletter } from "@/components/Newsletter";
 import QualityProduct from "@/components/QualityProduct";
 import React from "react";
