@@ -68,8 +68,8 @@ export default function RootLayout({
             <span className="font-semibold">Admin</span>
           </div>
           <nav className="space-y-1 p-2">
-            {menuItems.map((item) => (
-              <Link className="" href={`${item.route}`}>
+            {menuItems.map((item,index) => (
+              <Link key={index} className="" href={`${item.route}`}>
                 <Button
                   key={item.label}
                   variant={item.active ? "secondary" : "ghost"}

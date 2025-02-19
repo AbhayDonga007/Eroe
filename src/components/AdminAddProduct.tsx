@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
+import Image from "next/image"
 
 type ProductFormData = {
   title: string
@@ -68,7 +69,7 @@ export function AdminAddProduct() {
             <div className="grid grid-cols-5 gap-4">
               {images.map((img, idx) => (
                 <div key={idx} className="relative aspect-square rounded-lg border">
-                  <img src={img || "/placeholder.svg"} alt="" className="h-full w-full rounded-lg object-cover" />
+                  <Image src={img || "/placeholder.svg"} alt="" className="h-full w-full rounded-lg object-cover" />
                   <Button
                     type="button"
                     variant="destructive"

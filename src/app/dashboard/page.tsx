@@ -27,7 +27,7 @@ import Nav from "@/components/Nav";
 
 type Props = {};
 
-const DashBoard = async (props: Props) => {
+const DashBoard = (props: Props) => {
   // await new Promise((resolve) => setTimeout(resolve,3000));
   return (
     <>

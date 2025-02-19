@@ -39,7 +39,7 @@ interface Product {
   images: Array<string>;
 }
 
-const Page =async ({ params }: Props) => {
+const Page = ({ params }: Props) => {
   const name = params.categoryName;
   // await new Promise((resolve) => setTimeout(resolve,3000));
 
