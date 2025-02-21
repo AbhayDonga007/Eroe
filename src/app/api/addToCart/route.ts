@@ -10,7 +10,7 @@ export async function POST(req:NextRequest) {
         
         await connectMongoDB();
 
-        const product = await Product.findById(data.id);
+        const product = await Product.findById(data.productId);
         // await Cart.create({ 
         //     userId: data.userId, 
         //     products: [{ productId: product._id, productQnt: data.count }] 
@@ -22,7 +22,7 @@ export async function POST(req:NextRequest) {
             // If cart does not exist, create a new cart
             cart = new Cart({
                 userId: data.userId,
-                products: [{ productId: product._id, productQnt: data.count, productSize:data.productSize, productColor: data.productColor}]
+                products: [{ productId: product._id, productQnt: data.productQnt , productSize:data.productSize, productColor: data.productColor}]
             });
         } else {
             // If cart exists, check if the product already exists in the cart
@@ -32,7 +32,7 @@ export async function POST(req:NextRequest) {
                 existingProduct.productQnt += data.count;
             } else {
                 // If product does not exist, add it to the products array
-                cart.products.push({ productId: product._id, productQnt: data.count, productSize:data.productSize, productColor: data.productColor });
+                cart.products.push({ productId: product._id, productQnt: data.productQnt, productSize:data.productSize, productColor: data.productColor });
             }
         }
 

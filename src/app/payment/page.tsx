@@ -3,8 +3,10 @@ import Nav from "@/components/Nav";
 import { useSession } from "@clerk/nextjs";
 import { Button, Input, Textarea } from "@nextui-org/react";
 import axios from "axios";
+import Razorpay from "razorpay";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import crypto from "crypto";
 
 export interface Product {
   _id: string;
@@ -37,14 +39,15 @@ type Props = {};
 const Page = (props: Props) => {
   const [list, setList] = useState<Cart>();
 
+  const session = useSession();
+  const userId = session.session?.user.id;
   const [customerdetail, setCustomerDetail] = useState({
+    id: userId || "guest",
     name: "",
     email: "",
     phone: 0,
     address: "",
   });
-  const session = useSession();
-  const userId = session.session?.user.id;
 
   useEffect(() => {
     // const getCartData = async () => {
@@ -102,15 +105,19 @@ const Page = (props: Props) => {
       }
     };
 
-
     getCartData();
   }, [userId]);
 
-  const MakePayment = async () => {
+  /*const MakePayment = async () => {
     console.log(list?.products);
 
-    if(customerdetail.name == "" || customerdetail.email == "" || customerdetail.phone == 0 || customerdetail.email == ""){
-      toast.error("Please fill all the details")
+    if (
+      customerdetail.name == "" ||
+      customerdetail.email == "" ||
+      customerdetail.phone == 0
+    ) {
+      toast.error("Please fill all the details");
+      return;
     }
 
     const body = {
@@ -125,6 +132,7 @@ const Page = (props: Props) => {
     });
 
     const data = await res.json();
+    console.log(data);
 
     const options = {
       key: process.env.ROZORPAY_API_KEY,
@@ -133,7 +141,145 @@ const Page = (props: Props) => {
       name: "Eroe Designer",
       description: "Test Transaction",
       order_id: data.order.id,
-      callback_url: "/api/paymentVarification",
+      callback_url: `/api/paymentVarification`,
+      prefill: {
+        name: customerdetail.name,
+        email: customerdetail.email,
+        contact: customerdetail.phone,
+      },
+      notes: {
+        address: customerdetail.address,
+      },
+      theme: {
+        hide_topbar: true,
+        color: "#121212",
+      },
+    };
+
+    const rzp = new (window as any).Razorpay(options);
+    // const rzp1 = new (window as any).Razorpay(options);
+    
+
+    // await fetch("/api/orders", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     cart: list?.products,
+    //     order: data.order,
+    //     customerName: customerdetail.name,
+    //     customerEmail: customerdetail.email,
+    //     shippingAddress: customerdetail.address,
+    //     customerPhone: customerdetail.phone.toString(),
+    //   }),
+    // });
+
+    //   const verifyResponse = await fetch("/api/orders", {
+    //     method: "POST",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //         razorpay_order_id: response.razorpay_order_id,
+    //         razorpay_payment_id: response.razorpay_payment_id,
+    //         razorpay_signature: response.razorpay_signature,
+    //         customerDetails: customerdetail, // Pass customer details
+    //         cart:body, // Pass cart details
+    //     }),
+    // });
+
+    // const result = await verifyResponse.json();
+    // console.log("Verification & Order Response:", result);
+
+    rzp.on("payment.success", async function (response) {
+      console.log("Payment Success Response:", response);
+      toast.success("Payment Success Response:",response)
+
+      // Send verification request with customer & cart details
+      const verifyResponse = await fetch("/api/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          razorpay_order_id: response.razorpay_order_id,
+          razorpay_payment_id: response.razorpay_payment_id,
+          razorpay_signature: response.razorpay_signature,
+          customerDetails: customerdetail,
+          cart: body,
+        }),
+      });
+
+      const result = await verifyResponse.json();
+      console.log("Verification & Order Response:", result);
+      toast.success("Verification & Order Response:", result)
+    });
+
+    rzp.on("payment.failed", function (response) {
+      console.error("Payment Failed:", response.error);
+    });
+
+    rzp.open();
+  };*/
+
+  const MakePayment = async () => {
+    console.log(list?.products);
+
+    if (customerdetail.name === "" || customerdetail.email === "" || customerdetail.phone === 0) {
+      toast.error("Please fill all the details");
+      return;
+    }
+
+    const body = {
+      products: list?.products,
+    };
+
+    const res = await fetch("/api/payments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+
+    const data = await res.json();
+    console.log("Payment Response:", data);
+
+    const options = {
+      key: process.env.ROZORPAY_API_KEY,
+      amount: Number(data.order.amount * 100),
+      currency: "INR",
+      name: "Eroe Designer",
+      description: "Test Transaction",
+      order_id: data.order.id,
+      handler: async function (response: any) {
+        console.log("Payment Success:", response);
+
+        const verifyRes = await fetch("/api/paymentVerification", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_signature: response.razorpay_signature,
+            cart: {
+              totalAmount: data.order.amount / 100,
+              products: list?.products,
+            },
+            customer: customerdetail,
+          }),
+        });
+
+        const verifyData = await verifyRes.json();
+        if (verifyData.message === "Payment Successful, Order Stored") {
+          toast.success("Order placed successfully!");
+        } else {
+          toast.error("Payment verification failed");
+        }
+      },
       prefill: {
         name: customerdetail.name,
         email: customerdetail.email,
@@ -150,7 +296,13 @@ const Page = (props: Props) => {
 
     const rzp1 = new (window as any).Razorpay(options);
     rzp1.open();
-  };
+
+    rzp1.on("payment.failed", function () {
+      toast.error("Payment Failed, Redirecting...");
+      window.location.href = "/dashboard";
+    });
+};
+
 
   return (
     <>

@@ -38,8 +38,8 @@ export async function POST(req:NextRequest) {
           
         const order = await instance.orders.create(options)
 
-        console.log(order);
-        return NextResponse.json({order});
+        console.log({cart,order});
+        return NextResponse.json({cart,order});
     } catch (error) {
         console.error(error);  
         return NextResponse.json({ message: "Payment Failed" }, { status: 500 });

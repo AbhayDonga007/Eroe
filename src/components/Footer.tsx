@@ -53,44 +53,44 @@ export function Footer() {
             >
               Shop
             </Link>
-            <Link className="text-gray-500 hover:text-gray-900" href="#">
+            <Link className="text-gray-500 hover:text-gray-900" href="/aboutus">
               About Us
             </Link>
-            <Link className="text-gray-500 hover:text-gray-900" href="#">
+            <Link className="text-gray-500 hover:text-gray-900" href="contact">
               Contact Us
             </Link>
           </div>
           <div className="grid gap-2">
             <h3 className="font-semibold">Our Categories</h3>
-            <Link className="text-gray-500 hover:text-gray-900" href="#">
+            <Link className="text-gray-500 hover:text-gray-900" href="/category/Kurti">
               Kurti
             </Link>
-            <Link className="text-gray-500 hover:text-gray-900" href="#">
+            <Link className="text-gray-500 hover:text-gray-900" href={`/category/Pant Pair`}>
               Pair Pant
             </Link>
-            <Link className="text-gray-500 hover:text-gray-900 " href="#">
+            <Link className="text-gray-500 hover:text-gray-900 " href="/category/Gown">
               Gown
             </Link>
-            <Link className="text-gray-500 hover:text-gray-900 " href="#">
+            <Link className="text-gray-500 hover:text-gray-900 " href={`/category/Plaza Pair`}>
               Plaza Pair
             </Link>
-            <Link className="text-gray-500 hover:text-gray-900" href="#">
+            <Link className="text-gray-500 hover:text-gray-900" href={`/category/Nayra Pair`}>
               Nayra Pair
             </Link>
           </div>
           <div className="grid gap-2">
             <h3 className="font-semibold">Our Policies</h3>
-            <Link className="text-gray-500 hover:text-gray-900" href="#">
+            <Link className="text-gray-500 hover:text-gray-900" href="/terms">
               Terms of Service
             </Link>
-            <Link className="text-gray-500 hover:text-gray-900" href="#">
+            <Link className="text-gray-500 hover:text-gray-900" href="/privacy">
               Privacy Policy
             </Link>
-            <Link className="text-gray-500 hover:text-gray-900" href="#">
+            <Link className="text-gray-500 hover:text-gray-900" href="/returns">
               Return Policy
             </Link>
-            <Link className="text-gray-500 hover:text-gray-900" href="#">
-              Shipping Policy
+            <Link className="text-gray-500 hover:text-gray-900" href="/delivery">
+              Delivery Policy
             </Link>
           </div>
         </div>
@@ -134,7 +134,7 @@ export function Footer() {
       </div>
       <div className="container mx-auto px-4 md:px-6 mt-8 mb-0 pb-0 border-t pt-4 flex items-center justify-between">
         <p className="text-sm text-gray-500">
-          © 2024 Eroe Designer All rights reserved.
+          © 2025 Eroe Designer All rights reserved.
         </p>
         <nav className="flex items-center gap-4">
           <Link target="_" className="text-sm text-gray-500 hover:text-gray-900" href="https://api.whatsapp.com/send/?phone=917818070999&text&type=phone_number&app_absent=0">
