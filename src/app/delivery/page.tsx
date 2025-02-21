@@ -12,7 +12,7 @@ export default function Shipping() {
       <h1 className={`${playfair.className} text-4xl font-bold mb-8 text-center text-gold`}>Shipping Policy</h1>
       <div className="bg-white p-8 rounded-lg shadow-md">
         <p className="mb-6">
-          Eroe Designer is committed to ensuring your designer pieces reach you safely and promptly. Here's what you
+          Eroe Designer is committed to ensuring your designer pieces reach you safely and promptly. Here&apos;s what you
           need to know about our shipping process:
         </p>
         <h2 className="text-2xl font-bold mb-4 text-gold">1. Processing Time</h2>
@@ -37,8 +37,8 @@ export default function Shipping() {
         </p>
         <h2 className="text-2xl font-bold mb-4 text-gold">5. Tracking Your Order</h2>
         <p className="mb-6">
-          Once your order is shipped, you'll receive a confirmation email with a tracking number to monitor your
-          package's journey.
+          Once your order is shipped, you&apos;ll receive a confirmation email with a tracking number to monitor your
+          package&apos;s journey.
         </p>
         <h2 className="text-2xl font-bold mb-4 text-gold">6. Delivery Issues</h2>
         <p className="mb-6">
@@ -46,7 +46,7 @@ export default function Shipping() {
           shipping@eroedesigner.com within 48 hours of the expected delivery date.
         </p>
         <p>
-          For any questions about our shipping policy or to inquire about expedited shipping options, please don't
+          For any questions about our shipping policy or to inquire about expedited shipping options, please don&apos;t
           hesitate to reach out to our customer service team.
         </p>
       </div>

@@ -19,8 +19,8 @@ export default function About() {
         />
       </div>
       <p className="mb-6 text-lg">
-        Welcome to Eroe Designer, where we craft dreams into reality. As 'The Royal Choice' in fashion, we specialize in
-        creating exquisite designer clothing for life's most cherished moments - weddings, engagements, and cultural
+        Welcome to Eroe Designer, where we craft dreams into reality. As &apos;The Royal Choice&apos; in fashion, we specialize in
+        creating exquisite designer clothing for life&apos;s most cherished moments - weddings, engagements, and cultural
         celebrations that demand nothing short of perfection.
       </p>
       <p className="mb-6 text-lg">
@@ -31,16 +31,16 @@ export default function About() {
       <p className="mb-6 text-lg">
         What sets us apart is our ability to blend timeless elegance with contemporary flair. We understand that true
         style is personal, which is why our designs cater to a diverse range of tastes and cultural traditions. Whether
-        you're seeking a show-stopping wedding gown, a sophisticated engagement outfit, or a culturally rich ensemble
+        you&apos;re seeking a show-stopping wedding gown, a sophisticated engagement outfit, or a culturally rich ensemble
         for a special event, Eroe Designer has you covered.
       </p>
       <p className="mb-6 text-lg">
-        Our reputation as 'The Royal Choice' is built on the trust of our clients, who rely on us to bring their fashion
+        Our reputation as &apos;The Royal Choice&apos; is built on the trust of our clients, who rely on us to bring their fashion
         visions to life. We take this responsibility seriously, pouring our expertise and passion into every stitch,
         every embellishment, and every design.
       </p>
       <p className="text-lg">
-        Choose Eroe Designer and experience the difference that comes with wearing a garment that's been created with
+        Choose Eroe Designer and experience the difference that comes with wearing a garment that&apos;s been created with
         passion, precision, and an eye for regal beauty. Let us be part of your special moments, dressing you in designs
         that are as unique and memorable as the occasions themselves.
       </p>
