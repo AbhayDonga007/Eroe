@@ -58,7 +58,7 @@ export function OrderCard({ order }:OrderCardProps) {
             <span className="text-sm">{order?.orderPrice}</span>
           </div>
         </div>
-        <ProgressTracker status={order?.status} />
+        <ProgressTracker status={order?.status as "Ordered" | "Packed" | "Shipped" | "Out for Delivery" | "Delivered"} />
         {/* <ProductList products={order?.products} /> */}
       </CardContent>
     </Card>
