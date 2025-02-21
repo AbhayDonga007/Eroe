@@ -57,8 +57,8 @@ export default function OrdersPage() {
         <h1 className="text-3xl font-bold mb-8">Customer Orders</h1>
         <FilterBar />
         <div className="space-y-6">
-          {orders.map((order) => (
-            <OrderCard order={order} />
+          {orders.map((order,index) => (
+            <OrderCard key={index} order={order} />
           ))}
         </div>
       </div>
