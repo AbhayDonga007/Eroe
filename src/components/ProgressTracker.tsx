@@ -1,8 +1,9 @@
 import { CheckCircle2, Circle, Loader2 } from "lucide-react"
 
-const steps = ["Ordered", "Packed", "Shipped", "Out for Delivery", "Delivered"]
+const steps = ["Ordered", "Packed", "Shipped", "Out for Delivery", "Delivered"] as const
+type Status = (typeof steps)[number];
 
-export function ProgressTracker({ status }) {
+export function ProgressTracker({ status }: { status: Status }) {
   const currentStep = steps.indexOf(status) + 1
 
   return (
