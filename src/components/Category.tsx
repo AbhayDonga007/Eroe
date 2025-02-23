@@ -19,14 +19,24 @@ To read more about using these font, please visit the Next.js documentation:
 **/
 "use client";
 import Link from "next/link";
-import img from "../images/z2.jpg";
-import img1 from "../images/catagory-1.jpg";
-import img2 from "../images/catagory-2.jpg";
-import img3 from "../images/catagory-3.jpg";
-import img4 from "../images/catagory-4.jpg";
-import img5 from "../images/catagory-5.jpg";
+import img1 from "../images/designer-kurti.jpg";
+import img2 from "../images/pant-pair.jpg";
+import img3 from "../images/Gowns.jpg";
+import img4 from "../images/plaza-pair.jpg";
+import img5 from "../images/Indo-Western.jpg";
+import img6 from "../images/crep-top.jpg";
+import img7 from "../images/cord-set.jpg";
+import img8 from "../images/tunic.jpg";
+import img9 from "../images/saree.jpg";
 import Image from "next/image";
-import { Button, Card, CardBody, CardHeader } from "@nextui-org/react";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Divider,
+} from "@nextui-org/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
@@ -36,277 +46,502 @@ const pacifico = Pacifico({
   subsets: ["latin"],
   weight: "400",
   style: "normal",
-})
+});
 const libre = Libre_Baskerville({
   subsets: ["latin"],
   weight: "700",
   style: "normal",
-})
+});
 
 export function Category() {
   return (
     <section className="w-full flex justify-center py-6">
-      <div className="container grid gap-8 md:gap-12 px-4 md:px-6">
+      <div className="container grid gap-2 md:gap-12 px-4 md:px-6">
         <div className="text-center items-center gap-4 md:gap-8">
           <div className="grid gap-3">
             <div className={pacifico.className}>
-            <h1 className="text-4xl font-bold">
-              Shop By Collection
-            </h1>
+              <h1 className="text-4xl font-bold">Shop by Category</h1>
             </div>
             <div className={libre.className}>
-            <p className="text-gray-500">
-              Filfil the Fashion Forver
-            </p>
+              <p className="text-gray-500">
+                Find Your Style, Embrace Fashion Forever!
+              </p>
             </div>
           </div>
         </div>
 
         <div className="grid grid-cols-2 xl:pl-[150px] xl:pr-[150px] md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
-            <div className="grid gap-4">
-              <div className="grid gap-2.5 relative group">
-                <Card
-                  isFooterBlurred
-                  className="rounded-full"
-                  shadow="lg"
-                  isPressable
-                >
-                  <CardHeader className="top-[35%] absolute z-10 flex-col  place-items-center">
-                    <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm">
+          <div className="grid gap-4">
+            <div className="grid gap-2.5 relative group">
+              <Card isFooterBlurred className="" shadow="lg" isPressable>
+                {/* hover:scale-110 ease-in duration-300 */}
+                <CardBody className="p-0">
+                  <Swiper
+                    className="w-full bg-black/30 bg-blur"
+                    modules={[Navigation, Pagination, Scrollbar, A11y]}
+                    // spaceBetween={50}
+                    slidesPerView={1}
+                    // navigation
+                    pagination={{ clickable: true, dynamicBullets: true }}
+                    // scrollbar={{ draggable: true }}
+                    // onSwiper={(swiper) => console.log(swiper)}
+                    // onSlideChange={() => console.log('slide change')}
+                  >
+                    <SwiperSlide className="">
+                      <Image
+                        alt="Kurti"
+                        className="object-cover w-full opacity-90 transition-opacity gap-y-3"
+                        height={350}
+                        src={img1}
+                        width={350}
+                      />
+                      {/* <video
+                        src="/videos/video2.mp4"
+                        className="object-cover aspect-[3/4] w-full opacity-90 transition-opacity gap-y-3"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                      /> */}
                       <Link
                         className="absolute inset-0 z-10"
-                        href={`/category/Kurti`}
+                        href={`/category/Designer Kurti`}
                       />
-                      Kurti
-                    </Button>
-                  </CardHeader>
-                  <CardBody className="p-0 hover:scale-125 ease-in duration-300">
-                    <Swiper
-                      className="w-full bg-black/30 bg-blur"
-                      modules={[Navigation, Pagination, Scrollbar, A11y]}
-                      // spaceBetween={50}
-                      slidesPerView={1}
-                      // navigation
-                      pagination={{ clickable: true, dynamicBullets: true }}
-                      // scrollbar={{ draggable: true }}
-                      // onSwiper={(swiper) => console.log(swiper)}
-                      // onSlideChange={() => console.log('slide change')}
-                    >
-                      <SwiperSlide className="">
-                        <Image
-                          alt="Kurti"
-                          className="object-cover w-full aspect-[1/1] opacity-90 transition-opacity gap-y-3"
-                          height={350}
-                          src={img1}
-                          width={350}
-                        />
-                        <Link className="absolute inset-0 z-10" href={`/category/Kurti`} />
-                      </SwiperSlide>
-                    </Swiper>
-                  </CardBody>
-                </Card>
-              </div>
+                    </SwiperSlide>
+                  </Swiper>
+                </CardBody>
+                <Divider />
+                <CardFooter className="bottom-0 flex-col items-center">
+                  {/* <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm"> */}
+                  {/* <Link
+                        className="absolute inset-0 z-10"
+                        href={`/category/Designer Kurti`}
+                      /> */}
+                  <h4 className="font-bold truncate text-sm uppercase">
+                    Designer Kurti
+                  </h4>
+                  {/* </Button> */}
+                </CardFooter>
+              </Card>
             </div>
+          </div>
           {/* </BackgroundGradient> */}
 
           {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
-            <div className="grid gap-4">
-              <div className="grid gap-2.5  relative group">
-                <Card
-                  isFooterBlurred
-                  className="rounded-full"
-                  shadow="lg"
-                  isPressable
-                  onPress={() => console.log("item pressed")}
-                >
-                  <CardHeader className="top-[35%] absolute z-10 flex-col  place-items-center">
-                    <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm">
+          <div className="grid gap-4">
+            <div className="grid gap-2.5 relative group">
+              <Card isFooterBlurred className="" shadow="lg" isPressable>
+                {/* hover:scale-110 ease-in duration-300 */}
+                <CardBody className="p-0">
+                  <Swiper
+                    className="w-full bg-black/30 bg-blur"
+                    modules={[Navigation, Pagination, Scrollbar, A11y]}
+                    // spaceBetween={50}
+                    slidesPerView={1}
+                    // navigation
+                    pagination={{ clickable: true, dynamicBullets: true }}
+                    // scrollbar={{ draggable: true }}
+                    // onSwiper={(swiper) => console.log(swiper)}
+                    // onSlideChange={() => console.log('slide change')}
+                  >
+                    <SwiperSlide className="">
+                      <Image
+                        alt="Kurti"
+                        className="object-cover w-full opacity-90 transition-opacity gap-y-3"
+                        height={350}
+                        src={img2}
+                        width={350}
+                      />
+                      {/* <video
+                        src="/videos/video4.mp4"
+                        className="object-cover aspect-[3/4] w-full opacity-90 transition-opacity gap-y-3"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                      /> */}
                       <Link
-                            className="absolute inset-0 z-10"
-                            href={`/category/Pant Pair`}
-                          ></Link>
-                      {/* <p className="uppercase">Kurti</p> */}
-                      Pant Pair
-                    </Button>
-                  </CardHeader>
-                  <CardBody className="p-0 hover:scale-125 ease-in duration-300">
-                    <Swiper
-                      className="w-full bg-black/30 bg-blur"
-                      modules={[Navigation, Pagination, Scrollbar, A11y]}
-                      // spaceBetween={50}
-                      slidesPerView={1}
-                      // navigation
-                      pagination={{ clickable: true, dynamicBullets: true }}
-                      // scrollbar={{ draggable: true }}
-                      // onSwiper={(swiper) => console.log(swiper)}
-                      // onSlideChange={() => console.log('slide change')}
-                    >
-                      <SwiperSlide className="">
-                        <Image
-                          alt="Leather Jacket"
-                          className="object-cover w-full aspect-[1/1] opacity-90 transition-opacity gap-y-3"
-                          height={350}
-                          src={img2}
-                          width={350}
-                        />
-                        <Link className="absolute inset-0 z-10" href={`/category/Pant Pair`} />
-                      </SwiperSlide>
-                    </Swiper>
-                  </CardBody>
-                </Card>
-              </div>
+                        className="absolute inset-0 z-10"
+                        href={`/category/Elegant Pant Pair`}
+                      />
+                    </SwiperSlide>
+                  </Swiper>
+                </CardBody>
+                <Divider />
+                <CardFooter className="bottom-0 flex-col items-center">
+                  {/* <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm"> */}
+                  {/* <Link
+                        className="absolute inset-0 z-10"
+                        href={`/category/Designer Kurti`}
+                      /> */}
+                  <h4 className="font-bold truncate text-sm uppercase">
+                    Elegant Pant Pair
+                  </h4>
+                  {/* </Button> */}
+                </CardFooter>
+              </Card>
             </div>
+          </div>
           {/* </BackgroundGradient> */}
 
           {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
-            <div className="grid gap-4">
-              <div className="grid gap-2.5  relative group">
-                <Card
-                  isFooterBlurred
-                  className="rounded-full"
-                  shadow="lg"
-                  isPressable
-                  onPress={() => console.log("item pressed")}
-                >
-                  <CardHeader className="top-[35%] absolute z-10 flex-col  place-items-center">
-                    <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm">
-                      {/* <Link
-                            className="absolute inset-0 z-10"
-                            href={`/product/${item._id}`}
-                          ></Link> */}
-                      {/* <p className="uppercase">Kurti</p> */}
-                      <Link className="absolute inset-0 z-10" href={`/category/Gown`} />
-                      Gown
-                    </Button>
-                  </CardHeader>
-                  <CardBody className="p-0 hover:scale-125 ease-in duration-300">
-                    <Swiper
-                      className="w-full bg-black/30 bg-blur"
-                      modules={[Navigation, Pagination, Scrollbar, A11y]}
-                      // spaceBetween={50}
-                      slidesPerView={1}
-                      // navigation
-                      pagination={{ clickable: true, dynamicBullets: true }}
-                      // scrollbar={{ draggable: true }}
-                      // onSwiper={(swiper) => console.log(swiper)}
-                      // onSlideChange={() => console.log('slide change')}
-                    >
-                      <SwiperSlide className="">
-                        <Image
-                          alt="Leather Jacket"
-                          className="object-cover w-full aspect-[1/1] opacity-90 transition-opacity gap-y-3"
-                          height={350}
-                          src={img3}
-                          width={350}
-                        />
-                        <Link className="absolute inset-0 z-10" href={`/category/Gown`} />
-                      </SwiperSlide>
-                    </Swiper>
-                  </CardBody>
-                </Card>
-              </div>
+          <div className="grid gap-4">
+            <div className="grid gap-2.5 relative group">
+              <Card isFooterBlurred className="" shadow="lg" isPressable>
+                {/* hover:scale-110 ease-in duration-300 */}
+                <CardBody className="p-0">
+                  <Swiper
+                    className="w-full bg-black/30 bg-blur"
+                    modules={[Navigation, Pagination, Scrollbar, A11y]}
+                    // spaceBetween={50}
+                    slidesPerView={1}
+                    // navigation
+                    pagination={{ clickable: true, dynamicBullets: true }}
+                    // scrollbar={{ draggable: true }}
+                    // onSwiper={(swiper) => console.log(swiper)}
+                    // onSlideChange={() => console.log('slide change')}
+                  >
+                    <SwiperSlide className="">
+                      <Image
+                        alt="Kurti"
+                        className="object-cover w-full opacity-90 transition-opacity gap-y-3"
+                        height={350}
+                        src={img3}
+                        width={350}
+                      />
+                      {/* <video
+                        src="/videos/video1.mp4"
+                        className="object-cover aspect-[3/4] w-full opacity-90 transition-opacity gap-y-3"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                      /> */}
+                      <Link
+                        className="absolute inset-0 z-10"
+                        href={`/category/Royal Gown Collection`}
+                      />
+                    </SwiperSlide>
+                  </Swiper>
+                </CardBody>
+                <Divider />
+                <CardFooter className="bottom-0 flex-col items-center">
+                  {/* <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm"> */}
+                  {/* <Link
+                        className="absolute inset-0 z-10"
+                        href={`/category/Designer Kurti`}
+                      /> */}
+                  <h4 className="font-bold truncate text-sm uppercase">
+                    Royal Gown
+                  </h4>
+                  {/* </Button> */}
+                </CardFooter>
+              </Card>
             </div>
+          </div>
           {/* </BackgroundGradient> */}
 
           {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
-            <div className="grid gap-4">
-              <div className="grid gap-2.5  relative group">
-                <Card
-                  isFooterBlurred
-                  className="rounded-full"
-                  shadow="lg"
-                  isPressable
-                  onPress={() => console.log("item pressed")}
-                >
-                  <CardHeader className="top-[35%] absolute z-10 flex-col  place-items-center">
-                    <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm">
-                      {/* <Link
-                            className="absolute inset-0 z-10"
-                            href={`/product/${item._id}`}
-                          ></Link> */}
-                      {/* <p className="uppercase">Kurti</p> */}
-                      <Link className="absolute inset-0 z-10" href={`/category/Plaza Pair`} />
-                      Plaza Pair
-                    </Button>
-                  </CardHeader>
-                  <CardBody className="p-0 hover:scale-125 ease-in duration-300">
-                    <Swiper
-                      className="w-full bg-black/30 bg-blur"
-                      modules={[Navigation, Pagination, Scrollbar, A11y]}
-                      // spaceBetween={50}
-                      slidesPerView={1}
-                      // navigation
-                      pagination={{ clickable: true, dynamicBullets: true }}
-                      // scrollbar={{ draggable: true }}
-                      // onSwiper={(swiper) => console.log(swiper)}
-                      // onSlideChange={() => console.log('slide change')}
-                    >
-                      <SwiperSlide className="">
-                        <Image
-                          alt="Leather Jacket"
-                          className="object-cover w-full aspect-[1/1] opacity-90 transition-opacity gap-y-3"
-                          height={350}
-                          src={img4}
-                          width={350}
-                        />
-                        <Link className="absolute inset-0 z-10" href={`/category/Plaza Pair`} />
-                      </SwiperSlide>
-                    </Swiper>
-                  </CardBody>
-                </Card>
-              </div>
+          <div className="grid gap-4">
+            <div className="grid gap-2.5 relative group">
+              <Card isFooterBlurred className="" shadow="lg" isPressable>
+                {/* hover:scale-110 ease-in duration-300 */}
+                <CardBody className="p-0">
+                  <Swiper
+                    className="w-full bg-black/30 bg-blur"
+                    modules={[Navigation, Pagination, Scrollbar, A11y]}
+                    // spaceBetween={50}
+                    slidesPerView={1}
+                    // navigation
+                    pagination={{ clickable: true, dynamicBullets: true }}
+                    // scrollbar={{ draggable: true }}
+                    // onSwiper={(swiper) => console.log(swiper)}
+                    // onSlideChange={() => console.log('slide change')}
+                  >
+                    <SwiperSlide className="">
+                      <Image
+                        alt="Kurti"
+                        className="object-cover aspect-[3/4] w-full opacity-90 transition-opacity gap-y-3"
+                        height={350}
+                        src={img4}
+                        width={350}
+                      />
+                      <Link
+                        className="absolute inset-0 z-10"
+                        href={`/category/Chic Plaza Pair`}
+                      />
+                    </SwiperSlide>
+                  </Swiper>
+                </CardBody>
+                <Divider />
+                <CardFooter className="bottom-0 flex-col items-center">
+                  {/* <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm"> */}
+                  {/* <Link
+                        className="absolute inset-0 z-10"
+                        href={`/category/Designer Kurti`}
+                      /> */}
+                  <h4 className="font-bold truncate text-sm uppercase">
+                    Chic Plaza Pair
+                  </h4>
+                  {/* </Button> */}
+                </CardFooter>
+              </Card>
             </div>
+          </div>
           {/* </BackgroundGradient> */}
 
           {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
-            <div className="grid gap-4">
-              <div className="grid gap-2.5  relative group">
-                <Card
-                  isFooterBlurred
-                  className="rounded-full"
-                  shadow="lg"
-                  isPressable
-                  onPress={() => console.log("item pressed")}
-                >
-                  <CardHeader className="top-[35%] absolute z-10 flex-col  place-items-center">
-                    <Button className="bg-white text-black font-bold uppercase px-3 py-3 rounded-lg text-sm">
-                      {/* <Link
-                            className="absolute inset-0 z-10"
-                            href={`/product/${item._id}`}
-                          ></Link> */}
-                      {/* <p className="uppercase">Kurti</p> */}
-                      <Link className="absolute inset-0 z-10" href={`/category/Nayra Pair`} />
-                      Nayra Pair
-                    </Button>
-                  </CardHeader>
-                  <CardBody className="p-0 hover:scale-125 ease-in duration-300">
-                    <Swiper
-                      className="w-full bg-black/30 bg-blur"
-                      modules={[Navigation, Pagination, Scrollbar, A11y]}
-                      // spaceBetween={50}
-                      slidesPerView={1}
-                      // navigation
-                      pagination={{ clickable: true, dynamicBullets: true }}
-                      // scrollbar={{ draggable: true }}
-                      // onSwiper={(swiper) => console.log(swiper)}
-                      // onSlideChange={() => console.log('slide change')}
-                    >
-                      <SwiperSlide className="">
-                        <Image
-                          alt="Leather Jacket"
-                          className="object-cover w-full aspect-[1/1] opacity-90 transition-opacity gap-y-3"
-                          height={350}
-                          src={img5}
-                          width={350}
-                        />
-                        <Link className="absolute inset-0 z-10" href={`/category/Nayra Pair`} />
-                      </SwiperSlide>
-                    </Swiper>
-                  </CardBody>
-                </Card>
-              </div>
+          <div className="grid gap-4">
+            <div className="grid gap-2.5 relative group">
+              <Card isFooterBlurred className="" shadow="lg" isPressable>
+                {/* hover:scale-110 ease-in duration-300 */}
+                <CardBody className="p-0">
+                  <Swiper
+                    className="w-full bg-black/30 bg-blur"
+                    modules={[Navigation, Pagination, Scrollbar, A11y]}
+                    // spaceBetween={50}
+                    slidesPerView={1}
+                    // navigation
+                    pagination={{ clickable: true, dynamicBullets: true }}
+                    // scrollbar={{ draggable: true }}
+                    // onSwiper={(swiper) => console.log(swiper)}
+                    // onSlideChange={() => console.log('slide change')}
+                  >
+                    <SwiperSlide className="">
+                      <Image
+                        alt="Kurti"
+                        className="object-cover aspect-[3/4] w-full opacity-90 transition-opacity gap-y-3"
+                        height={350}
+                        src={img5}
+                        width={350}
+                      />
+                      <Link
+                        className="absolute inset-0 z-10"
+                        href={`/category/Trendy Indo Western Wear`}
+                      />
+                    </SwiperSlide>
+                  </Swiper>
+                </CardBody>
+                <Divider />
+                <CardFooter className="bottom-0 flex-col items-center">
+                  {/* <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm"> */}
+                  {/* <Link
+                        className="absolute inset-0 z-10"
+                        href={`/category/Designer Kurti`}
+                      /> */}
+                  <h4 className="font-bold truncate text-sm uppercase">
+                    Trendy Indo Western
+                  </h4>
+                  {/* </Button> */}
+                </CardFooter>
+              </Card>
             </div>
+          </div>
+          {/* </BackgroundGradient> */}
+
+          {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
+          <div className="grid gap-4">
+            <div className="grid gap-2.5 relative group">
+              <Card isFooterBlurred className="" shadow="lg" isPressable>
+                {/* hover:scale-110 ease-in duration-300 */}
+                <CardBody className="p-0">
+                  <Swiper
+                    className="w-full bg-black/30 bg-blur"
+                    modules={[Navigation, Pagination, Scrollbar, A11y]}
+                    // spaceBetween={50}
+                    slidesPerView={1}
+                    // navigation
+                    pagination={{ clickable: true, dynamicBullets: true }}
+                    // scrollbar={{ draggable: true }}
+                    // onSwiper={(swiper) => console.log(swiper)}
+                    // onSlideChange={() => console.log('slide change')}
+                  >
+                    <SwiperSlide className="">
+                      <Image
+                        alt="Kurti"
+                        className="object-cover aspect-[3/4] w-full opacity-90 transition-opacity gap-y-3"
+                        height={350}
+                        src={img6}
+                        width={350}
+                      />
+                      <Link
+                        className="absolute inset-0 z-10"
+                        href={`/category/Stylish Crop-Top`}
+                      />
+                    </SwiperSlide>
+                  </Swiper>
+                </CardBody>
+                <Divider />
+                <CardFooter className="bottom-0 flex-col items-center">
+                  {/* <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm"> */}
+                  {/* <Link
+                        className="absolute inset-0 z-10"
+                        href={`/category/Designer Kurti`}
+                      /> */}
+                  <h4 className="font-bold truncate text-sm uppercase">
+                    Stylish Crop-Top
+                  </h4>
+                  {/* </Button> */}
+                </CardFooter>
+              </Card>
+            </div>
+          </div>
+          {/* </BackgroundGradient> */}
+
+          {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
+          <div className="grid gap-4">
+            <div className="grid gap-2.5 relative group">
+              <Card isFooterBlurred className="" shadow="lg" isPressable>
+                {/* hover:scale-110 ease-in duration-300 */}
+                <CardBody className="p-0">
+                  <Swiper
+                    className="w-full bg-black/30 bg-blur"
+                    modules={[Navigation, Pagination, Scrollbar, A11y]}
+                    // spaceBetween={50}
+                    slidesPerView={1}
+                    // navigation
+                    pagination={{ clickable: true, dynamicBullets: true }}
+                    // scrollbar={{ draggable: true }}
+                    // onSwiper={(swiper) => console.log(swiper)}
+                    // onSlideChange={() => console.log('slide change')}
+                  >
+                    <SwiperSlide className="">
+                      <Image
+                        alt="Kurti"
+                        className="object-cover aspect-[3/4] w-full opacity-90 transition-opacity gap-y-3"
+                        height={350}
+                        src={img7}
+                        width={350}
+                      />
+                      <Link
+                        className="absolute inset-0 z-10"
+                        href={`/category/Modern Cord Set`}
+                      />
+                    </SwiperSlide>
+                  </Swiper>
+                </CardBody>
+                <Divider />
+                <CardFooter className="bottom-0 flex-col items-center">
+                  {/* <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm"> */}
+                  {/* <Link
+                        className="absolute inset-0 z-10"
+                        href={`/category/Designer Kurti`}
+                      /> */}
+                  <h4 className="font-bold truncate text-sm uppercase">
+                    Modern Cord Set
+                  </h4>
+                  {/* </Button> */}
+                </CardFooter>
+              </Card>
+            </div>
+          </div>
+          {/* </BackgroundGradient> */}
+
+          {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
+          <div className="grid gap-4">
+            <div className="grid gap-2.5 relative group">
+              <Card isFooterBlurred className="" shadow="lg" isPressable>
+                {/* hover:scale-110 ease-in duration-300 */}
+                <CardBody className="p-0">
+                  <Swiper
+                    className="w-full bg-black/30 bg-blur"
+                    modules={[Navigation, Pagination, Scrollbar, A11y]}
+                    // spaceBetween={50}
+                    slidesPerView={1}
+                    // navigation
+                    pagination={{ clickable: true, dynamicBullets: true }}
+                    // scrollbar={{ draggable: true }}
+                    // onSwiper={(swiper) => console.log(swiper)}
+                    // onSlideChange={() => console.log('slide change')}
+                  >
+                    <SwiperSlide className="">
+                      <Image
+                        alt="Kurti"
+                        className="object-cover aspect-[3/4] w-full opacity-90 transition-opacity gap-y-3"
+                        height={350}
+                        src={img8}
+                        width={350}
+                      />
+                      <Link
+                        className="absolute inset-0 z-10"
+                        href={`/category/Graceful Tunics Collection`}
+                      />
+                    </SwiperSlide>
+                  </Swiper>
+                </CardBody>
+                <Divider />
+                <CardFooter className="bottom-0 flex-col items-center">
+                  {/* <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm"> */}
+                  {/* <Link
+                        className="absolute inset-0 z-10"
+                        href={`/category/Designer Kurti`}
+                      /> */}
+                  <h4 className="font-bold truncate text-sm uppercase">
+                    Graceful Tunics
+                  </h4>
+                  {/* </Button> */}
+                </CardFooter>
+              </Card>
+            </div>
+          </div>
+          {/* </BackgroundGradient> */}
+
+          {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
+          <div className="grid gap-4">
+            <div className="grid gap-2.5 relative group">
+              <Card isFooterBlurred className="" shadow="lg" isPressable>
+                {/* hover:scale-110 ease-in duration-300 */}
+                <CardBody className="p-0">
+                  <Swiper
+                    className="w-full bg-black/30 bg-blur"
+                    modules={[Navigation, Pagination, Scrollbar, A11y]}
+                    // spaceBetween={50}
+                    slidesPerView={1}
+                    // navigation
+                    pagination={{ clickable: true, dynamicBullets: true }}
+                    // scrollbar={{ draggable: true }}
+                    // onSwiper={(swiper) => console.log(swiper)}
+                    // onSlideChange={() => console.log('slide change')}
+                  >
+                    <SwiperSlide className="">
+                      <Image
+                        alt="Kurti"
+                        className="object-cover w-full opacity-90 transition-opacity gap-y-3"
+                        height={350}
+                        src={img9}
+                        width={350}
+                      />
+                      {/* <video
+                        src="/videos/video1.mp4"
+                        className="object-cover aspect-[3/4] w-full opacity-90 transition-opacity gap-y-3"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                      /> */}
+                      <Link
+                        className="absolute inset-0 z-10"
+                        href={`/category/Luxury Dripping Sarees`}
+                      />
+                    </SwiperSlide>
+                  </Swiper>
+                </CardBody>
+                <Divider />
+                <CardFooter className="bottom-0 flex-col items-center">
+                  {/* <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm"> */}
+                  {/* <Link
+                        className="absolute inset-0 z-10"
+                        href={`/category/Designer Kurti`}
+                      /> */}
+                  <h4 className="font-bold uppercase">
+                    Luxury Dripping Sarees
+                  </h4>
+                  {/* </Button> */}
+                </CardFooter>
+              </Card>
+            </div>
+          </div>
           {/* </BackgroundGradient> */}
         </div>
       </div>

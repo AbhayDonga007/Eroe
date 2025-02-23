@@ -14,6 +14,10 @@ import b3 from "@/images/banner1.png"
 import b4 from "@/images/banner2.png"
 import b5 from "@/images/banner3.png"
 import b6 from "@/images/banner4.png"
+import b7 from "@/images/banner7.png"
+import b8 from "@/images/banner6.png"
+import b9 from "@/images/banner8.png"
+import b10 from "@/images/banner9.png"
 
 type Props = {}
 
@@ -40,13 +44,6 @@ const Banner = (props: Props) => {
       <SwiperSlide>
         <Image
             className="object-cover"
-            src={b1}
-            alt="Picture of the author"
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Image
-            className="object-cover"
             src={b3}
             alt="Picture of the author"
         />
@@ -54,21 +51,35 @@ const Banner = (props: Props) => {
       <SwiperSlide>
         <Image
             className="object-cover"
-            src={b4}
+            src={b1}
             alt="Picture of the author"
         />
       </SwiperSlide>
       <SwiperSlide>
         <Image
             className="object-cover"
-            src={b5}
+            src={b7}
             alt="Picture of the author"
         />
       </SwiperSlide>
       <SwiperSlide>
         <Image
             className="object-cover"
-            src={b6}
+            src={b8}
+            alt="Picture of the author"
+        />
+      </SwiperSlide>
+      <SwiperSlide>
+        <Image
+            className="object-cover"
+            src={b9}
+            alt="Picture of the author"
+        />
+      </SwiperSlide>
+      <SwiperSlide>
+        <Image
+            className="object-cover"
+            src={b10}
             alt="Picture of the author"
         />
       </SwiperSlide>

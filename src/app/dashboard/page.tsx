@@ -24,6 +24,8 @@ import img3 from "@/images/banner3.png";
 import img4 from "@/images/banner4.png";
 import img5 from "@/images/banner5.png";
 import Nav from "@/components/Nav";
+import ShowRoom from "@/components/ShowRoom";
+import { Reels } from "@/components/Reels";
 
 type Props = {};
 
@@ -49,6 +51,8 @@ const DashBoard = (props: Props) => {
       <Nav />
       <Banner />
       <Category />
+      <ShowRoom />
+      <Reels />
       <CardProduct />
 
       <Swiper

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import logo from '@/images/Eroe.png'
+import logo from '@/images/Aavkar1.png'
 
 type Props = {}
 

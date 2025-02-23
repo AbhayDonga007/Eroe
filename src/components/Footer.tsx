@@ -20,6 +20,7 @@ To read more about using these font, please visit the Next.js documentation:
 import Link from "next/link";
 import Logo from "./Logo";
 import { Label } from "./ui/label";
+import Logo1 from "./Logo1";
 
 export function Footer() {
   return (
@@ -30,7 +31,7 @@ export function Footer() {
             className="flex items-center gap-2 text-lg font-semibold md:text-base"
             href="/dashboard"
           >
-            <Logo />
+            <Logo1 />
           </Link>
           <p className="text-gray-500">
             We want to acquire a good portion market in mfg. of garments and as
@@ -134,7 +135,7 @@ export function Footer() {
       </div>
       <div className="container mx-auto px-4 md:px-6 mt-8 mb-0 pb-0 border-t pt-4 flex items-center justify-between">
         <p className="text-sm text-gray-500">
-          © 2025 Eroe Designer All rights reserved.
+          © 2025 Aavkar Fashion All rights reserved.
         </p>
         <nav className="flex items-center gap-4">
           <Link target="_" className="text-sm text-gray-500 hover:text-gray-900" href="https://api.whatsapp.com/send/?phone=917818070999&text&type=phone_number&app_absent=0">

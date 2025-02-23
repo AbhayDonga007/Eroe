@@ -110,7 +110,7 @@ export function CardProduct() {
                     <Card
                       isFooterBlurred
                       // xl:min-h-[390px] min-h-[270px] max-h-[500px]
-                      className="rounded-[22px]  bg-gray-200"
+                      className="rounded-[22px] bg-gray-200"
                       shadow="sm"
                       key={index}
                       isPressable
