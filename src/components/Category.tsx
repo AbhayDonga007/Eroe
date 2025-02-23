@@ -70,7 +70,7 @@ export function Category() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 xl:pl-[150px] xl:pr-[150px] md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 xl:pl-[150px] xl:pr-[150px] md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
           {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
           <div className="grid gap-4">
             <div className="grid gap-2.5 relative group">
