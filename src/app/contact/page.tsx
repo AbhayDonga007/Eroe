@@ -81,8 +81,8 @@ export default function Contact() {
           <h2 className="text-2xl font-bold mb-4 text-gold">Business Hours</h2>
           <p className="mb-4">Our customer service team is available:</p>
           <ul className="space-y-2">
-            <li>Monday - Friday: 9:00 AM - 6:00 PM EST</li>
-            <li>Saturday: 10:00 AM - 4:00 PM EST</li>
+            <li>Monday - Friday: 9:00 AM - 6:00 PM IST</li>
+            <li>Saturday: 10:00 AM - 4:00 PM IST</li>
             <li>Sunday: Closed</li>
           </ul>
           {/* <p className="mt-4">
