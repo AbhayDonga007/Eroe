@@ -26,6 +26,8 @@
 //     );
 //   }
 // }
+export const dynamic = "force-dynamic";
+
 import { connectMongoDB } from "@/lib/mongodb";
 import Order from "@/models/orders";
 import { NextResponse } from "next/server";

@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"; // Ensures API routes are always dynamic
 import { connectMongoDB } from '@/lib/mongodb';
 import Cart from '@/models/cart';
 import Product from '@/models/products';

@@ -4,11 +4,11 @@ import { ProgressTracker } from "./ProgressTracker"
 import { Button, Card, CardHeader } from "@nextui-org/react"
 import { CardContent, CardTitle } from "./ui/card"
 import { Product } from "./Nav"
-import { PdfGenerator } from "./PdfGenerator"
 import { useState } from "react"
 import toast from "react-hot-toast"
 import { Separator } from "./ui/separator"
 import { cn } from "@/lib/utils"
+import { PdfGenerator } from "./PdfGenerator"
 export interface Order {
   _id: string,
   customerId: string;
